@@ -14,6 +14,8 @@ public class Config {
     
     public static float shardsChance;
     public static float shardsFortuneChance;
+    public static boolean recipesRecolor;
+    public static boolean recipeUncolor;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -26,8 +28,10 @@ public class Config {
     }
     
     public static void loadValues() {
-        shardsChance = (float)conf.get(CATEGORY_GENERAL, "shardsChance", 0.75, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
-        shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.08, "Additional chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
+        shardsChance = (float)conf.get(CATEGORY_GENERAL, "shardsChance", 0.6, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
+        shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.1, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
+        recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesRecolor", true, "Add recipes to change the shards' color").setRequiresMcRestart(true).getBoolean();
+        recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
         
         if(conf.hasChanged())
             conf.save();
@@ -36,8 +40,8 @@ public class Config {
     /** Reloads the config values upon change */
     public static class ChangeHandler {
         @SubscribeEvent
-        public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
-            if(eventArgs.modID.equals(Reference.MODID))
+        public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+            if(event.modID.equals(Reference.MODID))
                 loadValues();
         }
     }
