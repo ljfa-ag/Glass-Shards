@@ -33,8 +33,9 @@ public class ModRecipes {
     private static void addCrafting() {
         if(Config.recipesRecolor)
             for(int i = 0; i < 16; i++) {
+                Object shards = new ItemStack(ModItems.glass_shards, 1, 16);
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.glass_shards, 8, i),
-                    "SSS", "SDS", "SSS", 'S', "shardsGlass", 'D', "dye" + dyes[i]));
+                    "SSS", "SDS", "SSS", 'S', shards, 'D', "dye" + dyes[i]));
             }
         
         if(Config.recipeUncolor)
