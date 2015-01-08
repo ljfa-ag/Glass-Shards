@@ -1,5 +1,6 @@
 package ljfa.glassshards;
 
+import ljfa.glassshards.items.ModItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -16,7 +17,7 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        
+        ModItems.init();
     }
     
     @Mod.EventHandler
