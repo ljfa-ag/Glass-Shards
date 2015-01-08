@@ -30,7 +30,7 @@ public class Config {
     public static void loadValues() {
         shardsChance = (float)conf.get(CATEGORY_GENERAL, "shardsChance", 0.6, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
         shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.1, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
-        recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesRecolor", true, "Add recipes to change the shards' color").setRequiresMcRestart(true).getBoolean();
+        recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
         recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
         
         if(conf.hasChanged())
