@@ -15,3 +15,4 @@ item.glass_shards:glass_shards.light_blue.name=Light Blue Glass Shards
 item.glass_shards:glass_shards.magenta.name=Magenta Glass Shards
 item.glass_shards:glass_shards.orange.name=Orange Glass Shards
 item.glass_shards:glass_shards.white.name=White Glass Shards
+glass_shards.configgui.ctgy.general.tooltip=General options
