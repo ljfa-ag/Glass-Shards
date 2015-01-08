@@ -1,5 +1,7 @@
 package ljfa.glassshards;
 
+import net.minecraftforge.common.MinecraftForge;
+import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -22,7 +24,7 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        
+        MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
     }
     
     @Mod.EventHandler
