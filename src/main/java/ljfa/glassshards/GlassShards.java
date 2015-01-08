@@ -25,6 +25,7 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+        ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
     }
     
