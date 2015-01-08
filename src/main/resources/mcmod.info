@@ -1,6 +1,6 @@
 [
 {
-  "modid": "ljglassshards",
+  "modid": "glass_shards",
   "name": "Glass Shards",
   "description": "Adds glass shards dropped when breaking glass",
   "version": "${version}",

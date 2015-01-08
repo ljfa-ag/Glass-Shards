@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 version = "0.1"
 group= "ljfa.glassshards" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "ljglassshards"
+archivesBaseName = "glass_shards"
 
 minecraft {
     version = "1.7.10-10.13.2.1277"
