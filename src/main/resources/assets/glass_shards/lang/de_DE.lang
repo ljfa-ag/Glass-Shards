@@ -1,0 +1,17 @@
+item.glass_shards:glass_shards.name=Glasscherben
+item.glass_shards:glass_shards.black.name=Schwarze Glasscherben
+item.glass_shards:glass_shards.red.name=Rote Glasscherben
+item.glass_shards:glass_shards.green.name=Grüne Glasscherben
+item.glass_shards:glass_shards.brown.name=Braune Glasscherben
+item.glass_shards:glass_shards.blue.name=Blaue Glasscherben
+item.glass_shards:glass_shards.purple.name=Violette Glasscherben
+item.glass_shards:glass_shards.cyan.name=Cyan Glasscherben
+item.glass_shards:glass_shards.silver.name=Hellgraue Glasscherben
+item.glass_shards:glass_shards.gray.name=Graue Glasscherben
+item.glass_shards:glass_shards.pink.name=Pinke Glasscherben
+item.glass_shards:glass_shards.lime.name=Hellgrüne Glasscherben
+item.glass_shards:glass_shards.yellow.name=Gelbe Glasscherben
+item.glass_shards:glass_shards.light_blue.name=Hellblaue Glasscherben
+item.glass_shards:glass_shards.magenta.name=Magenta Glasscherben
+item.glass_shards:glass_shards.orange.name=Orange Glasscherben
+item.glass_shards:glass_shards.white.name=Weiße Glasscherben
