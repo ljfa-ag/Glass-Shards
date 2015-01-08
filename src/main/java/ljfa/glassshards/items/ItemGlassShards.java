@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ItemGlassShards extends Item {
     @SideOnly(Side.CLIENT)
-    private IIcon[] textures = new IIcon[17];
+    private IIcon[] textures;
     
     ItemGlassShards() {
         setHasSubtypes(true);
@@ -49,6 +49,7 @@ public class ItemGlassShards extends Item {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister iconRegister) {
+        textures = new IIcon[17];
         for(int i = 0; i < 16; i++)
             textures[i] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_" + getColorName(i));
         
