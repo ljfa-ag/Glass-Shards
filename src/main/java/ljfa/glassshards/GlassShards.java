@@ -19,6 +19,7 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        Config.loadConfig(event.getSuggestedConfigurationFile());
         ModItems.init();
     }
     
