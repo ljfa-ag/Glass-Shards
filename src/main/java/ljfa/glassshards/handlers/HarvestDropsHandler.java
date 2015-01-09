@@ -4,6 +4,7 @@ import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassType;
+import ljfa.glassshards.util.LogHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
 
@@ -24,9 +25,8 @@ public class HarvestDropsHandler {
         if(!event.drops.isEmpty()) {
             if(event.dropChance < 0.0001f) {
                 event.drops.clear();
-                FMLLog.log(Reference.MODID, Level.INFO,
-                    "%s has a negligible drop chance, but the drop list is not empty",
-                    event.block.getUnlocalizedName());
+                LogHelper.info("%s has a negligible drop chance, but the drop list is not empty",
+                        event.block.getUnlocalizedName());
             }
             else
                 return;

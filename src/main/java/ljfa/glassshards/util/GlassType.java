@@ -31,9 +31,13 @@ public class GlassType {
      * @return A GlassShape representing the type, or null if it is not glass
      */
     public static GlassType getType(Block block, int meta) {
-        if(GlassShards.chiselHelper != null && GlassShards.chiselHelper.comesFrom(block, meta))
-            return GlassShards.chiselHelper.getType(block, meta);
-        else if(block instanceof BlockGlass)
+        if(GlassShards.chiselHelper != null) {
+            GlassType gtype = GlassShards.chiselHelper.getType(block, meta);
+            if(gtype != null)
+                return gtype;
+        }
+        
+        if(block instanceof BlockGlass)
             return new GlassType(mult_block);
         else if(block instanceof BlockStainedGlass)
             return new GlassType(mult_block, true, meta);

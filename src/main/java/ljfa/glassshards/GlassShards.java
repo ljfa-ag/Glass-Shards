@@ -1,14 +1,15 @@
 package ljfa.glassshards;
 
-import org.apache.logging.log4j.Level;
-
-import net.minecraftforge.common.MinecraftForge;
 import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
+import ljfa.glassshards.util.LogHelper;
+import net.minecraftforge.common.MinecraftForge;
+
+import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -37,7 +38,8 @@ public class GlassShards {
     public void postInit(FMLPostInitializationEvent event) {
         try {
             chiselHelper = new ChiselGlassHelper();
-        } catch(ClassNotFoundException ex) {
+            LogHelper.info("Successfully loaded Chisel compatibility.");
+        } catch(Exception ex) {
             FMLLog.log(Reference.MODID, Level.INFO, ex, "Failed to load Chisel compatibility. Chisel is probably not present.");
         }
     }
