@@ -1,6 +1,5 @@
 package ljfa.glassshards.util;
 
-import ljfa.glassshards.util.GlassHelper.GlassShape;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;

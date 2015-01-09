@@ -1,13 +1,14 @@
 package ljfa.glassshards.handlers;
 
-import org.apache.logging.log4j.Level;
-
 import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.items.ModItems;
-import ljfa.glassshards.util.GlassHelper;
+import ljfa.glassshards.util.GlassType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
+
+import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -31,11 +32,11 @@ public class HarvestDropsHandler {
                 return;
         }
         
-        GlassHelper.GlassShape gtype = GlassHelper.getShape(event.block, event.blockMetadata);
+        GlassType gtype = GlassType.getType(event.block, event.blockMetadata);
         if(gtype != null) {
             int meta;
-            if(GlassHelper.isGlassStained(event.block, event.blockMetadata))
-                meta = GlassHelper.getGlassColor(event.block, event.blockMetadata);
+            if(gtype.isStained)
+                meta = gtype.color;
             else
                 meta = 16;
             event.drops.add(new ItemStack(ModItems.glass_shards, 1, meta));
