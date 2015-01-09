@@ -10,27 +10,21 @@ import net.minecraft.block.material.Material;
 
 /** Represents a certain type of glass for the purpose of shards */
 public class GlassType {
-    /** Represents if a block is a glass block or pane */
-    public static enum GlassShape {
-        block(1.0f), pane(0.375f);
-        
-        public final float multiplier;
-        
-        private GlassShape(float mult) { multiplier = mult; }
-    }
+    public static final float mult_block = 1.0f;
+    public static final float mult_pane = 0.375f;
     
-    public final GlassShape shape;
+    public final float multiplier;
     public final boolean isStained;
     public final int color;
     
-    public GlassType(GlassShape shape, boolean stained, int color) {
-        this.shape = shape;
+    public GlassType(float multiplier, boolean stained, int color) {
+        this.multiplier = multiplier;
         this.isStained = stained;
         this.color = color;
     }
     
-    public GlassType(GlassShape shape) {
-        this(shape, false, -1);
+    public GlassType(float multiplier) {
+        this(multiplier, false, -1);
     }
     
     /** Checks if the block is some kind of glass
@@ -38,13 +32,13 @@ public class GlassType {
      */
     public static GlassType getType(Block block, int meta) {
         if(block instanceof BlockGlass)
-            return new GlassType(GlassShape.block);
+            return new GlassType(mult_block);
         else if(block instanceof BlockStainedGlass)
-            return new GlassType(GlassShape.block, true, meta);
+            return new GlassType(mult_block, true, meta);
         else if(block instanceof BlockPane && block.getMaterial() == Material.glass)
-            return new GlassType(GlassShape.pane);
+            return new GlassType(mult_pane);
         else if(block instanceof BlockStainedGlassPane)
-            return new GlassType(GlassShape.pane, true, meta);
+            return new GlassType(mult_pane, true, meta);
         else
             return null;
     }
