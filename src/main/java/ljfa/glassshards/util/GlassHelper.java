@@ -8,6 +8,10 @@ import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
 
 public class GlassHelper {
+    public static enum GlassOrigin {
+        vanilla, chisel
+    }
+    
     /** Represents if a block is a glass block or pane */
     public static enum GlassShape {
         block(1.0f), pane(0.375f);
