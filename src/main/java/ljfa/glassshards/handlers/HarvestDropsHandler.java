@@ -1,10 +1,14 @@
 package ljfa.glassshards.handlers;
 
+import org.apache.logging.log4j.Level;
+
 import ljfa.glassshards.Config;
+import ljfa.glassshards.Reference;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HarvestDropsHandler {
@@ -16,10 +20,16 @@ public class HarvestDropsHandler {
         
         // Sometimes the list of drops is not empty even if the drop chance is set to zero.
         // This might lead to duplication bugs.
-        if(event.dropChance < 0.0001f)
-            event.drops.clear();
-        else if(!event.drops.isEmpty())
-            return;
+        if(!event.drops.isEmpty()) {
+            if(event.dropChance < 0.0001f) {
+                event.drops.clear();
+                FMLLog.log(Reference.MODID, Level.INFO,
+                    "%s has a negligible drop chance, but the drop list is not empty",
+                    event.block.getUnlocalizedName());
+            }
+            else
+                return;
+        }
         
         GlassHelper.GlassType gtype = GlassHelper.getType(event.block, event.blockMetadata);
         if(gtype != null) {
