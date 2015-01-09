@@ -34,10 +34,10 @@ public class GlassType {
             return new GlassType(mult_block);
         else if(block instanceof BlockStainedGlass)
             return new GlassType(mult_block, true, meta);
-        else if(block instanceof BlockPane && block.getMaterial() == Material.glass)
-            return new GlassType(mult_pane);
         else if(block instanceof BlockStainedGlassPane)
             return new GlassType(mult_pane, true, meta);
+        else if(block instanceof BlockPane && block.getMaterial() == Material.glass)
+            return new GlassType(mult_pane);
         else
             return null;
     }
