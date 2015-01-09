@@ -6,21 +6,60 @@ import net.minecraft.block.Block;
 
 public class ChiselGlassHelper {
     public ChiselGlassHelper() throws ReflectiveOperationException {
+        classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
         classGlass = Class.forName("com.cricketcraft.chisel.block.BlockCarvableGlass");
         classPane = Class.forName("com.cricketcraft.chisel.block.BlockCarvablePane");
         
-        chiselGlass = classGlass.getDeclaredField("glass").get(chiselGlass);
+        chiselGlass = (Block)classModBlocks.getDeclaredField("glass").get(classModBlocks);
+        chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(classModBlocks);
+        chiselPane = (Block)classModBlocks.getDeclaredField("paneGlass").get(classModBlocks);
+        chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(classModBlocks);
     }
     
     public GlassType getType(Block block, int meta) {
-        LogHelper.info("Glass metadata: %d", meta);
-        if(classGlass.isInstance(block))
+        if(block == chiselGlass)
             return new GlassType(GlassType.mult_block);
-        else
-            return null;
+        
+        // How stained glass works in Chisel:
+        // array index = color >> 2
+        // metadata = (color & 3) << 2
+        // Blame Chisel for using such hardcoded values
+        for(int i = 0; i < chiselStainedGlass.length; i++) {
+            if(block == chiselStainedGlass[i]) {
+                int color = (i << 2) | (meta >> 2);
+                return new GlassType(GlassType.mult_block, true, color);
+            }
+        }
+        
+        if(block == chiselPane)
+            return new GlassType(GlassType.mult_pane);
+        
+        // How stained panes work in Chisel:
+        // array index = color >> 1
+        // metadata = (color & 1) << 3
+        for(int i = 0; i < chiselStainedPane.length; i++) {
+            if(block == chiselStainedPane[i]) {
+                int color = (i << 1) | (meta >> 3);
+                return new GlassType(GlassType.mult_pane, true, color);
+            }
+        }
+        
+        return null;
     }
     
+    public boolean doRemoveDrop(Block block, int meta) {
+        for(Block b: chiselStainedPane)
+            if(block == b)
+                return true;
+        return false;
+    }
+    
+    private Class<?> classModBlocks;
     private Class<?> classGlass;
     private Class<?> classPane;
-    private Object chiselGlass;
+    
+    private Block chiselGlass;
+    private Block[] chiselStainedGlass;
+    private Block chiselPane;
+    private Block[] chiselStainedPane;
 }

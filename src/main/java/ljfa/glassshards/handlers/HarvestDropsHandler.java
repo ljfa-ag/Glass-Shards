@@ -1,7 +1,9 @@
 package ljfa.glassshards.handlers;
 
 import ljfa.glassshards.Config;
+import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
+import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassType;
 import ljfa.glassshards.util.LogHelper;
@@ -28,6 +30,9 @@ public class HarvestDropsHandler {
                 LogHelper.info("%s has a negligible drop chance, but the drop list is not empty",
                         event.block.getUnlocalizedName());
             }
+            else if(GlassShards.chiselHelper != null
+                    && GlassShards.chiselHelper.doRemoveDrop(event.block, event.blockMetadata))
+                event.drops.clear();
             else
                 return;
         }
