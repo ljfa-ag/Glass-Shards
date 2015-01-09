@@ -9,23 +9,23 @@ import net.minecraft.block.material.Material;
 
 public class GlassHelper {
     /** Represents if a block is a glass block or pane */
-    public static enum GlassType {
+    public static enum GlassShape {
         block(1.0f), pane(0.375f);
         
         public final float multiplier;
         
-        private GlassType(float mult) { multiplier = mult; }
+        private GlassShape(float mult) { multiplier = mult; }
     }
     
     /** Checks if the block is some kind of glass
      * @return A GlassType representing the type, or null if it is not a glass block
      */
-    public static GlassType getType(Block block, int meta) {
+    public static GlassShape getType(Block block, int meta) {
         if(block instanceof BlockGlass || block instanceof BlockStainedGlass)
-            return GlassType.block;
+            return GlassShape.block;
         else if(block instanceof BlockStainedGlassPane
                 || block instanceof BlockPane && block.getMaterial() == Material.glass)
-            return GlassType.pane;
+            return GlassShape.pane;
         else
             return null;
     }
