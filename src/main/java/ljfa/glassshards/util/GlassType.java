@@ -1,6 +1,6 @@
 package ljfa.glassshards.util;
 
-import ljfa.glassshards.compat.ChiselGlassHelper;
+import ljfa.glassshards.GlassShards;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
@@ -31,8 +31,8 @@ public class GlassType {
      * @return A GlassShape representing the type, or null if it is not glass
      */
     public static GlassType getType(Block block, int meta) {
-        if(chiselHelper != null && chiselHelper.comesFrom(block, meta))
-            return chiselHelper.getType(block, meta);
+        if(GlassShards.chiselHelper != null && GlassShards.chiselHelper.comesFrom(block, meta))
+            return GlassShards.chiselHelper.getType(block, meta);
         else if(block instanceof BlockGlass)
             return new GlassType(mult_block);
         else if(block instanceof BlockStainedGlass)
@@ -44,6 +44,4 @@ public class GlassType {
         else
             return null;
     }
-    
-    private static ChiselGlassHelper chiselHelper = new ChiselGlassHelper();
 }
