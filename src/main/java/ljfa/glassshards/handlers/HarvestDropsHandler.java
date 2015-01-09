@@ -31,7 +31,7 @@ public class HarvestDropsHandler {
                 return;
         }
         
-        GlassHelper.GlassType gtype = GlassHelper.getType(event.block, event.blockMetadata);
+        GlassHelper.GlassShape gtype = GlassHelper.getShape(event.block, event.blockMetadata);
         if(gtype != null) {
             int meta;
             if(GlassHelper.isGlassStained(event.block, event.blockMetadata))

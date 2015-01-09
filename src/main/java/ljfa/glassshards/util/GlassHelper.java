@@ -18,9 +18,9 @@ public class GlassHelper {
     }
     
     /** Checks if the block is some kind of glass
-     * @return A GlassType representing the type, or null if it is not a glass block
+     * @return A GlassShape representing the type, or null if it is not glass
      */
-    public static GlassShape getType(Block block, int meta) {
+    public static GlassShape getShape(Block block, int meta) {
         if(block instanceof BlockGlass || block instanceof BlockStainedGlass)
             return GlassShape.block;
         else if(block instanceof BlockStainedGlassPane
