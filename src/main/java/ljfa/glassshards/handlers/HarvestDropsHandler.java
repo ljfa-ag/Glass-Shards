@@ -14,6 +14,13 @@ public class HarvestDropsHandler {
         if(event.world.isRemote || event.isSilkTouching)
             return;
         
+        // Sometimes the list of drops is not empty even if the drop chance is set to zero.
+        // This might lead to duplication bugs.
+        if(event.dropChance < 0.0001f)
+            event.drops.clear();
+        else if(!event.drops.isEmpty())
+            return;
+        
         GlassHelper.GlassType gtype = GlassHelper.getType(event.block, event.blockMetadata);
         if(gtype != null) {
             int meta;
