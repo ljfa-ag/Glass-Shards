@@ -25,7 +25,7 @@ public class HarvestDropsHandler {
         // Sometimes the list of drops is not empty even if the drop chance is set to zero.
         // This might lead to duplication bugs.
         if(!event.drops.isEmpty()) {
-            if(event.dropChance < 0.0001f) {
+            if(event.dropChance < 1e-6f) {
                 event.drops.clear();
                 LogHelper.info("%s has a negligible drop chance, but the drop list is not empty", event.block.getUnlocalizedName());
             }
