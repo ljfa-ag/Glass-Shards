@@ -9,10 +9,12 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 @Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class GlassShards {
@@ -36,11 +38,13 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        try {
-            chiselHelper = new ChiselGlassHelper();
-            LogHelper.info("Successfully loaded Chisel compatibility.");
-        } catch(Exception ex) {
-            FMLLog.log(Reference.MODID, Level.INFO, ex, "Failed to load Chisel compatibility. Chisel is probably not present.");
+        if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
+            try {
+                chiselHelper = new ChiselGlassHelper();
+                LogHelper.info("Successfully loaded Chisel compatibility.");
+            } catch(Exception ex) {
+                FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Chisel compatibility.");
+            }
         }
     }
     
