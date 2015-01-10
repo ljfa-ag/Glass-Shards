@@ -42,10 +42,11 @@ public class Config {
         conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.2.1.");
         
         chiselEnable = conf.get(CATEGORY_CHISEL, "activate", true, "Activates compatibility if Chisel is present.\n"
-                + "Note that not activating this even though Chisel is present might lead to unexpected behavior.").setRequiresMcRestart(true).getBoolean();
+                + "Note that not activating this even though Chisel is present might lead to unexpected behavior.\n"
+                + "Deactivating this doesn't mean Chisel glass will not drop shards. The shards will just not be stained.").setRequiresMcRestart(true).getBoolean();
         chiselFixPaneDrops = conf.get(CATEGORY_CHISEL, "fixStainedPanesDrops", true,
-                "By default, Chisel stained glass panes are behaving inconsistently as in "
-                + "they drop themselves when broken, unlike all the other Chisel glass types.\n"
+                "By default, Chisel stained glass panes are behaving inconsistently as in they drop themselves\n"
+                + "when broken, unlike all the other Chisel glass types.\n"
                 + "This option changes this behavior and makes them drop shards instead.").getBoolean();
         
         if(conf.hasChanged())
