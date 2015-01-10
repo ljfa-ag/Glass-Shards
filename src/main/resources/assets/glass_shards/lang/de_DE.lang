@@ -16,3 +16,4 @@ item.glass_shards:glass_shards.magenta.name=Magenta Glasscherben
 item.glass_shards:glass_shards.orange.name=Orange Glasscherben
 item.glass_shards:glass_shards.white.name=Weiße Glasscherben
 glass_shards.configgui.ctgy.general.tooltip=Allgemeine Optionen
+glass_shards.configgui.ctgy.chisel.tooltip=Kompatibilität mit Chisel

@@ -11,11 +11,15 @@ public class Config {
     public static Configuration conf;
     
     public static final String CATEGORY_GENERAL = "general";
+    public static final String CATEGORY_CHISEL = "chisel";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
     public static boolean recipesRecolor;
     public static boolean recipeUncolor;
+    
+    public static boolean chiselEnable;
+    public static boolean chiselFixPaneDrops;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -28,10 +32,19 @@ public class Config {
     }
     
     public static void loadValues() {
+        conf.getCategory(CATEGORY_GENERAL).setComment("General options");
         shardsChance = (float)conf.get(CATEGORY_GENERAL, "shardsChance", 0.6, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
         shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.1, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
         recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
         recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
+        
+        conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility for Chisel 2. Tested with version 2.2.1.");
+        chiselEnable = conf.get(CATEGORY_CHISEL, "activate", true, "Activates compatibility if Chisel is present.\n"
+                + "Note that not activating this even though Chisel is present might lead to unexpected behavior.").getBoolean();
+        chiselFixPaneDrops = conf.get(CATEGORY_CHISEL, "fixStainedPanesDrops", true,
+                "Chisel stained glass panes are behaving inconsistently as in they drop themselves when broken,"
+                +"unlike all the other Chisel glass types.\n"
+                +"This option changes this behavior and makes them drop shards instead.").getBoolean();
         
         if(conf.hasChanged())
             conf.save();
