@@ -3,6 +3,7 @@ package ljfa.glassshards.compat;
 import ljfa.glassshards.util.GlassType;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 public class ChiselGlassHelper {
     public ChiselGlassHelper() throws ReflectiveOperationException {
@@ -50,7 +51,7 @@ public class ChiselGlassHelper {
     }
     
     public boolean shouldRemoveDrop(Block block, int meta) {
-        return block.getClass() == classPane;
+        return block.getMaterial() == Material.glass && block.getClass() == classPane;
     }
     
     private Class<?> classGlass;
