@@ -23,7 +23,9 @@ public class GlassHelper {
             GlassType gtype = GlassShards.chiselHelper.getType(block, meta);
             if(gtype != null)
                 return gtype;
-        } else if(block instanceof BlockGlass)
+        }
+        
+        if(block instanceof BlockGlass)
             return new GlassType(GlassType.mult_block);
         else if(block instanceof BlockStainedGlass)
             return new GlassType(GlassType.mult_block, true, meta);
@@ -31,8 +33,8 @@ public class GlassHelper {
             return new GlassType(GlassType.mult_pane, true, meta);
         else if(block instanceof BlockPane && block.getMaterial() == Material.glass)
             return new GlassType(GlassType.mult_pane);
-        
-        return null;
+        else
+            return null;
     }
 
 }
