@@ -1,6 +1,6 @@
 package ljfa.glassshards.compat;
 
-import ljfa.glassshards.util.GlassType;
+import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

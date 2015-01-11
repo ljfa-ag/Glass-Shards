@@ -1,4 +1,4 @@
-package ljfa.glassshards.util;
+package ljfa.glassshards.api;
 
 /**
  * @author ljfa-ag

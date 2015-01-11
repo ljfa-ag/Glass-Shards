@@ -1,6 +1,7 @@
 package ljfa.glassshards.util;
 
 import ljfa.glassshards.GlassShards;
+import ljfa.glassshards.api.GlassType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
@@ -9,7 +10,6 @@ import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
 
 public class GlassHelper {
-
     /** Checks if the block is some kind of glass
      * @return A GlassType representing the type, or null if it is not glass
      */
