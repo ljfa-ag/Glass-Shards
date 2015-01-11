@@ -14,8 +14,8 @@ public class TransparentItemRenderer implements IItemRenderer {
     
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics &&
-               (type == ItemRenderType.ENTITY
+        return Minecraft.getMinecraft().gameSettings.fancyGraphics
+            && (type == ItemRenderType.ENTITY
             || type == ItemRenderType.EQUIPPED
             || type == ItemRenderType.EQUIPPED_FIRST_PERSON);
     }
@@ -36,10 +36,8 @@ public class TransparentItemRenderer implements IItemRenderer {
         float minV = icon.getMinV();
         float maxV = icon.getMaxV();
         
-        if(type == ItemRenderType.ENTITY) {
+        if(type == ItemRenderType.ENTITY)
             GL11.glTranslatef(-0.5f, -0.25f, 0.0421875f);
-        }
-        
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glEnable(GL11.GL_BLEND);
