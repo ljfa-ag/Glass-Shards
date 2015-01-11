@@ -5,6 +5,7 @@ import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.items.ModItems;
+import ljfa.glassshards.util.GlassHelper;
 import ljfa.glassshards.util.GlassType;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.item.ItemStack;
@@ -36,7 +37,7 @@ public class HarvestDropsHandler {
                 return;
         }
         
-        GlassType gtype = GlassType.getType(event.block, event.blockMetadata);
+        GlassType gtype = GlassHelper.getType(event.block, event.blockMetadata);
         if(gtype != null) {
             int meta = gtype.isStained ? gtype.color : 16;
             event.drops.add(new ItemStack(ModItems.glass_shards, 1, meta));
