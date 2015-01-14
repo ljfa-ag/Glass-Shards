@@ -6,16 +6,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public class ChiselGlassHelper {
-    public ChiselGlassHelper() throws ReflectiveOperationException {
+    public ChiselGlassHelper() throws ReflectiveOperationException, ClassCastException {
         Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
         
         classGlass = Class.forName("com.cricketcraft.chisel.block.BlockCarvableGlass");
         classPane = Class.forName("com.cricketcraft.chisel.block.BlockCarvablePane");
         
-        chiselGlass = (Block)classModBlocks.getDeclaredField("glass").get(classModBlocks);
-        chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(classModBlocks);
-        chiselPane = (Block)classModBlocks.getDeclaredField("paneGlass").get(classModBlocks);
-        chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(classModBlocks);
+        chiselGlass = (Block)classModBlocks.getDeclaredField("glass").get(null);
+        chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(null);
+        chiselPane = (Block)classModBlocks.getDeclaredField("paneGlass").get(null);
+        chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(null);
     }
     
     public GlassType getType(Block block, int meta) {
