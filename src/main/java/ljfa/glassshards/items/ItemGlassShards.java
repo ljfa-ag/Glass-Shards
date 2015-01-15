@@ -64,7 +64,10 @@ public class ItemGlassShards extends Item {
         return textures[meta];
     }
     
+    private static String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
+        "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
+    
     private static String getColorName(int index) {
-        return ItemDye.field_150921_b[15-index]; //Mojang pls
+        return colorNames[index];
     }
 }
