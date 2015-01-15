@@ -1,6 +1,6 @@
 package ljfa.glassshards.api;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 
 /**
  * @author ljfa-ag
@@ -13,5 +13,5 @@ public interface IShatterableGlass {
      * @param meta The metadata
      * @return A GlassType object representing the block.
      */
-    public GlassType getType(Block block, int meta);
+    public GlassType getType(IBlockState state);
 }

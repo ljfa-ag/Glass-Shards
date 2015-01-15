@@ -22,7 +22,7 @@ public class HarvestDropsHandler {
         if(!event.drops.isEmpty()) {
             if(event.dropChance < 1e-6f) {
                 event.drops.clear();
-                LogHelper.info("%s has a negligible drop chance, but the drop list is not empty", event.block.getUnlocalizedName());
+                LogHelper.info("%s has a negligible drop chance, but the drop list is not empty", event.state.getBlock().getUnlocalizedName());
             }
             /*else if(Config.chiselFixPaneDrops && GlassShards.chiselHelper != null
                     && GlassShards.chiselHelper.shouldRemoveDrop(event.block, event.blockMetadata))
@@ -31,9 +31,9 @@ public class HarvestDropsHandler {
                 return;
         }
         
-        GlassType gtype = GlassHelper.getType(event.block, event.blockMetadata);
+        GlassType gtype = GlassHelper.getType(event.state);
         if(gtype != null) {
-            int meta = gtype.isStained() ? gtype.getColor() : 16;
+            int meta = gtype.isStained() ? gtype.getColor().getMetadata() : 16;
             event.drops.add(new ItemStack(ModItems.glass_shards, 1, meta));
             
             float chance = Math.min(Config.shardsChance + event.fortuneLevel*Config.shardsFortuneChance, 1.0f);

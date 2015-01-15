@@ -1,9 +1,9 @@
 package ljfa.glassshards.compat;
 
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.EnumDyeColor;
 
 public class ChiselGlassHelper {
     public ChiselGlassHelper() throws ReflectiveOperationException, ClassCastException {
@@ -30,7 +30,7 @@ public class ChiselGlassHelper {
             for(int i = 0; i < chiselStainedGlass.length; i++) {
                 if(block == chiselStainedGlass[i]) {
                     int color = (i << 2) | (meta >> 2);
-                    return new GlassType(GlassType.mult_block, true, color);
+                    return new GlassType(GlassType.mult_block, true, EnumDyeColor.byMetadata(color));
                 }
             }
         } else if(block.getClass() == classPane) {
@@ -43,7 +43,7 @@ public class ChiselGlassHelper {
             for(int i = 0; i < chiselStainedPane.length; i++) {
                 if(block == chiselStainedPane[i]) {
                     int color = (i << 1) | (meta >> 3);
-                    return new GlassType(GlassType.mult_pane, true, color);
+                    return new GlassType(GlassType.mult_pane, true, EnumDyeColor.byMetadata(color));
                 }
             }
         }
