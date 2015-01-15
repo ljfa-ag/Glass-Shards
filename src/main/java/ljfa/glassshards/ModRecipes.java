@@ -4,9 +4,9 @@ import ljfa.glassshards.items.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModRecipes {
     public static final String[] dyes = {"White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime",

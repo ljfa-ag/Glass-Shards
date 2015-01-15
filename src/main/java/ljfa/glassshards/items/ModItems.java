@@ -2,7 +2,7 @@ package ljfa.glassshards.items;
 
 import ljfa.glassshards.Reference;
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems {
     public static ItemGlassShards glass_shards;
