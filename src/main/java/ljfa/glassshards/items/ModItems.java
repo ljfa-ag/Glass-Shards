@@ -13,8 +13,7 @@ public class ModItems {
     
     /** Sets the item's name and texture and registers it */
     public static <T extends Item> T register(T item, String name, String imageName) {
-        item.setUnlocalizedName(Reference.MODID + ":" + name)
-        .setTextureName(Reference.MODID + ":" + imageName);
+        item.setUnlocalizedName(Reference.MODID + ":" + name);
         GameRegistry.registerItem(item, name);
         return item;
     }

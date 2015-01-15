@@ -16,8 +16,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * 16    : clear shards
  */
 public class ItemGlassShards extends Item {
-    @SideOnly(Side.CLIENT)
-    private IIcon[] textures;
+    /*@SideOnly(Side.CLIENT)
+    private IIcon[] textures;*/
     
     ItemGlassShards() {
         setHasSubtypes(true);
@@ -43,7 +43,7 @@ public class ItemGlassShards extends Item {
             list.add(new ItemStack(item, 1, i));
     }
     
-    @SideOnly(Side.CLIENT)
+    /*@SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         textures = new IIcon[17];
@@ -59,9 +59,12 @@ public class ItemGlassShards extends Item {
         if(meta > 16)
             meta = 16;
         return textures[meta];
-    }
+    }*/
+    
+    private static String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
+        "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
     
     private static String getColorName(int index) {
-        return ItemDye.field_150921_b[15-index]; //Mojang pls
+        return colorNames[index];
     }
 }
