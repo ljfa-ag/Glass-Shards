@@ -1,21 +1,12 @@
 package ljfa.glassshards;
 
-import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
-import ljfa.glassshards.render.TransparentItemRenderer;
-import ljfa.glassshards.util.LogHelper;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-
-import org.apache.logging.log4j.Level;
 
 @Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class GlassShards {
@@ -36,21 +27,21 @@ public class GlassShards {
         ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
         
-        if(Config.renderTransparent && event.getSide() == Side.CLIENT)
-            MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());
+        /*if(Config.renderTransparent && event.getSide() == Side.CLIENT)
+            MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());*/
     }
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
+        /*if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
             try {
                 chiselHelper = new ChiselGlassHelper();
                 LogHelper.info("Successfully loaded Chisel compatibility.");
             } catch(Exception ex) {
                 FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Chisel compatibility.");
             }
-        }
+        }*/
     }
     
-    public static ChiselGlassHelper chiselHelper = null;
+    //public static ChiselGlassHelper chiselHelper = null;
 }

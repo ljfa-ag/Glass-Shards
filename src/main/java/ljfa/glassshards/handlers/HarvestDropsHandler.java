@@ -24,9 +24,9 @@ public class HarvestDropsHandler {
                 event.drops.clear();
                 LogHelper.info("%s has a negligible drop chance, but the drop list is not empty", event.block.getUnlocalizedName());
             }
-            else if(Config.chiselFixPaneDrops && GlassShards.chiselHelper != null
+            /*else if(Config.chiselFixPaneDrops && GlassShards.chiselHelper != null
                     && GlassShards.chiselHelper.shouldRemoveDrop(event.block, event.blockMetadata))
-                event.drops.clear();
+                event.drops.clear();*/
             else
                 return;
         }

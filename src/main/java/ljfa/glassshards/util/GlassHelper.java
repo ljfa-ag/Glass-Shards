@@ -19,11 +19,11 @@ public class GlassHelper {
             GlassType gtype = ((IShatterableGlass)block).getType(block, meta);
             if(gtype != null)
                 return gtype;
-        } else if(GlassShards.chiselHelper != null) {
+        } /*else if(GlassShards.chiselHelper != null) {
             GlassType gtype = GlassShards.chiselHelper.getType(block, meta);
             if(gtype != null)
                 return gtype;
-        }
+        }*/
         
         if(block instanceof BlockGlass)
             return new GlassType(GlassType.mult_block);
