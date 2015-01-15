@@ -17,6 +17,7 @@ public class Config {
     public static float shardsFortuneChance;
     public static boolean recipesRecolor;
     public static boolean recipeUncolor;
+    public static boolean renderTransparent;
     
     public static boolean chiselEnable;
     public static boolean chiselFixPaneDrops;
@@ -38,6 +39,7 @@ public class Config {
         shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.08, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
         recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
         recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
+        renderTransparent = conf.get(CATEGORY_GENERAL, "renderTransparent", true, "The shards will be transparent when lying on the ground or held in the hand (fancy graphics only)").setRequiresMcRestart(true).getBoolean();
         
         conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.2.1.");
         

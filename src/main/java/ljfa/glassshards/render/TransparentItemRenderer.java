@@ -38,7 +38,6 @@ public class TransparentItemRenderer implements IItemRenderer {
         
         if(type == ItemRenderType.ENTITY)
             GL11.glTranslatef(-0.5f, -0.25f, 0.0421875f);
-        GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glEnable(GL11.GL_BLEND);
         ItemRenderer.renderItemIn2D(Tessellator.instance, maxU, minV, minU, maxV, icon.getIconWidth(), icon.getIconHeight(), 0.0625f);
