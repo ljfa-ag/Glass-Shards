@@ -29,12 +29,12 @@ public class ItemGlassShards extends Item {
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        String prefix = "item." + Reference.MODID;
+        String prefix = "item." + Reference.MODID + ":glass_shards";
         int meta = stack.getItemDamage();
         if(meta < 16)
-            return prefix + ":glass_shards." + getColorName(meta);
+            return prefix + "." + getColorName(meta);
         else
-            return prefix + ":glass_shards";
+            return prefix;
     }
     
     @SideOnly(Side.CLIENT)
