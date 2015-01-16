@@ -27,14 +27,6 @@ public class ModItems {
     
     @SideOnly(Side.CLIENT)
     public static void registerModels() {
-        for(Field field: ModItems.class.getFields()) {
-            try {
-                Object val = field.get(null);
-                if(val instanceof IModeledItem)
-                    ((IModeledItem)val).registerModels();
-            } catch(Exception ex) {
-                FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to retrieve field value during registration");
-            }
-        }
+        glass_shards.registerModels();
     }
 }
