@@ -21,9 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * 16    : clear shards
  */
 public class ItemGlassShards extends Item implements IModeledItem {
-    /*@SideOnly(Side.CLIENT)
-    private IIcon[] textures;*/
-    
     ItemGlassShards() {
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
@@ -60,24 +57,6 @@ public class ItemGlassShards extends Item implements IModeledItem {
             }
         });
     }
-    
-    /*@SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IIconRegister iconRegister) {
-        textures = new IIcon[17];
-        for(int i = 0; i < 16; i++)
-            textures[i] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_" + getColorName(i));
-        
-        textures[16] = iconRegister.registerIcon(Reference.MODID + ":glass_shards");
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIconFromDamage(int meta) {
-        if(meta > 16)
-            meta = 16;
-        return textures[meta];
-    }*/
     
     public static String[] colorNames;
     public static String[] variants;
