@@ -3,6 +3,11 @@ package ljfa.glassshards.items;
 import java.util.List;
 
 import ljfa.glassshards.Reference;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
@@ -41,6 +46,18 @@ public class ItemGlassShards extends Item {
         list.add(new ItemStack(item, 1, 16));
         for(int i = 0; i < 16; i++)
             list.add(new ItemStack(item, 1, i));
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void registerModels() {
+        ModelBakery.addVariantName(this, ItemGlassShards.variants);
+        ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
+        mesher.register(this, new ItemMeshDefinition() {
+            @Override
+            public ModelResourceLocation getModelLocation(ItemStack stack) {
+                return new ModelResourceLocation(getVariant(stack.getItemDamage()), "inventory");
+            }
+        });
     }
     
     /*@SideOnly(Side.CLIENT)

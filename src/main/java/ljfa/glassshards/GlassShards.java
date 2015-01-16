@@ -40,15 +40,7 @@ public class GlassShards {
         /*if(Config.renderTransparent && event.getSide() == Side.CLIENT)
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());*/
         if(event.getSide() == Side.CLIENT) {
-            ModelBakery.addVariantName(ModItems.glass_shards, ItemGlassShards.variants);
-            
-            ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-            mesher.register(ModItems.glass_shards, new ItemMeshDefinition() {
-                @Override
-                public ModelResourceLocation getModelLocation(ItemStack stack) {
-                    return new ModelResourceLocation(ItemGlassShards.getVariant(stack.getItemDamage()), "inventory");
-                }
-            });
+            ModItems.glass_shards.registerModels();
         }
     }
     
