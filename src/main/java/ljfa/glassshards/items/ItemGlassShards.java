@@ -61,10 +61,20 @@ public class ItemGlassShards extends Item {
         return textures[meta];
     }*/
     
-    private static String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
-        "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
+    public static String[] colorNames;
+    public static String[] variants;
     
-    private static String getColorName(int index) {
+    public static String getColorName(int index) {
         return colorNames[index];
+    }
+    
+    static {
+        colorNames = new String[] {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
+                "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
+        
+        variants = new String[17];
+        for(int i = 0; i < 16; i++)
+            variants[i] = Reference.MODID + ":glass_shards_" + colorNames[i];
+        variants[16] = Reference.MODID + ":glass_shards";
     }
 }
