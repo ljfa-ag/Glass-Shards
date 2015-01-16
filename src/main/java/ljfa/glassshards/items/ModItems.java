@@ -18,15 +18,15 @@ public class ModItems {
         glass_shards = register(new ItemGlassShards(), "glass_shards");
     }
     
+    @SideOnly(Side.CLIENT)
+    public static void registerModels() {
+        glass_shards.registerModels();
+    }
+    
     /** Sets the item's name and registers it */
     public static <T extends Item> T register(T item, String name) {
         item.setUnlocalizedName(Reference.MODID + ":" + name);
         GameRegistry.registerItem(item, name);
         return item;
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public static void registerModels() {
-        glass_shards.registerModels();
     }
 }

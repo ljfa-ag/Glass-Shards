@@ -58,8 +58,8 @@ public class ItemGlassShards extends Item implements IModeledItem {
         });
     }
     
-    public static String[] colorNames;
-    public static String[] variants;
+    public static final String[] colorNames;
+    public static final String[] variants;
     
     static {
         colorNames = new String[] {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
