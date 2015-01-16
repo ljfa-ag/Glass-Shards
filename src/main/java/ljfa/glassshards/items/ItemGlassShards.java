@@ -64,10 +64,6 @@ public class ItemGlassShards extends Item {
     public static String[] colorNames;
     public static String[] variants;
     
-    public static String getColorName(int index) {
-        return colorNames[index];
-    }
-    
     static {
         colorNames = new String[] {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
                 "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
@@ -76,5 +72,16 @@ public class ItemGlassShards extends Item {
         for(int i = 0; i < 16; i++)
             variants[i] = Reference.MODID + ":glass_shards_" + colorNames[i];
         variants[16] = Reference.MODID + ":glass_shards";
+    }
+    
+    public static String getColorName(int index) {
+        return colorNames[index];
+    }
+    
+    public static String getVariant(int meta) {
+        if(0 <= meta && meta < 16)
+            return variants[meta];
+        else
+            return variants[16];
     }
 }

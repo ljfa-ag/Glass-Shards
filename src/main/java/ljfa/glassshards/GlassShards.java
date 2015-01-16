@@ -46,7 +46,7 @@ public class GlassShards {
             mesher.register(ModItems.glass_shards, new ItemMeshDefinition() {
                 @Override
                 public ModelResourceLocation getModelLocation(ItemStack stack) {
-                    return new ModelResourceLocation(ItemGlassShards.variants[stack.getItemDamage()], "inventory");
+                    return new ModelResourceLocation(ItemGlassShards.getVariant(stack.getItemDamage()), "inventory");
                 }
             });
         }
