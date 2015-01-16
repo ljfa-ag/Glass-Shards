@@ -39,9 +39,8 @@ public class GlassShards {
         
         /*if(Config.renderTransparent && event.getSide() == Side.CLIENT)
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());*/
-        if(event.getSide() == Side.CLIENT) {
-            ModItems.glass_shards.registerModels();
-        }
+        if(event.getSide() == Side.CLIENT)
+            ModItems.registerModels();
     }
     
     @Mod.EventHandler

@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * 0 - 15: colored shards
  * 16    : clear shards
  */
-public class ItemGlassShards extends Item {
+public class ItemGlassShards extends Item implements IModeledItem {
     /*@SideOnly(Side.CLIENT)
     private IIcon[] textures;*/
     
@@ -49,6 +49,7 @@ public class ItemGlassShards extends Item {
     }
     
     @SideOnly(Side.CLIENT)
+    @Override
     public void registerModels() {
         ModelBakery.addVariantName(this, ItemGlassShards.variants);
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
