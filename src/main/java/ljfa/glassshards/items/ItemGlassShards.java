@@ -28,12 +28,12 @@ public class ItemGlassShards extends Item implements IModeledItem {
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        String prefix = "item." + Reference.MODID;
+        String prefix = "item." + Reference.MODID + ":glass_shards";
         int meta = stack.getItemDamage();
         if(meta < 16)
-            return prefix + ":glass_shards." + getColorName(meta);
+            return prefix + "." + getColorName(meta);
         else
-            return prefix + ":glass_shards";
+            return prefix;
     }
     
     @SideOnly(Side.CLIENT)
@@ -76,7 +76,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
     }
     
     public static String getVariant(int meta) {
-        if(0 <= meta && meta < 16)
+        if(0 <= meta && meta < 17)
             return variants[meta];
         else
             return variants[16];
