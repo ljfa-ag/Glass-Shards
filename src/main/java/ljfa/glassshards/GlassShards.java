@@ -1,6 +1,7 @@
 package ljfa.glassshards;
 
 import ljfa.glassshards.compat.ChiselGlassHelper;
+import ljfa.glassshards.compat.ModGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
@@ -45,15 +46,6 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
-            try {
-                chiselHelper = new ChiselGlassHelper();
-                LogHelper.info("Successfully loaded Chisel compatibility.");
-            } catch(Exception ex) {
-                FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Chisel compatibility.");
-            }
-        }
+        ModGlassHelper.postInit();
     }
-    
-    public static ChiselGlassHelper chiselHelper = null;
 }

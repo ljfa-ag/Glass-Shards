@@ -5,6 +5,7 @@ import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.compat.ChiselGlassHelper;
+import ljfa.glassshards.compat.ModGlassHelper;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassHelper;
 import ljfa.glassshards.util.LogHelper;
@@ -30,8 +31,7 @@ public class HarvestDropsHandler {
                 event.drops.clear();
                 LogHelper.info("%s has a negligible drop chance, but the drop list is not empty", event.block.getUnlocalizedName());
             }
-            else if(Config.chiselFixPaneDrops && GlassShards.chiselHelper != null
-                    && GlassShards.chiselHelper.shouldRemoveDrop(event.block, event.blockMetadata))
+            else if(ModGlassHelper.shouldRemoveDrop(event.block, event.blockMetadata))
                 event.drops.clear();
             else
                 return;

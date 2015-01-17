@@ -1,8 +1,8 @@
 package ljfa.glassshards.util;
 
-import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
+import ljfa.glassshards.compat.ModGlassHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
@@ -15,12 +15,13 @@ public class GlassHelper {
      * @return A GlassType representing the type, or null if it is not glass
      */
     public static GlassType getType(Block block, int meta) {
+        GlassType gtype;
         if(block instanceof IShatterableGlass) {
-            GlassType gtype = ((IShatterableGlass)block).getType(block, meta);
+            gtype = ((IShatterableGlass)block).getType(block, meta);
             if(gtype != null)
                 return gtype;
-        } else if(GlassShards.chiselHelper != null) {
-            GlassType gtype = GlassShards.chiselHelper.getType(block, meta);
+        } else {
+            gtype = ModGlassHelper.getType(block, meta);
             if(gtype != null)
                 return gtype;
         }
