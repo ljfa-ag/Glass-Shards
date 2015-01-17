@@ -41,11 +41,17 @@ public class ModGlassHelper {
     }
     
     public static GlassType getType(Block block, int meta) {
-        if(chiselHelper != null)
-            return chiselHelper.getType(block, meta);
-        else if(tinkersHelper != null)
-            return tinkersHelper.getType(block, meta);
-        else
-            return null;
+        GlassType gtype;
+        if(chiselHelper != null) {
+            gtype = chiselHelper.getType(block, meta);
+            if(gtype != null)
+                return gtype;
+        }
+        if(tinkersHelper != null) {
+            gtype = tinkersHelper.getType(block, meta);
+            if(gtype != null)
+                return gtype;
+        }
+        return null;
     }
 }
