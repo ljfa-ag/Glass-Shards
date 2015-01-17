@@ -5,7 +5,7 @@ import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
-public class ChiselGlassHelper {
+public class ChiselGlassHelper extends ModHelperBase {
     public ChiselGlassHelper() throws ReflectiveOperationException, ClassCastException {
         Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
         
@@ -18,6 +18,7 @@ public class ChiselGlassHelper {
         chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(null);
     }
     
+    @Override
     public GlassType getType(Block block, int meta) {
         if(block.getClass() == classGlass) {
             if(block == chiselGlass)
@@ -50,6 +51,7 @@ public class ChiselGlassHelper {
         return null;
     }
     
+    @Override
     public boolean shouldRemoveDrop(Block block, int meta) {
         return block.getMaterial() == Material.glass && block.getClass() == classPane;
     }

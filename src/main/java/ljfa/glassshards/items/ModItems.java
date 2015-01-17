@@ -7,7 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ModItems {
     public static ItemGlassShards glass_shards;
     
-    public static void init() {
+    public static void preInit() {
         glass_shards = register(new ItemGlassShards(), "glass_shards");
     }
     
