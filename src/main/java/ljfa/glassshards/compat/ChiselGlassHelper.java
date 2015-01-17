@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public class ChiselGlassHelper extends ModHelperBase {
-    public ChiselGlassHelper() throws ReflectiveOperationException, ClassCastException {
+    public ChiselGlassHelper() throws ReflectiveOperationException {
         Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
         
         classGlass = Class.forName("com.cricketcraft.chisel.block.BlockCarvableGlass");
