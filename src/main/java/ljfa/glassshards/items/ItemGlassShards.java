@@ -21,7 +21,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * 16    : clear shards
  */
 public class ItemGlassShards extends Item implements IModeledItem {
+    public final String[] variants;
+    
     ItemGlassShards() {
+        variants = new String[17];
+        for(int i = 0; i < 16; i++)
+            variants[i] = Reference.MODID + ":glass_shards_" + colorNames[i];
+        variants[16] = Reference.MODID + ":glass_shards";
+        
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
     }
@@ -48,7 +55,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModels() {
-        ModelBakery.addVariantName(this, ItemGlassShards.variants);
+        ModelBakery.addVariantName(this, variants);
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         mesher.register(this, new ItemMeshDefinition() {
             @Override
@@ -58,27 +65,17 @@ public class ItemGlassShards extends Item implements IModeledItem {
         });
     }
     
-    public static final String[] colorNames;
-    public static final String[] variants;
-    
-    static {
-        colorNames = new String[] {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
-                "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
-        
-        variants = new String[17];
-        for(int i = 0; i < 16; i++)
-            variants[i] = Reference.MODID + ":glass_shards_" + colorNames[i];
-        variants[16] = Reference.MODID + ":glass_shards";
-    }
-    
-    public static String getColorName(int index) {
-        return colorNames[index];
-    }
-    
-    public static String getVariant(int meta) {
+    public String getVariant(int meta) {
         if(0 <= meta && meta < 17)
             return variants[meta];
         else
             return variants[16];
+    }
+    
+    public static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
+        "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
+    
+    public static String getColorName(int index) {
+        return colorNames[index];
     }
 }
