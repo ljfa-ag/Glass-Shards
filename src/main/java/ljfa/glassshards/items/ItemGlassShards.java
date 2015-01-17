@@ -21,8 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * 16    : clear shards
  */
 public class ItemGlassShards extends Item implements IModeledItem {
-    public final String[] variants;
-    
     ItemGlassShards() {
         variants = new String[17];
         for(int i = 0; i < 16; i++)
@@ -78,4 +76,6 @@ public class ItemGlassShards extends Item implements IModeledItem {
     public static String getColorName(int index) {
         return colorNames[index];
     }
+    
+    private String[] variants;
 }
