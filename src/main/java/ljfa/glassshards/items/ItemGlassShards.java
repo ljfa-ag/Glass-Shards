@@ -21,6 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * 16    : clear shards
  */
 public class ItemGlassShards extends Item implements IModeledItem {
+    private String[] variants;
+    
     ItemGlassShards() {
         variants = new String[17];
         for(int i = 0; i < 16; i++)
@@ -29,6 +31,13 @@ public class ItemGlassShards extends Item implements IModeledItem {
         
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
+    }
+    
+    public String getVariant(int meta) {
+        if(0 <= meta && meta < 17)
+            return variants[meta];
+        else
+            return variants[16];
     }
     
     @Override
@@ -63,19 +72,10 @@ public class ItemGlassShards extends Item implements IModeledItem {
         });
     }
     
-    public String getVariant(int meta) {
-        if(0 <= meta && meta < 17)
-            return variants[meta];
-        else
-            return variants[16];
-    }
-    
     public static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
         "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
     
     public static String getColorName(int index) {
         return colorNames[index];
     }
-    
-    private String[] variants;
 }
