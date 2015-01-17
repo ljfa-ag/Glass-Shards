@@ -13,6 +13,7 @@ import cpw.mods.fml.common.Loader;
 
 public class ModGlassHelper {
     public static ChiselGlassHelper chiselHelper = null;
+    public static TinkersGlassHelper tinkersHelper = null;
     
     public static void postInit() {
         if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
@@ -23,15 +24,27 @@ public class ModGlassHelper {
                 FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Chisel compatibility.");
             }
         }
+        
+        if(Loader.isModLoaded("TConstruct")) {
+            try {
+                tinkersHelper = new TinkersGlassHelper();
+                LogHelper.info("Successfully loaded Tinkers Construct compatibility.");
+            } catch(Exception ex) {
+                FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Tinkers Construct compatibility.");
+            }
+        }
     }
-    
+
     public static boolean shouldRemoveDrop(Block block, int meta) {
-        return Config.chiselFixPaneDrops && chiselHelper != null && chiselHelper.shouldRemoveDrop(block, meta);
+        return Config.chiselFixPaneDrops && chiselHelper != null && chiselHelper.shouldRemoveDrop(block, meta)
+                || tinkersHelper != null && tinkersHelper.shouldRemoveDrop(block, meta);
     }
     
     public static GlassType getType(Block block, int meta) {
         if(chiselHelper != null)
             return chiselHelper.getType(block, meta);
+        else if(tinkersHelper != null)
+            return tinkersHelper.getType(block, meta);
         else
             return null;
     }
