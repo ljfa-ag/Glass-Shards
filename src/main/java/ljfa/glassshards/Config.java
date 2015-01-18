@@ -12,6 +12,7 @@ public class Config {
     
     public static final String CATEGORY_GENERAL = "general";
     public static final String CATEGORY_CHISEL = "chisel";
+    public static final String CATEGORY_TCONSTRUCT = "tconstruct";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -21,6 +22,8 @@ public class Config {
     
     public static boolean chiselEnable;
     public static boolean chiselFixPaneDrops;
+    
+    public static boolean tinkersEnable;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -49,7 +52,11 @@ public class Config {
         chiselFixPaneDrops = conf.get(CATEGORY_CHISEL, "fixStainedPanesDrops", true,
                 "By default, Chisel stained glass panes are behaving inconsistently as in they drop themselves\n"
                 + "when broken, unlike all the other Chisel glass types.\n"
-                + "This option changes this behavior and makes them drop shards instead.").getBoolean();
+                + "This option changes this behavior and makes them drop shards instead.").setRequiresMcRestart(true).getBoolean();
+        
+        conf.getCategory(CATEGORY_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
+        
+        tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "activate", true, "Activates compatibility if Tinkers Construct is present.").setRequiresMcRestart(true).getBoolean();
         
         if(conf.hasChanged())
             conf.save();

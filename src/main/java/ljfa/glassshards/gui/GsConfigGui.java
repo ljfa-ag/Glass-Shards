@@ -23,6 +23,7 @@ public class GsConfigGui extends GuiConfig {
         //Add categories to config GUI
         list.add(categoryElement(Config.CATEGORY_GENERAL, "General", "glass_shards.configgui.ctgy.general"));
         list.add(categoryElement(Config.CATEGORY_CHISEL, "Chisel compatibility", "glass_shards.configgui.ctgy.chisel"));
+        list.add(categoryElement(Config.CATEGORY_TCONSTRUCT, "Tinkers Construct compatibility", "glass_shards.configgui.ctgy.tconstruct"));
         
         return list;
     }
