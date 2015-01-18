@@ -56,7 +56,8 @@ public class Config {
         
         conf.getCategory(CATEGORY_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
         
-        tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "activate", true, "Activates compatibility if Tinkers Construct is present.").setRequiresMcRestart(true).getBoolean();
+        tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "activate", true, "Activates compatibility if Tinkers Construct is present.\n"
+                + "This will make Clear Glass and Stained Glass drop shards rather than themselves.").setRequiresMcRestart(true).getBoolean();
         
         if(conf.hasChanged())
             conf.save();
