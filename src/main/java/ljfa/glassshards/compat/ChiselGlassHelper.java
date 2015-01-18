@@ -16,7 +16,7 @@ public class ChiselGlassHelper {
         ModGlassRegistry.helperMap.put(chiselStainedGlass[0], new ChiselTypeHandler());
     }
     
-    public static class ChiselTypeHandler extends ModGlassHelper {
+    public static class ChiselTypeHandler extends ModGlassHandler {
         @Override
         public GlassType getType(Block block, int meta) {
             return new GlassType(GlassType.mult_block, true, meta);

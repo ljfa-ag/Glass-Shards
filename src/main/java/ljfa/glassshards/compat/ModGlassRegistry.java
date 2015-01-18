@@ -18,7 +18,7 @@ import cpw.mods.fml.common.Loader;
 
 public class ModGlassRegistry {
     public static Set<Block> removeDropsSet = new HashSet<Block>();
-    public static Map<Block, ModGlassHelper> helperMap = new HashMap<Block, ModGlassHelper>();
+    public static Map<Block, ModGlassHandler> helperMap = new HashMap<Block, ModGlassHandler>();
     
     public static void postInit() {
         if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
@@ -36,7 +36,7 @@ public class ModGlassRegistry {
     }
     
     public static GlassType getType(Block block, int meta) {
-        ModGlassHelper helper = helperMap.get(block);
+        ModGlassHandler helper = helperMap.get(block);
         if(helper != null)
             return helper.getType(block, meta);
         else
