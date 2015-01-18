@@ -19,6 +19,8 @@ import cpw.mods.fml.common.Loader;
 /**
  * Class that handles glasses form other mods that don't implement the API.
  * Using the API is preferred before this.
+ * 
+ * Blocks and mappings can be added to removeDropsSet and handlerMap.
  */
 public class ModGlassRegistry {
     /** Set of blocks for which the drops should be removed */
