@@ -2,9 +2,9 @@ package ljfa.glassshards.handlers;
 
 import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.compat.ModGlassRegistry;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassHelper;
+import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
@@ -24,7 +24,7 @@ public class HarvestDropsHandler {
                 event.drops.clear();
                 LogHelper.info("%s has a negligible drop chance, but the drop list is not empty", event.block.getUnlocalizedName());
             }
-            else if(ModGlassRegistry.shouldRemoveDrop(event.block, event.blockMetadata))
+            else if(GlassRegistry.shouldRemoveDrop(event.block, event.blockMetadata))
                 event.drops.clear();
             else
                 return;

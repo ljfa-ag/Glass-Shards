@@ -1,4 +1,4 @@
-package ljfa.glassshards.compat.mods;
+package ljfa.glassshards.compat;
 
 import org.apache.logging.log4j.Level;
 
@@ -6,18 +6,22 @@ import cpw.mods.fml.common.FMLLog;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.compat.ModGlassHandler;
-import ljfa.glassshards.compat.ModGlassRegistry;
+import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
+import ljfa.glassshards.util.ModGlassHandler;
+import ljfa.glassshards.util.SimpleGlassHandler;
 import net.minecraft.block.Block;
 
 public class ChiselGlassHelper {
     public static void init() {
         //Fetch Chisel's block instances
+        Block chiselGlass, chiselPane;
         Block[] chiselStainedGlass, chiselStainedPane;
         try {
             Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
             
+            chiselGlass = (Block)classModBlocks.getDeclaredField("glass").get(null);
+            chiselPane = (Block)classModBlocks.getDeclaredField("paneGlass").get(null);
             chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(null);
             chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(null);
         } catch(Exception ex) {
@@ -28,13 +32,16 @@ public class ChiselGlassHelper {
         //Add blocks to the registry
         if(Config.chiselFixPaneDrops)
             for(Block block: chiselStainedPane)
-                ModGlassRegistry.addRemoveDrops(block);
+                GlassRegistry.addRemoveDrops(block);
+        
+        GlassRegistry.addHandler(chiselGlass, SimpleGlassHandler.blockInstance);
+        GlassRegistry.addHandler(chiselPane, SimpleGlassHandler.paneInstance);
         
         for(int i = 0; i < chiselStainedGlass.length; i++)
-            ModGlassRegistry.addHandler(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
+            GlassRegistry.addHandler(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
         
         for(int i = 0; i < chiselStainedPane.length; i++)
-            ModGlassRegistry.addHandler(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
+            GlassRegistry.addHandler(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
         
         LogHelper.info("Successfully loaded Chisel compatibility.");
     }

@@ -1,4 +1,4 @@
-package ljfa.glassshards.compat;
+package ljfa.glassshards.util;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,9 +8,8 @@ import java.util.Set;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.compat.mods.ChiselGlassHelper;
-import ljfa.glassshards.compat.mods.TinkersGlassHelper;
-import ljfa.glassshards.util.LogHelper;
+import ljfa.glassshards.compat.ChiselGlassHelper;
+import ljfa.glassshards.compat.TinkersGlassHelper;
 import net.minecraft.block.Block;
 
 import org.apache.logging.log4j.Level;
@@ -24,7 +23,7 @@ import cpw.mods.fml.common.Loader;
  * 
  * Blocks and mappings can be added with addRemoveDrops and addHandler.
  */
-public class ModGlassRegistry {
+public class GlassRegistry {
     /** Adds a block for which all drops should be removed */
     public static void addRemoveDrops(Block block) {
         removeDropsSet.add(block);
@@ -35,14 +34,6 @@ public class ModGlassRegistry {
         handlerMap.put(block, handler);
     }
     
-    /** Initializes the compatibility modules */
-    public static void postInit() {
-        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
-            ChiselGlassHelper.init();
-        if(Config.tinkersEnable && Loader.isModLoaded("TConstruct"))
-            TinkersGlassHelper.init();
-    }
-
     /** Checks if the drops should be removed for this block */
     public static boolean shouldRemoveDrop(Block block, int meta) {
         return removeDropsSet.contains(block);

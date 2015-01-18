@@ -1,4 +1,4 @@
-package ljfa.glassshards.compat;
+package ljfa.glassshards.util;
 
 import ljfa.glassshards.api.GlassType;
 import net.minecraft.block.Block;

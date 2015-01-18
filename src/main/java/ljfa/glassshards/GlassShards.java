@@ -1,11 +1,16 @@
 package ljfa.glassshards;
 
-import ljfa.glassshards.compat.ModGlassRegistry;
+import ljfa.glassshards.compat.ChiselGlassHelper;
+import ljfa.glassshards.compat.TinkersGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
+import ljfa.glassshards.util.GlassRegistry;
+import ljfa.glassshards.util.SimpleGlassHandler;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -24,6 +29,11 @@ public class GlassShards {
     public void preInit(FMLPreInitializationEvent event) {
         Config.loadConfig(event.getSuggestedConfigurationFile());
         ModItems.preInit();
+        
+        GlassRegistry.addHandler(Blocks.glass, SimpleGlassHandler.blockInstance);
+        GlassRegistry.addHandler(Blocks.glass_pane, SimpleGlassHandler.paneInstance);
+        GlassRegistry.addHandler(Blocks.stained_glass, SimpleGlassHandler.stainedBlockInstance);
+        GlassRegistry.addHandler(Blocks.stained_glass_pane, SimpleGlassHandler.stainedPaneInstance);
     }
     
     @Mod.EventHandler
@@ -37,6 +47,13 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        ModGlassRegistry.postInit();
+        initCompatModules();
+    }
+    
+    private void initCompatModules() {
+        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
+            ChiselGlassHelper.init();
+        if(Config.tinkersEnable && Loader.isModLoaded("TConstruct"))
+            TinkersGlassHelper.init();
     }
 }
