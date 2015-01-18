@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 
 public class ChiselGlassHelper {
     public static void init() {
+        //Fetch Chisel's block instances
         Block[] chiselStainedGlass, chiselStainedPane;
         try {
             Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
@@ -24,6 +25,7 @@ public class ChiselGlassHelper {
             return;
         }
         
+        //Add blocks to the registry
         if(Config.chiselFixPaneDrops)
             for(Block block: chiselStainedPane)
                 ModGlassRegistry.addRemoveDrops(block);

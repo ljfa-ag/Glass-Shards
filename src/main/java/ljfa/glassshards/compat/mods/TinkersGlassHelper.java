@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 
 public class TinkersGlassHelper {
     public static void init() {
+        //Fetch TConstruct's block instances
         Block tcGlass, tcStainedGlass, tcPane;
         try {
             Class<?> classModBlocks = Class.forName("tconstruct.smeltery.TinkerSmeltery");
@@ -24,6 +25,7 @@ public class TinkersGlassHelper {
             return;
         }
         
+        //Add blocks to the registry
         ModGlassRegistry.addRemoveDrops(tcGlass);
         ModGlassRegistry.addRemoveDrops(tcStainedGlass);
         ModGlassRegistry.addRemoveDrops(tcPane);
