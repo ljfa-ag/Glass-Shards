@@ -21,14 +21,8 @@ public class ModGlassRegistry {
     public static Map<Block, ModGlassHandler> helperMap = new HashMap<Block, ModGlassHandler>();
     
     public static void postInit() {
-        if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
-            try {
-                ChiselGlassHelper.init();
-                LogHelper.info("Successfully loaded Chisel compatibility.");
-            } catch(Exception ex) {
-                FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Chisel compatibility.");
-            }
-        }
+        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
+            ChiselGlassHelper.init();
     }
 
     public static boolean shouldRemoveDrop(Block block, int meta) {
