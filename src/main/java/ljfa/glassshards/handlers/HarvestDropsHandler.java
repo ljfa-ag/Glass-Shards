@@ -1,20 +1,13 @@
 package ljfa.glassshards.handlers;
 
 import ljfa.glassshards.Config;
-import ljfa.glassshards.GlassShards;
-import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.compat.ModGlassHelper;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassHelper;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
-
-import org.apache.logging.log4j.Level;
-
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HarvestDropsHandler {
