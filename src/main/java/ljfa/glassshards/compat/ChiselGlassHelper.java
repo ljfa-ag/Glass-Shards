@@ -1,8 +1,7 @@
 package ljfa.glassshards.compat;
 
-import net.minecraft.block.Block;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.api.IShatterableGlass;
+import net.minecraft.block.Block;
 
 public class ChiselGlassHelper {
     public static void init() throws ReflectiveOperationException {
@@ -17,7 +16,7 @@ public class ChiselGlassHelper {
         ModGlassRegistry.helperMap.put(chiselStainedGlass[0], new ChiselTypeHandler());
     }
     
-    public static class ChiselTypeHandler implements IShatterableGlass {
+    public static class ChiselTypeHandler extends ModGlassHelper {
         @Override
         public GlassType getType(Block block, int meta) {
             return new GlassType(GlassType.mult_block, true, meta);

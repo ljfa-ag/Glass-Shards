@@ -8,7 +8,6 @@ import java.util.Set;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.api.IShatterableGlass;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
 
@@ -19,7 +18,7 @@ import cpw.mods.fml.common.Loader;
 
 public class ModGlassRegistry {
     public static Set<Block> removeDropsSet = new HashSet<Block>();
-    public static Map<Block, IShatterableGlass> helperMap = new HashMap<Block, IShatterableGlass>();
+    public static Map<Block, ModGlassHelper> helperMap = new HashMap<Block, ModGlassHelper>();
     
     public static void postInit() {
         if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
@@ -37,7 +36,7 @@ public class ModGlassRegistry {
     }
     
     public static GlassType getType(Block block, int meta) {
-        IShatterableGlass helper = helperMap.get(block);
+        ModGlassHelper helper = helperMap.get(block);
         if(helper != null)
             return helper.getType(block, meta);
         else
