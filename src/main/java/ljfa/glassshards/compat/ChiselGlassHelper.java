@@ -13,13 +13,25 @@ public class ChiselGlassHelper {
         for(Block b: chiselStainedPane)
             ModGlassRegistry.removeDropsSet.add(b);
         
-        ModGlassRegistry.helperMap.put(chiselStainedGlass[0], new ChiselTypeHandler());
+        for(int i = 0; i < chiselStainedGlass.length; i++)
+            ModGlassRegistry.helperMap.put(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
     }
     
-    public static class ChiselTypeHandler extends ModGlassHandler {
+    public static class ChiselStainedGlassHandler extends ModGlassHandler {
+        private int arrayIndex;
+        
+        public ChiselStainedGlassHandler(int arrayIndex) {
+            this.arrayIndex = arrayIndex;
+        }
+        
         @Override
         public GlassType getType(Block block, int meta) {
-            return new GlassType(GlassType.mult_block, true, meta);
+            // How stained glass works in Chisel:
+            // array index = color >> 2
+            // metadata = (color & 3) << 2
+            // Blame Chisel for using such hardcoded values
+            int color = (arrayIndex << 2) | (meta >> 2);
+            return new GlassType(GlassType.mult_block, true, color);
         }
     }
     
