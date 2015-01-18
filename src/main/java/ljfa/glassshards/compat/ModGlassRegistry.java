@@ -8,6 +8,8 @@ import java.util.Set;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
+import ljfa.glassshards.compat.mods.ChiselGlassHelper;
+import ljfa.glassshards.compat.mods.TinkersGlassHelper;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
 
@@ -20,23 +22,36 @@ import cpw.mods.fml.common.Loader;
  * Class that handles glasses form other mods that don't implement the API.
  * Using the API is preferred before this.
  * 
- * Blocks and mappings can be added to removeDropsSet and handlerMap.
+ * Blocks and mappings can be added with addRemoveDrops and addHandler.
  */
 public class ModGlassRegistry {
-    /** Set of blocks for which the drops should be removed */
-    public static Set<Block> removeDropsSet = new HashSet<Block>();
-    /** Map that assigns a handler to each glass block */
-    public static Map<Block, ModGlassHandler> handlerMap = new HashMap<Block, ModGlassHandler>();
+    /** Adds a block for which all drops should be removed */
+    public static void addRemoveDrops(Block block) {
+        removeDropsSet.add(block);
+    }
     
+    /** Adds a handler for a given glass block */
+    public static void addHandler(Block block, ModGlassHandler handler) {
+        handlerMap.put(block, handler);
+    }
+    
+    /** Initializes the compatibility modules */
     public static void postInit() {
         if(Config.chiselEnable && Loader.isModLoaded("chisel"))
             ChiselGlassHelper.init();
+        if(Config.tinkersEnable && Loader.isModLoaded("TConstruct"))
+            TinkersGlassHelper.init();
     }
 
+    /** Checks if the drops should be removed for this block */
     public static boolean shouldRemoveDrop(Block block, int meta) {
         return removeDropsSet.contains(block);
     }
     
+    /** 
+     * Calls the assigned handler for this block if one exists.
+     * @return The type as returned by the handler, or null if no handler exists.
+     */
     public static GlassType getType(Block block, int meta) {
         ModGlassHandler helper = handlerMap.get(block);
         if(helper != null)
@@ -44,4 +59,9 @@ public class ModGlassRegistry {
         else
             return null;
     }
+    
+    /** Set of blocks for which the drops should be removed */
+    private static Set<Block> removeDropsSet = new HashSet<Block>();
+    /** Map that assigns a handler to each glass block */
+    private static Map<Block, ModGlassHandler> handlerMap = new HashMap<Block, ModGlassHandler>();
 }
