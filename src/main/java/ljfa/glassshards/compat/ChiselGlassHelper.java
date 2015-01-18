@@ -26,14 +26,18 @@ public class ChiselGlassHelper {
                 ModGlassRegistry.removeDropsSet.add(b);
         
         for(int i = 0; i < chiselStainedGlass.length; i++)
-            ModGlassRegistry.helperMap.put(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
+            ModGlassRegistry.handlerMap.put(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
         
         for(int i = 0; i < chiselStainedPane.length; i++)
-            ModGlassRegistry.helperMap.put(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
+            ModGlassRegistry.handlerMap.put(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
         
         LogHelper.info("Successfully loaded Chisel compatibility.");
     }
     
+    // How stained glass works in Chisel:
+    // array index = color >> 2
+    // metadata = (color & 3) << 2
+    // Blame Chisel for using such hardcoded values
     public static class ChiselStainedGlassHandler extends ModGlassHandler {
         protected int arrayIndex;
         
@@ -43,15 +47,14 @@ public class ChiselGlassHelper {
         
         @Override
         public GlassType getType(Block block, int meta) {
-            // How stained glass works in Chisel:
-            // array index = color >> 2
-            // metadata = (color & 3) << 2
-            // Blame Chisel for using such hardcoded values
             int color = (arrayIndex << 2) | (meta >> 2);
             return new GlassType(GlassType.mult_block, true, color);
         }
     }
-    
+
+    // How stained panes work in Chisel:
+    // array index = color >> 1
+    // metadata = (color & 1) << 3
     public static class ChiselStainedPaneHandler extends ModGlassHandler {
         protected int arrayIndex;
         
@@ -61,9 +64,6 @@ public class ChiselGlassHelper {
         
         @Override
         public GlassType getType(Block block, int meta) {
-            // How stained panes work in Chisel:
-            // array index = color >> 1
-            // metadata = (color & 1) << 3
             int color = (arrayIndex << 1) | (meta >> 3);
             return new GlassType(GlassType.mult_block, true, color);
         }
