@@ -8,15 +8,13 @@ public class ChiselGlassHelper {
     public static void init() throws ReflectiveOperationException {
         Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
         
-        chiselGlass = (Block)classModBlocks.getDeclaredField("glass").get(null);
         chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(null);
-        chiselPane = (Block)classModBlocks.getDeclaredField("paneGlass").get(null);
         chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(null);
         
         for(Block b: chiselStainedPane)
-            ModGlassHelper.removeDropsSet.add(b);
+            ModGlassRegistry.removeDropsSet.add(b);
         
-        ModGlassHelper.helperMap.put(chiselStainedGlass[0], new ChiselTypeHandler());
+        ModGlassRegistry.helperMap.put(chiselStainedGlass[0], new ChiselTypeHandler());
     }
     
     public static class ChiselTypeHandler implements IShatterableGlass {
@@ -26,8 +24,6 @@ public class ChiselGlassHelper {
         }
     }
     
-    private static Block chiselGlass;
     private static Block[] chiselStainedGlass;
-    private static Block chiselPane;
     private static Block[] chiselStainedPane;
 }

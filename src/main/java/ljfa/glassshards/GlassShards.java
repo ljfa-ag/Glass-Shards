@@ -1,6 +1,6 @@
 package ljfa.glassshards;
 
-import ljfa.glassshards.compat.ModGlassHelper;
+import ljfa.glassshards.compat.ModGlassRegistry;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
@@ -37,6 +37,6 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        ModGlassHelper.postInit();
+        ModGlassRegistry.postInit();
     }
 }

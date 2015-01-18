@@ -2,7 +2,7 @@ package ljfa.glassshards.util;
 
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
-import ljfa.glassshards.compat.ModGlassHelper;
+import ljfa.glassshards.compat.ModGlassRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
@@ -21,7 +21,7 @@ public class GlassHelper {
             if(gtype != null)
                 return gtype;
         } else {
-            gtype = ModGlassHelper.getType(block, meta);
+            gtype = ModGlassRegistry.getType(block, meta);
             if(gtype != null)
                 return gtype;
         }

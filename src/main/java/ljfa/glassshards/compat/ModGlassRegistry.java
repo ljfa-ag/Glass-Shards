@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 
-public class ModGlassHelper {
+public class ModGlassRegistry {
     public static Set<Block> removeDropsSet = new HashSet<Block>();
     public static Map<Block, IShatterableGlass> helperMap = new HashMap<Block, IShatterableGlass>();
     
