@@ -27,11 +27,13 @@ public class GlassRegistry {
     /** Adds a block for which all drops should be removed */
     public static void addRemoveDrops(Block block) {
         removeDropsSet.add(block);
+        LogHelper.trace("Removed drops from %s", block.getUnlocalizedName());
     }
     
     /** Adds a handler for a given glass block */
     public static void addHandler(Block block, ModGlassHandler handler) {
         handlerMap.put(block, handler);
+        LogHelper.trace("Added glass handler for %s", block.getUnlocalizedName());
     }
     
     /** Checks if the drops should be removed for this block */

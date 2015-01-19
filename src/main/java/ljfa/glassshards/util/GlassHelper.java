@@ -1,5 +1,6 @@
 package ljfa.glassshards.util;
 
+import cpw.mods.fml.common.registry.GameData;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
 import net.minecraft.block.Block;
@@ -24,17 +25,28 @@ public class GlassHelper {
             if(gtype != null)
                 return gtype;
         }
-        
-        if(block instanceof BlockGlass)
-            return new GlassType(GlassType.mult_block);
-        else if(block instanceof BlockStainedGlass)
-            return new GlassType(GlassType.mult_block, true, meta);
-        else if(block instanceof BlockStainedGlassPane)
-            return new GlassType(GlassType.mult_pane, true, meta);
-        else if(block instanceof BlockPane && block.getMaterial() == Material.glass)
-            return new GlassType(GlassType.mult_pane);
-        else
-            return null;
+        return null;
     }
 
+    /** Adds all registered blocks that are glass to the GlassRegistry */
+    public static void registerAll() {
+        int counter = 0;
+        for(Object obj: GameData.getBlockRegistry()) {
+            if(!(obj instanceof Block))
+                continue;
+            Block block = (Block)obj;
+            if(block instanceof BlockGlass)
+                GlassRegistry.addHandler(block, SimpleGlassHandler.blockInstance);
+            else if(block instanceof BlockStainedGlass)
+                GlassRegistry.addHandler(block, SimpleGlassHandler.stainedBlockInstance);
+            else if(block instanceof BlockStainedGlassPane)
+                GlassRegistry.addHandler(block, SimpleGlassHandler.stainedPaneInstance);
+            else if(block instanceof BlockPane && block.getMaterial() == Material.glass)
+                GlassRegistry.addHandler(block, SimpleGlassHandler.paneInstance);
+            else
+                continue;
+            counter++;
+        }
+        LogHelper.info("Added %d blocks to the GlassRegistry", counter);
+    }
 }
