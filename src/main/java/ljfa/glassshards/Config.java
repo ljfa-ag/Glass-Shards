@@ -13,6 +13,7 @@ public class Config {
     public static final String CATEGORY_GENERAL = "general";
     public static final String CATEGORY_CHISEL = "chisel";
     public static final String CATEGORY_TCONSTRUCT = "tconstruct";
+    public static final String CATEGORY_MFR = "mfr";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -24,6 +25,8 @@ public class Config {
     public static boolean chiselFixPaneDrops;
     
     public static boolean tinkersEnable;
+    
+    public static boolean mfrEnable;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -43,7 +46,7 @@ public class Config {
         recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
         recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
         renderTransparent = conf.get(CATEGORY_GENERAL, "renderTransparent", true, "The shards will be transparent when lying on the ground or held in the hand (fancy graphics only)").setRequiresMcRestart(true).getBoolean();
-        
+        //----------------
         conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.2.1.");
         
         chiselEnable = conf.get(CATEGORY_CHISEL, "activate", true, "Activates compatibility if Chisel is present.\n"
@@ -53,12 +56,17 @@ public class Config {
                 "By default, Chisel stained glass panes are behaving inconsistently as in they drop themselves\n"
                 + "when broken, unlike all the other Chisel glass types.\n"
                 + "This option changes this behavior and makes them drop shards instead.").setRequiresMcRestart(true).getBoolean();
-        
+        //----------------
         conf.getCategory(CATEGORY_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
         
         tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "activate", true, "Activates compatibility if Tinkers Construct is present.\n"
                 + "This will make Clear Glass and Stained Glass drop shards rather than themselves.").setRequiresMcRestart(true).getBoolean();
+        //----------------
+        conf.getCategory(CATEGORY_MFR).setComment("Compatibility options for MineFactory Reloaded. Tested with version 2.8.0RC6-5.");
         
+        mfrEnable = conf.get(CATEGORY_MFR, "activate", true, "Activates compatibility if MineFactory Reloaded is present.\n"
+                + "When activated, stained glass blocks will drop stained shards.").setRequiresMcRestart(true).getBoolean();
+        //----------------
         if(conf.hasChanged())
             conf.save();
     }

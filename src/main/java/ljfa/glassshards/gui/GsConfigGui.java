@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import cpw.mods.fml.client.config.DummyConfigElement;
 import cpw.mods.fml.client.config.GuiConfig;
+import cpw.mods.fml.client.config.GuiConfigEntries.CategoryEntry;
 import cpw.mods.fml.client.config.IConfigElement;
 
 public class GsConfigGui extends GuiConfig {
@@ -24,6 +25,7 @@ public class GsConfigGui extends GuiConfig {
         list.add(categoryElement(Config.CATEGORY_GENERAL, "General", "glass_shards.configgui.ctgy.general"));
         list.add(categoryElement(Config.CATEGORY_CHISEL, "Chisel compatibility", "glass_shards.configgui.ctgy.chisel"));
         list.add(categoryElement(Config.CATEGORY_TCONSTRUCT, "Tinkers Construct compatibility", "glass_shards.configgui.ctgy.tconstruct"));
+        list.add(categoryElement(Config.CATEGORY_MFR, "MineFactory Reloaded compatibility", "glass_shards.configgui.ctgy.mfr"));
         
         return list;
     }
