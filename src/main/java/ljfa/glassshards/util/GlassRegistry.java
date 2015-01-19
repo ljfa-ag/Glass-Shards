@@ -20,8 +20,6 @@ import cpw.mods.fml.common.Loader;
 /**
  * Class that handles glasses form other mods that don't implement the API.
  * Using the API is preferred before this.
- * 
- * Blocks and mappings can be added with addRemoveDrops and addHandler.
  */
 public class GlassRegistry {
     /** Adds a block for which all drops should be removed */
@@ -53,8 +51,16 @@ public class GlassRegistry {
             return null;
     }
     
-    /** Set of blocks for which the drops should be removed */
+    /** @return the set of blocks for which the drops should be removed  */
+    public static Set<Block> getRemoveDropsSet() {
+        return removeDropsSet;
+    }
+
+    /** @return the map that assigns a handler to each glass block */
+    public static Map<Block, ModGlassHandler> getHandlerMap() {
+        return handlerMap;
+    }
+    
     private static Set<Block> removeDropsSet = new HashSet<Block>();
-    /** Map that assigns a handler to each glass block */
     private static Map<Block, ModGlassHandler> handlerMap = new HashMap<Block, ModGlassHandler>();
 }
