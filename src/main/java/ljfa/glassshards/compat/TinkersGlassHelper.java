@@ -20,7 +20,6 @@ public class TinkersGlassHelper {
             tcGlass = (Block)classModBlocks.getDeclaredField("clearGlass").get(null);
             tcPane = (Block)classModBlocks.getDeclaredField("glassPane").get(null);
             tcStainedGlass = (Block)classModBlocks.getDeclaredField("stainedGlassClear").get(null);
-            tcStainedPane = (Block)classModBlocks.getDeclaredField("stainedGlassClearPane").get(null);
         } catch(Exception ex) {
             FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Tinkers Construct compatibility.");
             return;
@@ -30,12 +29,11 @@ public class TinkersGlassHelper {
         GlassRegistry.addRemoveDrops(tcGlass);
         GlassRegistry.addRemoveDrops(tcPane);
         GlassRegistry.addRemoveDrops(tcStainedGlass);
-        //Don't need to add stained panes here since they already drop nothing
         
         GlassRegistry.addHandler(tcGlass, SimpleGlassHandler.blockInstance);
         GlassRegistry.addHandler(tcPane, SimpleGlassHandler.paneInstance);
         GlassRegistry.addHandler(tcStainedGlass, SimpleGlassHandler.stainedBlockInstance);
-        GlassRegistry.addHandler(tcStainedPane, SimpleGlassHandler.stainedPaneInstance);
+        //Stained panes work fine without need to register them here
         
         LogHelper.info("Successfully loaded Tinkers Construct compatibility.");
     }

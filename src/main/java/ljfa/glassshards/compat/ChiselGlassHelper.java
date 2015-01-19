@@ -20,8 +20,6 @@ public class ChiselGlassHelper {
         try {
             Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
             
-            chiselGlass = (Block)classModBlocks.getDeclaredField("glass").get(null);
-            chiselPane = (Block)classModBlocks.getDeclaredField("paneGlass").get(null);
             chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(null);
             chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(null);
         } catch(Exception ex) {
@@ -33,9 +31,6 @@ public class ChiselGlassHelper {
         if(Config.chiselFixPaneDrops)
             for(Block block: chiselStainedPane)
                 GlassRegistry.addRemoveDrops(block);
-        
-        GlassRegistry.addHandler(chiselGlass, SimpleGlassHandler.blockInstance);
-        GlassRegistry.addHandler(chiselPane, SimpleGlassHandler.paneInstance);
         
         for(int i = 0; i < chiselStainedGlass.length; i++)
             GlassRegistry.addHandler(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));

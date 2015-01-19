@@ -44,7 +44,7 @@ public class GlassShards {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         GlassHelper.registerAll();
-        //initCompatModules();
+        initCompatModules();
     }
     
     private void initCompatModules() {
