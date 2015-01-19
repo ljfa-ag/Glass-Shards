@@ -39,17 +39,19 @@ public class GlassHelper {
             if(!(obj instanceof Block))
                 continue;
             Block block = (Block)obj;
-            if(block instanceof BlockGlass)
+            if(block instanceof BlockGlass) {
                 GlassRegistry.addHandler(block, SimpleGlassHandler.blockInstance);
-            else if(block instanceof BlockStainedGlass)
+                counter++;
+            } else if(block instanceof BlockStainedGlass) {
                 GlassRegistry.addHandler(block, SimpleGlassHandler.stainedBlockInstance);
-            else if(block instanceof BlockStainedGlassPane)
+                counter++;
+            } else if(block instanceof BlockStainedGlassPane) {
                 GlassRegistry.addHandler(block, SimpleGlassHandler.stainedPaneInstance);
-            else if(block instanceof BlockPane && block.getMaterial() == Material.glass)
+                counter++;
+            } else if(block instanceof BlockPane && block.getMaterial() == Material.glass) {
                 GlassRegistry.addHandler(block, SimpleGlassHandler.paneInstance);
-            else
-                continue;
-            counter++;
+                counter++;
+            }
         }
         LogHelper.info("Added %d blocks to the GlassRegistry", counter);
     }
