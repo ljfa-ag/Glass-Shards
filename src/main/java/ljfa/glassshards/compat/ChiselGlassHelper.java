@@ -1,16 +1,13 @@
 package ljfa.glassshards.compat;
 
-import org.apache.logging.log4j.Level;
-
-import cpw.mods.fml.common.FMLLog;
 import ljfa.glassshards.Config;
-import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.ModGlassHandler;
-import ljfa.glassshards.util.SimpleGlassHandler;
 import net.minecraft.block.Block;
+
+import org.apache.logging.log4j.Level;
 
 public class ChiselGlassHelper {
     public static void init() {
@@ -23,7 +20,7 @@ public class ChiselGlassHelper {
             chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(null);
             chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(null);
         } catch(Exception ex) {
-            FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Chisel compatibility.");
+            LogHelper.log(Level.ERROR, ex, "Failed to load Chisel compatibility.");
             return;
         }
         

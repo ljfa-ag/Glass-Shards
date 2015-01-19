@@ -11,6 +11,10 @@ public class LogHelper {
         FMLLog.log(Reference.MODNAME, logLevel, format, data);
     }
     
+    public static void log(Level logLevel, Throwable ex, String format, Object... data) {
+        FMLLog.log(Reference.MODNAME, logLevel, ex, format, data);
+    }
+    
     public static void trace(String format, Object... data) {
         log(Level.TRACE, format, data);
     }

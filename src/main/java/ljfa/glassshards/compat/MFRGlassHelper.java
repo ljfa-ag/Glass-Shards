@@ -1,14 +1,11 @@
 package ljfa.glassshards.compat;
 
-import ljfa.glassshards.Reference;
 import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.SimpleGlassHandler;
+import net.minecraft.block.Block;
 
 import org.apache.logging.log4j.Level;
-
-import cpw.mods.fml.common.FMLLog;
-import net.minecraft.block.Block;
 
 public class MFRGlassHelper {
     public static void init() {
@@ -20,7 +17,7 @@ public class MFRGlassHelper {
             mfrGlass = (Block)classModBlocks.getField("factoryGlassBlock").get(null);
             mfrPane = (Block)classModBlocks.getField("factoryGlassPaneBlock").get(null);
         } catch(Exception ex) {
-            FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load MineFactory Reloaded compatibility.");
+            LogHelper.log(Level.ERROR, ex, "Failed to load MineFactory Reloaded compatibility.");
             return;
         }
         
