@@ -44,13 +44,6 @@ public class GlassShards {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         GlassHelper.registerAll();
-        initCompatModules();
-    }
-    
-    private void initCompatModules() {
-        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
-            ChiselGlassHelper.init();
-        if(Config.tinkersEnable && Loader.isModLoaded("TConstruct"))
-            TinkersGlassHelper.init();
+        GlassHelper.initCompatModules();
     }
 }

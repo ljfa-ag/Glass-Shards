@@ -1,8 +1,12 @@
 package ljfa.glassshards.util;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameData;
+import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
+import ljfa.glassshards.compat.ChiselGlassHelper;
+import ljfa.glassshards.compat.TinkersGlassHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
@@ -48,5 +52,13 @@ public class GlassHelper {
             counter++;
         }
         LogHelper.info("Added %d blocks to the GlassRegistry", counter);
+    }
+    
+    /** Initialize compatibility with other mods */
+    public static void initCompatModules() {
+        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
+            ChiselGlassHelper.init();
+        if(Config.tinkersEnable && Loader.isModLoaded("TConstruct"))
+            TinkersGlassHelper.init();
     }
 }
