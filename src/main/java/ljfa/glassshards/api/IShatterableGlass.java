@@ -5,7 +5,7 @@ import net.minecraft.block.state.IBlockState;
 /**
  * @author ljfa-ag
  * To be implemented by glass blocks (or panes or anything) for retrieving traits about the glass.
- * Note that in order for your block to work with Glass Shards it needs to not drop anything when broken.
+ * Note that in order for your block to work with Glass Shards it must not drop anything when broken.
  */
 public interface IShatterableGlass {
     /**

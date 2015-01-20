@@ -1,16 +1,8 @@
 package ljfa.glassshards;
 
 import ljfa.glassshards.handlers.HarvestDropsHandler;
-import ljfa.glassshards.items.ItemGlassShards;
 import ljfa.glassshards.items.ModItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
+import ljfa.glassshards.util.GlassHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -43,15 +35,7 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        /*if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
-            try {
-                chiselHelper = new ChiselGlassHelper();
-                LogHelper.info("Successfully loaded Chisel compatibility.");
-            } catch(Exception ex) {
-                FMLLog.log(Reference.MODNAME, Level.ERROR, ex, "Failed to load Chisel compatibility.");
-            }
-        }*/
+        GlassHelper.registerAll();
+        GlassHelper.initCompatModules();
     }
-    
-    //public static ChiselGlassHelper chiselHelper = null;
 }
