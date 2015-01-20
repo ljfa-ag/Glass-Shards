@@ -22,12 +22,6 @@ import cpw.mods.fml.common.Loader;
  * Using the API is preferred before this.
  */
 public class GlassRegistry {
-    /** Adds a block for which all drops should be removed */
-    public static void addRemoveDrops(Block block) {
-        removeDropsSet.add(block);
-        LogHelper.trace("Removed drops from %s (%d)", block.getUnlocalizedName(), Block.getIdFromBlock(block));
-    }
-    
     /** Adds a handler for a given glass block */
     public static void addHandler(Block block, ModGlassHandler handler) {
         handlerMap.put(block, handler);
@@ -36,7 +30,11 @@ public class GlassRegistry {
     
     /** Checks if the drops should be removed for this block */
     public static boolean shouldRemoveDrop(Block block, int meta) {
-        return removeDropsSet.contains(block);
+        ModGlassHandler helper = handlerMap.get(block);
+        if(helper != null)
+            return helper.shouldRemoveDrop(block, meta);
+        else
+            return false;
     }
     
     /** 
@@ -50,17 +48,11 @@ public class GlassRegistry {
         else
             return null;
     }
-    
-    /** @return the set of blocks for which the drops should be removed  */
-    public static Set<Block> getRemoveDropsSet() {
-        return removeDropsSet;
-    }
 
     /** @return the map that assigns a handler to each glass block */
     public static Map<Block, ModGlassHandler> getHandlerMap() {
         return handlerMap;
     }
     
-    private static Set<Block> removeDropsSet = new HashSet<Block>();
     private static Map<Block, ModGlassHandler> handlerMap = new HashMap<Block, ModGlassHandler>();
 }

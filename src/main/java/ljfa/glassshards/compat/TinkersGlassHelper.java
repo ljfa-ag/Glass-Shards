@@ -23,10 +23,6 @@ public class TinkersGlassHelper {
         }
         
         //Add blocks to the registry
-        GlassRegistry.addRemoveDrops(tcGlass);
-        GlassRegistry.addRemoveDrops(tcPane);
-        GlassRegistry.addRemoveDrops(tcStainedGlass);
-        
         GlassRegistry.addHandler(tcGlass, SimpleGlassHandler.blockInstance);
         GlassRegistry.addHandler(tcPane, SimpleGlassHandler.paneInstance);
         GlassRegistry.addHandler(tcStainedGlass, SimpleGlassHandler.stainedBlockInstance);

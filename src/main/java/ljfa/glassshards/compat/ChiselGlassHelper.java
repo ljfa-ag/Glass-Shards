@@ -25,10 +25,6 @@ public class ChiselGlassHelper {
         }
         
         //Add blocks to the registry
-        if(Config.chiselFixPaneDrops)
-            for(Block block: chiselStainedPane)
-                GlassRegistry.addRemoveDrops(block);
-        
         for(int i = 0; i < chiselStainedGlass.length; i++)
             GlassRegistry.addHandler(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
         
