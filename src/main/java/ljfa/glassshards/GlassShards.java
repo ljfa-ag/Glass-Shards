@@ -1,17 +1,13 @@
 package ljfa.glassshards;
 
-import ljfa.glassshards.compat.ChiselGlassHelper;
-import ljfa.glassshards.compat.TinkersGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
 import ljfa.glassshards.util.GlassHelper;
-import ljfa.glassshards.util.GlassRegistry;
-import ljfa.glassshards.util.SimpleGlassHandler;
-import net.minecraft.init.Blocks;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -26,9 +22,12 @@ public class GlassShards {
     /*@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;*/
     
+    public static ToolMaterial toolMatGlass;
+    
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Config.loadConfig(event.getSuggestedConfigurationFile());
+        toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, 131, 4.0f, 2.0f, 12);
         ModItems.preInit();
     }
     
