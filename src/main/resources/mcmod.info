@@ -7,8 +7,8 @@
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ljfa", "Plainy"],
-  "credits": "The Forge and FML guys, for making Forge",
+  "authorList": ["ljfa"],
+  "credits": "ljfa for the code, Plainy and Tord for textures and ideas",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
