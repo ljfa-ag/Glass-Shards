@@ -16,7 +16,8 @@ import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
 
 public class GlassHelper {
-    /** Checks if the block is some kind of glass
+    /** 
+     * Checks if the block is some kind of glass
      * @return A GlassType representing the type, or null if it is not glass
      */
     public static GlassType getType(Block block, int meta) {

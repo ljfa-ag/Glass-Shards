@@ -1,21 +1,10 @@
 package ljfa.glassshards.util;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
-import ljfa.glassshards.Config;
-import ljfa.glassshards.Reference;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.compat.ChiselGlassHelper;
-import ljfa.glassshards.compat.TinkersGlassHelper;
 import net.minecraft.block.Block;
-
-import org.apache.logging.log4j.Level;
-
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
 
 /**
  * Class that handles glasses form other mods that don't implement the API.
