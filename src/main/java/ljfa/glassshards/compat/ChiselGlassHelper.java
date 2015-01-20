@@ -65,7 +65,7 @@ public class ChiselGlassHelper {
         @Override
         public GlassType getType(Block block, int meta) {
             int color = (arrayIndex << 1) | (meta >> 3);
-            return new GlassType(GlassType.mult_block, true, color);
+            return new GlassType(GlassType.mult_pane, true, color);
         }
         
         @Override
