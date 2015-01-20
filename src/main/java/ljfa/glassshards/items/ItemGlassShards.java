@@ -2,9 +2,13 @@ package ljfa.glassshards.items;
 
 import java.util.List;
 
+import com.google.common.collect.Multimap;
+
 import ljfa.glassshards.Reference;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -35,6 +39,14 @@ public class ItemGlassShards extends Item {
             return prefix + "." + getColorName(meta);
         else
             return prefix;
+    }
+    
+    @Override
+    public Multimap getAttributeModifiers(ItemStack stack) {
+        Multimap multimap = super.getAttributeModifiers(stack);
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
+                new AttributeModifier(field_111210_e, "Weapon modifier", 1.0, 0));
+        return multimap;
     }
     
     @SideOnly(Side.CLIENT)
