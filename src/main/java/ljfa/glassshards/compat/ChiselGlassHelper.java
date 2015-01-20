@@ -67,5 +67,10 @@ public class ChiselGlassHelper {
             int color = (arrayIndex << 1) | (meta >> 3);
             return new GlassType(GlassType.mult_block, true, color);
         }
+        
+        @Override
+        public boolean shouldRemoveDrop(Block block, int meta) {
+            return Config.chiselFixPaneDrops;
+        }
     }
 }

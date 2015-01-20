@@ -55,7 +55,7 @@ public class Config {
         chiselFixPaneDrops = conf.get(CATEGORY_CHISEL, "fixStainedPanesDrops", true,
                 "By default, Chisel stained glass panes are behaving inconsistently as in they drop themselves\n"
                 + "when broken, unlike all the other Chisel glass types.\n"
-                + "This option changes this behavior and makes them drop shards instead.").setRequiresMcRestart(true).getBoolean();
+                + "This option changes this behavior and makes them drop shards instead.").getBoolean();
         //----------------
         conf.getCategory(CATEGORY_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
         
