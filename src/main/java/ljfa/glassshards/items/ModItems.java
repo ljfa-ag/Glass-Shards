@@ -31,7 +31,7 @@ public class ModItems {
     public static void registerModels() {
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         
-        glass_shards.registerModels();
+        glass_shards.registerModels(mesher);
         mesher.register(glass_sword, 0, new ModelResourceLocation(Reference.MODID + ":glass_sword", "inventory"));
     }
     

@@ -73,9 +73,8 @@ public class ItemGlassShards extends Item implements IModeledItem {
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerModels() {
+    public void registerModels(ItemModelMesher mesher) {
         ModelBakery.addVariantName(this, variants);
-        ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         mesher.register(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
