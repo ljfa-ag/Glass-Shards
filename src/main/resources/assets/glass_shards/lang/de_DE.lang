@@ -15,6 +15,7 @@ item.glass_shards:glass_shards.light_blue.name=Hellblaue Glasscherben
 item.glass_shards:glass_shards.magenta.name=Magenta Glasscherben
 item.glass_shards:glass_shards.orange.name=Orange Glasscherben
 item.glass_shards:glass_shards.white.name=Weiße Glasscherben
+item.glass_shards:glass_sword.name=Glasschwert
 glass_shards.configgui.ctgy.general.tooltip=Allgemeine Optionen
 glass_shards.configgui.ctgy.chisel.tooltip=Kompatibilität mit Chisel
 glass_shards.configgui.ctgy.tconstruct.tooltip=Kompatibilität mit Tinkers Construct
