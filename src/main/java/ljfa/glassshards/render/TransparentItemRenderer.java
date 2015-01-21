@@ -24,7 +24,7 @@ public class TransparentItemRenderer implements IItemRenderer {
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
         return helper == ItemRendererHelper.ENTITY_BOBBING
             || helper == ItemRendererHelper.ENTITY_ROTATION
-            || type == ItemRenderType.ENTITY && !RenderItem.renderInFrame && helper == ItemRendererHelper.BLOCK_3D;
+            || type == ItemRenderType.ENTITY && !item.isOnItemFrame() && helper == ItemRendererHelper.BLOCK_3D;
     }
 
     @Override
