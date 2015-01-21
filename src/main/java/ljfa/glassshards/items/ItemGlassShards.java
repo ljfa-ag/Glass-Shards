@@ -9,11 +9,14 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.google.common.collect.Multimap;
 
 /*
  * Metadata:
@@ -48,6 +51,15 @@ public class ItemGlassShards extends Item implements IModeledItem {
             return prefix + "." + getColorName(meta);
         else
             return prefix;
+    }
+    
+    @Override
+    public Multimap getAttributeModifiers(ItemStack stack) {
+        double damage = 1.0;
+        Multimap multimap = super.getAttributeModifiers(stack);
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
+                new AttributeModifier(itemModifierUUID, "Weapon modifier", damage, 0));
+        return multimap;
     }
     
     @SideOnly(Side.CLIENT)
