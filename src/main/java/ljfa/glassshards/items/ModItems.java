@@ -8,11 +8,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems {
     public static ItemGlassShards glass_shards;
-    public static ItemSword glass_sword;
+    //public static ItemSword glass_sword;
     
     public static void preInit() {
         glass_shards = register(new ItemGlassShards(), "glass_shards");
-        glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
+        //glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
     }
     
     /** Sets the item's name and texture and registers it */
