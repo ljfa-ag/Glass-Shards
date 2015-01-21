@@ -36,8 +36,10 @@ public class GlassShards {
         ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
         
-        if(Config.renderTransparent && event.getSide() == Side.CLIENT)
+        if(Config.renderTransparent && event.getSide() == Side.CLIENT) {
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());
+            MinecraftForgeClient.registerItemRenderer(ModItems.glass_sword, new TransparentItemRenderer());
+        }
     }
     
     @Mod.EventHandler
