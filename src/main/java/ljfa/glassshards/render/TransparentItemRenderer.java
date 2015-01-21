@@ -23,21 +23,19 @@ public class TransparentItemRenderer implements IItemRenderer {
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
         return helper == ItemRendererHelper.ENTITY_BOBBING
-            || helper == ItemRendererHelper.ENTITY_ROTATION
-            || type == ItemRenderType.ENTITY && !item.isOnItemFrame() && helper == ItemRendererHelper.BLOCK_3D;
+            || helper == ItemRendererHelper.ENTITY_ROTATION;
     }
 
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         IIcon icon = item.getIconIndex();
-        
         float minU = icon.getMinU();
         float maxU = icon.getMaxU();
         float minV = icon.getMinV();
         float maxV = icon.getMaxV();
         
         if(type == ItemRenderType.ENTITY) {
-            if(item.isOnItemFrame()) {
+            if(RenderItem.renderInFrame) {
                 GL11.glRotatef(180.0f, 0.0f, 1.0f, 0.0f);
                 GL11.glTranslatef(0.0f, -0.3f, 0.0f);
             }
