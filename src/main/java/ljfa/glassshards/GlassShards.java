@@ -20,12 +20,12 @@ public class GlassShards {
     /*@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;*/
     
-    public static ToolMaterial toolMatGlass;
+    //public static ToolMaterial toolMatGlass;
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Config.loadConfig(event.getSuggestedConfigurationFile());
-        toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, 131, 4.0f, 2.0f, 5);
+        //toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, 131, 4.0f, 2.0f, 5);
         ModItems.init();
     }
     
