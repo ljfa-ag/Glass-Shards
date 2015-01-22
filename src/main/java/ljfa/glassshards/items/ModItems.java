@@ -20,11 +20,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModItems {
     public static ItemGlassShards glass_shards;
-    //public static ItemSword glass_sword;
+    public static ItemSword glass_sword;
     
     public static void init() {
         glass_shards = register(new ItemGlassShards(), "glass_shards");
-        //glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
+        glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
     }
     
     @SideOnly(Side.CLIENT)
@@ -32,7 +32,7 @@ public class ModItems {
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         
         glass_shards.registerModels(mesher);
-        //mesher.register(glass_sword, 0, new ModelResourceLocation(Reference.MODID + ":glass_sword", "inventory"));
+        mesher.register(glass_sword, 0, new ModelResourceLocation(Reference.MODID + ":glass_sword", "inventory"));
     }
     
     /** Sets the item's name and registers it */
