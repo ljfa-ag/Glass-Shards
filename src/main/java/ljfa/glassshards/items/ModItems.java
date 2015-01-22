@@ -1,5 +1,6 @@
 package ljfa.glassshards.items;
 
+import ljfa.glassshards.Config;
 import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import net.minecraft.item.Item;
@@ -12,7 +13,8 @@ public class ModItems {
     
     public static void preInit() {
         glass_shards = register(new ItemGlassShards(), "glass_shards");
-        glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
+        if(Config.enableSword)
+            glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
     }
     
     /** Sets the item's name and texture and registers it */
