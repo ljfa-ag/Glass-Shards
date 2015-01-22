@@ -42,8 +42,9 @@ public class ModRecipes {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.glass_shards, 8, 16),
                 "SSS", "SGS", "SSS", 'S', "shardsGlass", 'G', Items.gunpowder));
         
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.glass_sword, "S", "S", "|",
-                'S', new ItemStack(ModItems.glass_shards, 1, 16), '|', "stickWood"));
+        if(Config.enableSword)
+            GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.glass_sword, "S", "S", "|",
+                    'S', new ItemStack(ModItems.glass_shards, 1, 16), '|', "stickWood"));
     }
     
     private static void addSmelting() {

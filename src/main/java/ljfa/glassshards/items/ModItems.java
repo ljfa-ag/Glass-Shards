@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 
 import org.apache.logging.log4j.Level;
 
+import ljfa.glassshards.Config;
 import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import net.minecraft.client.Minecraft;
@@ -24,7 +25,8 @@ public class ModItems {
     
     public static void init() {
         glass_shards = register(new ItemGlassShards(), "glass_shards");
-        glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
+        if(Config.enableSword)
+            glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
     }
     
     @SideOnly(Side.CLIENT)
@@ -32,7 +34,8 @@ public class ModItems {
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         
         glass_shards.registerModels(mesher);
-        mesher.register(glass_sword, 0, new ModelResourceLocation(Reference.MODID + ":glass_sword", "inventory"));
+        if(glass_sword != null)
+            mesher.register(glass_sword, 0, new ModelResourceLocation(Reference.MODID + ":glass_sword", "inventory"));
     }
     
     /** Sets the item's name and registers it */

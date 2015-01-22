@@ -16,6 +16,7 @@ public class Config {
     public static float shardsFortuneChance;
     public static boolean recipesRecolor;
     public static boolean recipeUncolor;
+    public static boolean enableSword;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -34,7 +35,8 @@ public class Config {
         shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.08, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
         recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
         recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
-        
+        enableSword = conf.get(CATEGORY_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
+        //----------------
         if(conf.hasChanged())
             conf.save();
     }
