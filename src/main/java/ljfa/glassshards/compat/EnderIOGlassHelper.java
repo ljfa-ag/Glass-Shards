@@ -10,6 +10,7 @@ import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.ModGlassHandler;
+import ljfa.glassshards.util.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -104,21 +105,15 @@ public class EnderIOGlassHelper {
     
     public static void setupGrindingBallExcludes() {
         try {
-            Class<?> classRecipeManager = Class.forName("crazypants.enderio.machine.crusher.CrusherRecipeManager");
+            Class<?> clRecipeManager = Class.forName("crazypants.enderio.machine.crusher.CrusherRecipeManager");
+            Object recipeManager = ReflectionHelper.getStaticField(clRecipeManager, "instance");
+            List excludes = (List)ReflectionHelper.getField(clRecipeManager, "ballExcludes", recipeManager);
             
-            Field recipeManagerField = classRecipeManager.getDeclaredField("instance");
-            recipeManagerField.setAccessible(true);
-            Object recipeManager = recipeManagerField.get(null);
-            
-            Field fieldExcludes = classRecipeManager.getDeclaredField("ballExcludes");
-            fieldExcludes.setAccessible(true);
-            List listExcludes = (List)fieldExcludes.get(recipeManager);
-            
-            Class<?> classRecipeInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput");
-            Constructor constrRecipeInput = classRecipeInput.getConstructor(ItemStack.class, int.class, int.class);
+            Class<?> clRecipeInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput");
+            Constructor constrRecipeInput = clRecipeInput.getConstructor(ItemStack.class, int.class, int.class);
             Object recipe = constrRecipeInput.newInstance(new ItemStack(ModItems.glass_shards, 16), OreDictionary.getOreID("shardsGlass"), 0);
             
-            listExcludes.add(recipe);
+            excludes.add(recipe);
             
             LogHelper.info("Successfully added to EnderIO grinding ball excludes list.");
         } catch(Exception ex) {
