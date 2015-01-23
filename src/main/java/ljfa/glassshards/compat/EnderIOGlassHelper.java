@@ -53,7 +53,7 @@ public class EnderIOGlassHelper {
     }
     
     public static void addRecipes() {
-        //glass -> glass shards
+        //SAG mill: glass -> glass shards
         FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
             "<recipeGroup name=\"EnderIO\">" +
               "<recipe name=\"Glass\" energyCost=\"1200\">" +
@@ -67,7 +67,7 @@ public class EnderIOGlassHelper {
             "</recipeGroup>");
         
         String msg = "<recipeGroup name=\"GlassShards\">";
-        //stained glass -> stained shards
+        //SAG mill: stained glass -> stained shards
         for(int i = 0; i < 16; i++) {
             String dye = ModRecipes.dyes[i];
             msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1200\">" +
@@ -80,7 +80,7 @@ public class EnderIOGlassHelper {
                    "</recipe>";
         }
         
-        //glass shards -> sand
+        //SAG mill: glass shards -> sand
         msg += "<recipe name=\"Shards\" energyCost=\"600\">" +
                  "<input>" +
                    "<itemStack oreDictionary=\"shardsGlass\" />" +
@@ -101,18 +101,28 @@ public class EnderIOGlassHelper {
                 "<itemStack oreDictionary=\"shardsGlass\" />" +
               "</excludes>" +
             "</grindingBalls>");*/
+        
+        
     }
     
+    /**
+     * Adds glass shards to the grinding ball blacklist.
+     * This is a hacky workaround since EnderIO's InterModComms don't support this yet.
+     */
     public static void setupGrindingBallExcludes() {
         try {
             Class<?> clRecipeManager = Class.forName("crazypants.enderio.machine.crusher.CrusherRecipeManager");
+            //Fetch the CrusherRecipeManager instance
             Object recipeManager = ReflectionHelper.getStaticField(clRecipeManager, "instance");
+            //get the ballExcludes list
             List excludes = (List)ReflectionHelper.getField(clRecipeManager, "ballExcludes", recipeManager);
             
+            //Construct a new OreDictionaryRecipeInput
             Class<?> clRecipeInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput");
             Constructor constrRecipeInput = clRecipeInput.getConstructor(ItemStack.class, int.class, int.class);
             Object recipe = constrRecipeInput.newInstance(new ItemStack(ModItems.glass_shards, 16), OreDictionary.getOreID("shardsGlass"), 0);
             
+            //and put the input into the blacklist
             excludes.add(recipe);
             
             LogHelper.info("Successfully added to EnderIO grinding ball excludes list.");
