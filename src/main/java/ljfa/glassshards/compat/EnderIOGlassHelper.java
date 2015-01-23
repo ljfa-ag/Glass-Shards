@@ -49,7 +49,7 @@ public class EnderIOGlassHelper {
             "<recipeGroup name=\"EnderIO\">" +
               "<recipe name=\"Glass\" energyCost=\"1200\">" +
                 "<input>" +
-                  "<itemStack oreDictionary=\"blockGlass\" />" +
+                  "<itemStack oreDictionary=\"glass\" />" +
                 "</input>" +
                 "<output>" +
                   "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
