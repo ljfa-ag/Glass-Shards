@@ -1,5 +1,6 @@
 package ljfa.glassshards.compat;
 
+import ljfa.glassshards.ModRecipes;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
@@ -48,7 +49,7 @@ public class EnderIOGlassHelper {
             "<recipeGroup name=\"EnderIO\">" +
               "<recipe name=\"Glass\" energyCost=\"1200\">" +
                 "<input>" +
-                  "<itemStack oreDictionary=\"glass\" />" +
+                  "<itemStack oreDictionary=\"blockGlass\" />" +
                 "</input>" +
                 "<output>" +
                   "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
@@ -56,7 +57,19 @@ public class EnderIOGlassHelper {
               "</recipe>" +
             "</recipeGroup>");
         
-        /*FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
-            "<grindingBalls>");*/
+        String msg = "<recipeGroup name=\"GlassShards\">";
+        for(int i = 0; i < 16; i++) {
+            String dye = ModRecipes.dyes[i];
+            msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1200\">" +
+                     "<input>" +
+                       "<itemStack oreDictionary=\"blockGlass" + dye + "\" />" +
+                     "</input>" +
+                     "<output>" +
+                       "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"" + i + "\" />" +
+                     "</output>" +
+                   "</recipe>";
+        }
+        msg += "</recipeGroup>";
+        FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg);
     }
 }
