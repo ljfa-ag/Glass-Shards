@@ -45,6 +45,7 @@ public class EnderIOGlassHelper {
     }
     
     public static void addRecipes() {
+        //glass -> glass shards
         FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
             "<recipeGroup name=\"EnderIO\">" +
               "<recipe name=\"Glass\" energyCost=\"1200\">" +
@@ -58,6 +59,7 @@ public class EnderIOGlassHelper {
             "</recipeGroup>");
         
         String msg = "<recipeGroup name=\"GlassShards\">";
+        //stained glass -> stained shards
         for(int i = 0; i < 16; i++) {
             String dye = ModRecipes.dyes[i];
             msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1200\">" +
@@ -69,6 +71,17 @@ public class EnderIOGlassHelper {
                      "</output>" +
                    "</recipe>";
         }
+        
+        //glass shards -> sand
+        msg += "<recipe name=\"Shards\" energyCost=\"600\">" +
+                 "<input>" +
+                   "<itemStack oreDictionary=\"shardsGlass\" />" +
+                 "</input>" +
+                 "<output>" +
+                   "<itemStack modID=\"minecraft\" itemName=\"sand\" />" +
+                 "</output>" +
+               "</recipe>";
+        
         msg += "</recipeGroup>";
         FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg);
     }
