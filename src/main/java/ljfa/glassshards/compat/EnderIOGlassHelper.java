@@ -54,6 +54,7 @@ public class EnderIOGlassHelper {
     
     public static void addRecipes() {
         //SAG mill: glass -> glass shards
+        //Replace EnderIO's internal recipe
         FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
             "<recipeGroup name=\"EnderIO\">" +
               "<recipe name=\"Glass\" energyCost=\"1200\">" +
@@ -102,12 +103,23 @@ public class EnderIOGlassHelper {
               "</excludes>" +
             "</grindingBalls>");*/
         
-        
+        //Alloy Smelter: glass shards -> quite clear glass
+        FMLInterModComms.sendMessage("EnderIO", "recipe:alloysmelter",
+            "<recipeGroup name=\"GlassShards\">" +
+              "<recipe name=\"Fused Glass\" energyCost=\"2500\">" +
+                "<input>" +
+                  "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
+                "</input>" +
+                "<output>" +
+                  "<itemStack modID=\"EnderIO\" itemName=\"blockFusedQuartz\" itemMeta=\"1\" exp=\"0.2\" />" +
+                "</output>" +
+              "</recipe>" +
+            "</recipeGroup>");
     }
     
     /**
      * Adds glass shards to the grinding ball blacklist.
-     * This is a hacky workaround since EnderIO's InterModComms don't support this yet.
+     * This is a hacky workaround since EnderIO's InterModComms don't support this (yet).
      */
     public static void setupGrindingBallExcludes() {
         try {
