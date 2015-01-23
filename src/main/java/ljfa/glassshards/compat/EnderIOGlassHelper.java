@@ -1,11 +1,18 @@
 package ljfa.glassshards.compat;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.List;
+
 import ljfa.glassshards.ModRecipes;
 import ljfa.glassshards.api.GlassType;
+import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.ModGlassHandler;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import org.apache.logging.log4j.Level;
 
@@ -93,5 +100,30 @@ public class EnderIOGlassHelper {
                 "<itemStack oreDictionary=\"shardsGlass\" />" +
               "</excludes>" +
             "</grindingBalls>");
+    }
+    
+    public static void setupGrindingBallExcludes() {
+        try {
+            Class<?> classRecipeManager = Class.forName("crazypants.enderio.machine.crusher.CrusherRecipeManager");
+            
+            Field recipeManagerField = classRecipeManager.getDeclaredField("instance");
+            recipeManagerField.setAccessible(true);
+            Object recipeManager = recipeManagerField.get(null);
+            
+            Field fieldExcludes = classRecipeManager.getDeclaredField("ballExcludes");
+            fieldExcludes.setAccessible(true);
+            List listExcludes = (List)fieldExcludes.get(recipeManager);
+            
+            Class<?> classRecipeInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput");
+            Constructor constrRecipeInput = classRecipeInput.getConstructor(ItemStack.class, int.class, int.class);
+            Object recipe = constrRecipeInput.newInstance(new ItemStack(ModItems.glass_shards, 16), OreDictionary.getOreID("shardsGlass"), 0);
+            
+            listExcludes.add(recipe);
+            
+            LogHelper.info("Successfully added to EnderIO grinding ball excludes list.");
+        } catch(Exception ex) {
+            LogHelper.log(Level.ERROR, ex, "Failed to manipulate EnderIO grinding ball excludes list.");
+            return;
+        }
     }
 }

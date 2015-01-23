@@ -67,7 +67,9 @@ public class GlassHelper {
             TinkersGlassHelper.init();
         if(Config.mfrEnable && Loader.isModLoaded("MineFactoryReloaded"))
             MFRGlassHelper.init();
-        if(Loader.isModLoaded("EnderIO"))
+        if(Loader.isModLoaded("EnderIO")) {
             EnderIOGlassHelper.init();
+            EnderIOGlassHelper.setupGrindingBallExcludes();
+        }
     }
 }
