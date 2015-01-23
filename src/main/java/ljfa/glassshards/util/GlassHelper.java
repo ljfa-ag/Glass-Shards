@@ -6,6 +6,7 @@ import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
 import ljfa.glassshards.compat.ChiselGlassHelper;
+import ljfa.glassshards.compat.EnderIOGlassHelper;
 import ljfa.glassshards.compat.MFRGlassHelper;
 import ljfa.glassshards.compat.TinkersGlassHelper;
 import net.minecraft.block.Block;
@@ -66,5 +67,8 @@ public class GlassHelper {
             TinkersGlassHelper.init();
         if(Config.mfrEnable && Loader.isModLoaded("MineFactoryReloaded"))
             MFRGlassHelper.init();
+        if(Loader.isModLoaded("EnderIO")) {
+            EnderIOGlassHelper.init();
+        }
     }
 }
