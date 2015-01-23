@@ -1,5 +1,6 @@
 package ljfa.glassshards;
 
+import ljfa.glassshards.compat.EnderIOGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
@@ -8,6 +9,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -40,6 +42,9 @@ public class GlassShards {
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_sword, new TransparentItemRenderer());
         }
+        
+        if(Loader.isModLoaded("EnderIO"))
+            EnderIOGlassHelper.addRecipes();
     }
     
     @Mod.EventHandler

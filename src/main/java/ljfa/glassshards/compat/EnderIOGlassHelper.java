@@ -4,10 +4,11 @@ import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.ModGlassHandler;
-import ljfa.glassshards.util.SimpleGlassHandler;
 import net.minecraft.block.Block;
 
 import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class EnderIOGlassHelper {
     public static void init() {
@@ -40,5 +41,15 @@ public class EnderIOGlassHelper {
         });
         
         LogHelper.info("Successfully loaded EnderIO glass compatibility.");
+    }
+    
+    public static void addRecipes() {
+        FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
+            "<recipeGroup name=\"EnderIO\">"
+          + "<recipe name=\"Glass\" energyCost=\"1200\">"
+          + "<input><itemStack oreDictionary=\"glass\" /></input>"
+          + "<output><itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" /></output>"
+          + "</recipe>"
+          + "</recipeGroup>");
     }
 }
