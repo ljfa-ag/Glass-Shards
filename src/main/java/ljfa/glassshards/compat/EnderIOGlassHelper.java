@@ -95,12 +95,12 @@ public class EnderIOGlassHelper {
         
         //Disable grinding ball for shards
         //Doesn't work
-        FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
+        /*FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
             "<grindingBalls>" +
               "<excludes>" +
                 "<itemStack oreDictionary=\"shardsGlass\" />" +
               "</excludes>" +
-            "</grindingBalls>");
+            "</grindingBalls>");*/
     }
     
     public static void setupGrindingBallExcludes() {
