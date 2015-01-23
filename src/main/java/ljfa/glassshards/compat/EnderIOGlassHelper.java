@@ -45,11 +45,18 @@ public class EnderIOGlassHelper {
     
     public static void addRecipes() {
         FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
-            "<recipeGroup name=\"EnderIO\">"
-          + "<recipe name=\"Glass\" energyCost=\"1200\">"
-          + "<input><itemStack oreDictionary=\"glass\" /></input>"
-          + "<output><itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" /></output>"
-          + "</recipe>"
-          + "</recipeGroup>");
+            "<recipeGroup name=\"EnderIO\">" +
+              "<recipe name=\"Glass\" energyCost=\"1200\">" +
+                "<input>" +
+                  "<itemStack oreDictionary=\"glass\" />" +
+                "</input>" +
+                "<output>" +
+                  "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
+                "</output>" +
+              "</recipe>" +
+            "</recipeGroup>");
+        
+        /*FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
+            "<grindingBalls>");*/
     }
 }
