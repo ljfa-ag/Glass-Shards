@@ -110,7 +110,9 @@ public class EnderIOGlassHelper {
             List excludes = (List)ReflectionHelper.getField(clRecipeManager, "ballExcludes", recipeManager);
             
             Class<?> clRecipeInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput");
-            Object recipe = ReflectionHelper.newInstance(clRecipeInput, new ItemStack(ModItems.glass_shards, 16), OreDictionary.getOreID("shardsGlass"), 0);
+            Constructor constrRecipeInput = clRecipeInput.getConstructor(ItemStack.class, int.class, int.class);
+            Object recipe = constrRecipeInput.newInstance(new ItemStack(ModItems.glass_shards, 16), OreDictionary.getOreID("shardsGlass"), 0);
+            
             excludes.add(recipe);
             
             LogHelper.info("Successfully added to EnderIO grinding ball excludes list.");
