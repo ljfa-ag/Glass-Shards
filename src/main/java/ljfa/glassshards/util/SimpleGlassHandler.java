@@ -12,13 +12,13 @@ import net.minecraft.item.EnumDyeColor;
  */
 public class SimpleGlassHandler extends ModGlassHandler {
     /** Instance for uncolored glass blocks */
-    public static SimpleGlassHandler blockInstance = new SimpleGlassHandler(GlassType.mult_block, false);
+    public static final SimpleGlassHandler blockInstance = new SimpleGlassHandler(GlassType.mult_block, false);
     /** Instance for uncolored glass panes */
-    public static SimpleGlassHandler paneInstance = new SimpleGlassHandler(GlassType.mult_pane, false);
+    public static final SimpleGlassHandler paneInstance = new SimpleGlassHandler(GlassType.mult_pane, false);
     /** Instance for stained glass blocks */
-    public static SimpleGlassHandler stainedBlockInstance = new SimpleGlassHandler(GlassType.mult_block, true);
+    public static final SimpleGlassHandler stainedBlockInstance = new SimpleGlassHandler(GlassType.mult_block, true);
     /** Instance for stained glass panes */
-    public static SimpleGlassHandler stainedPaneInstance = new SimpleGlassHandler(GlassType.mult_pane, true);
+    public static final SimpleGlassHandler stainedPaneInstance = new SimpleGlassHandler(GlassType.mult_pane, true);
     
     protected float multiplier;
     protected boolean stained;
