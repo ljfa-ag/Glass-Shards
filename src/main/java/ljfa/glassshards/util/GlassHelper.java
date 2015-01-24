@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameData;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
+import ljfa.glassshards.compat.BotaniaGlassHelper;
 import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.compat.EnderIOGlassHelper;
 import ljfa.glassshards.compat.MFRGlassHelper;
@@ -72,6 +73,9 @@ public class GlassHelper {
                 EnderIOGlassHelper.init();
             if(Config.eioSagMill)
                 EnderIOGlassHelper.setupGrindingBallExcludes();
+        }
+        if(Loader.isModLoaded("Botania")) {
+            BotaniaGlassHelper.init();
         }
     }
 }
