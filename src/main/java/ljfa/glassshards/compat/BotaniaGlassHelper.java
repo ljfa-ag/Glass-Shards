@@ -18,42 +18,27 @@ import vazkii.botania.api.lexicon.LexiconEntry;
 
 public class BotaniaGlassHelper {
     public static void init() {
-        //Fetch Botania's block instance
-        Block managlass;
-        try {
-            Class<?> classModBlocks = Class.forName("vazkii.botania.common.block.ModBlocks");
-            managlass = (Block)classModBlocks.getDeclaredField("manaGlass").get(null);
-        } catch(Exception ex) {
-            LogHelper.log(Level.ERROR, ex, "Failed to load Botania glass compatibility.");
-            return;
-        }
-        
         //Add block to the registry
+        Block managlass = vazkii.botania.common.block.ModBlocks.manaGlass;
         GlassRegistry.addHandler(managlass, SimpleGlassHandler.blockInstance);
         
         LogHelper.info("Successfully loaded Botania glass compatibility.");
     }
     
     public static void removeVitreousPick() {
-        try {
-            //Get the vitreous pickaxe item instance
-            Class<?> classModItems = Class.forName("vazkii.botania.common.item.ModItems");
-            Item vitreousPick = (Item)classModItems.getDeclaredField("glassPick").get(null);
-            
-            //Remove recipe
-            List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
-            for(int i = 0; i < recipes.size(); i++) {
-                ItemStack output = recipes.get(i).getRecipeOutput();
-                if(output != null && output.getItem() == vitreousPick) {
-                    recipes.remove(i);
-                    break;
-                }
+        Item vitreousPick = vazkii.botania.common.item.ModItems.glassPick;
+        
+        //Remove recipe
+        List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+        for(int i = 0; i < recipes.size(); i++) {
+            ItemStack output = recipes.get(i).getRecipeOutput();
+            if(output != null && output.getItem() == vitreousPick) {
+                recipes.remove(i);
+                break;
             }
-            LogHelper.info("Successfully removed Vitreous Pickaxe recipe.");
-        } catch(Exception ex) {
-            LogHelper.log(Level.ERROR, ex, "Failed to remove Vitreous Pickaxe recipe.");
-            return;
         }
+        
+        LogHelper.info("Successfully removed Vitreous Pickaxe recipe.");
         
         //Remove lexicon entry
         List<LexiconEntry> entries = BotaniaAPI.getAllEntries();
