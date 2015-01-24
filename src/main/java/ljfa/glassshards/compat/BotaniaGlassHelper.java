@@ -34,19 +34,19 @@ public class BotaniaGlassHelper {
             ItemStack output = recipes.get(i).getRecipeOutput();
             if(output != null && output.getItem() == vitreousPick) {
                 recipes.remove(i);
+                LogHelper.info("Successfully removed Vitreous Pickaxe recipe.");
                 break;
             }
         }
-        
-        LogHelper.info("Successfully removed Vitreous Pickaxe recipe.");
         
         //Remove lexicon entry
         List<LexiconEntry> entries = BotaniaAPI.getAllEntries();
         for(int i = 0; i < entries.size(); i++) {
             LexiconEntry entry = entries.get(i);
-            if(entry.getUnlocalizedName().equals("glassPick")) {
+            if(entry.getUnlocalizedName().equals("botania.entry.glassPick")) {
                 entries.remove(i);
                 entry.category.entries.remove(entry);
+                LogHelper.info("Successfully removed Vitreous Pickaxe lexicon entry.");
                 break;
             }
         }
