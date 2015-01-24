@@ -13,6 +13,9 @@ import net.minecraft.item.crafting.IRecipe;
 
 import org.apache.logging.log4j.Level;
 
+import vazkii.botania.api.BotaniaAPI;
+import vazkii.botania.api.lexicon.LexiconEntry;
+
 public class BotaniaGlassHelper {
     public static void init() {
         //Fetch Botania's block instance
@@ -50,6 +53,17 @@ public class BotaniaGlassHelper {
         } catch(Exception ex) {
             LogHelper.log(Level.ERROR, ex, "Failed to remove Vitreous Pickaxe recipe.");
             return;
+        }
+        
+        //Remove lexicon entry
+        List<LexiconEntry> entries = BotaniaAPI.getAllEntries();
+        for(int i = 0; i < entries.size(); i++) {
+            LexiconEntry entry = entries.get(i);
+            if(entry.getUnlocalizedName().equals("glassPick")) {
+                entries.remove(i);
+                entry.category.entries.remove(entry);
+                break;
+            }
         }
     }
 }
