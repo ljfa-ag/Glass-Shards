@@ -76,6 +76,7 @@ public class GlassHelper {
         }
         if(Loader.isModLoaded("Botania")) {
             BotaniaGlassHelper.init();
+            BotaniaGlassHelper.removeVitreousPick();
         }
     }
 }
