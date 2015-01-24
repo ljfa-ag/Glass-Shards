@@ -14,6 +14,7 @@ public class Config {
     public static final String CATEGORY_CHISEL = "chisel";
     public static final String CATEGORY_TCONSTRUCT = "tconstruct";
     public static final String CATEGORY_MFR = "mfr";
+    public static final String CATEGORY_ENDERIO = "enderio";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -28,6 +29,10 @@ public class Config {
     public static boolean tinkersEnable;
     
     public static boolean mfrEnable;
+    
+    public static boolean eioDropShards;
+    public static boolean eioSagMill;
+    public static boolean eioAlloySmelter;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -68,6 +73,13 @@ public class Config {
         
         mfrEnable = conf.get(CATEGORY_MFR, "activate", true, "Activates compatibility if MineFactory Reloaded is present.\n"
                 + "When activated, stained glass blocks will drop stained shards.").setRequiresMcRestart(true).getBoolean();
+        //----------------
+        conf.getCategory(CATEGORY_ENDERIO).setComment("Compatibility options for EnderIO. Tested with version 2.2.7.325.");
+        
+        eioDropShards = conf.get(CATEGORY_ENDERIO, "dropShards", true, "EnderIO's Quite Clear Glass will drop shards rather than itself.").setRequiresMcRestart(true).getBoolean();
+        eioSagMill = conf.get(CATEGORY_ENDERIO, "addSAGMillRecipes", true, "Adds SAG Mill recipes for Glass -> Shards and Shards -> Sand.\n"
+                + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
+        eioAlloySmelter = conf.get(CATEGORY_ENDERIO, "addAlloySmelterRecipes", true, "Adds an Alloy Smelter recipe for Shards -> Quite Clear Glass").setRequiresMcRestart(true).getBoolean();
         //----------------
         if(conf.hasChanged())
             conf.save();

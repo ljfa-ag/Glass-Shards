@@ -20,3 +20,4 @@ glass_shards.configgui.ctgy.general.tooltip=General options
 glass_shards.configgui.ctgy.chisel.tooltip=Chisel compatibility options
 glass_shards.configgui.ctgy.tconstruct.tooltip=Tinkers Construct compatibility options
 glass_shards.configgui.ctgy.mfr.tooltip=MineFactory Reloaded compatibility options
+glass_shards.configgui.ctgy.enderio.tooltip=EnderIO compatibility options

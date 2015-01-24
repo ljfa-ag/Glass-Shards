@@ -26,6 +26,7 @@ public class GsConfigGui extends GuiConfig {
         list.add(categoryElement(Config.CATEGORY_CHISEL, "Chisel compatibility", "glass_shards.configgui.ctgy.chisel"));
         list.add(categoryElement(Config.CATEGORY_TCONSTRUCT, "Tinkers Construct compatibility", "glass_shards.configgui.ctgy.tconstruct"));
         list.add(categoryElement(Config.CATEGORY_MFR, "MineFactory Reloaded compatibility", "glass_shards.configgui.ctgy.mfr"));
+        list.add(categoryElement(Config.CATEGORY_ENDERIO, "EnderIO compatibility", "glass_shards.configgui.ctgy.enderio"));
         
         return list;
     }

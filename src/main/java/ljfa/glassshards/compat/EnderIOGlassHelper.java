@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import ljfa.glassshards.Config;
 import ljfa.glassshards.ModRecipes;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.items.ModItems;
@@ -53,68 +54,73 @@ public class EnderIOGlassHelper {
     }
     
     public static void addRecipes() {
-        //SAG mill: glass -> glass shards
-        //Replace EnderIO's internal recipe
-        FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
-            "<recipeGroup name=\"EnderIO\">" +
-              "<recipe name=\"Glass\" energyCost=\"1200\">" +
-                "<input>" +
-                  "<itemStack oreDictionary=\"glass\" />" +
-                "</input>" +
-                "<output>" +
-                  "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
-                "</output>" +
-              "</recipe>" +
-            "</recipeGroup>");
-        
-        String msg = "<recipeGroup name=\"GlassShards\">";
-        //SAG mill: stained glass -> stained shards
-        for(int i = 0; i < 16; i++) {
-            String dye = ModRecipes.dyes[i];
-            msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1200\">" +
+        if(Config.eioSagMill) {
+            //SAG mill: glass -> glass shards
+            //Replace EnderIO's internal recipe
+            FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
+                "<recipeGroup name=\"EnderIO\">" +
+                  "<recipe name=\"Glass\" energyCost=\"1200\">" +
+                    "<input>" +
+                      "<itemStack oreDictionary=\"glass\" />" +
+                    "</input>" +
+                    "<output>" +
+                      "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
+                    "</output>" +
+                  "</recipe>" +
+                "</recipeGroup>");
+            
+            String msg = "<recipeGroup name=\"GlassShards\">";
+            //SAG mill: stained glass -> stained shards
+            for(int i = 0; i < 16; i++) {
+                String dye = ModRecipes.dyes[i];
+                msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1200\">" +
+                         "<input>" +
+                           "<itemStack oreDictionary=\"blockGlass" + dye + "\" />" +
+                         "</input>" +
+                         "<output>" +
+                           "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"" + i + "\" />" +
+                         "</output>" +
+                       "</recipe>";
+            }
+            
+            //SAG mill: glass shards -> sand
+            msg += "<recipe name=\"Shards\" energyCost=\"600\">" +
                      "<input>" +
-                       "<itemStack oreDictionary=\"blockGlass" + dye + "\" />" +
+                       "<itemStack oreDictionary=\"shardsGlass\" />" +
                      "</input>" +
                      "<output>" +
-                       "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"" + i + "\" />" +
+                       "<itemStack modID=\"minecraft\" itemName=\"sand\" />" +
                      "</output>" +
                    "</recipe>";
+            
+            msg += "</recipeGroup>";
+            FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg);
+            
+            //Disable grinding ball for shards
+            //Doesn't work
+            /*FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
+                "<grindingBalls>" +
+                  "<excludes>" +
+                    "<itemStack oreDictionary=\"shardsGlass\" />" +
+                  "</excludes>" +
+                "</grindingBalls>");*/
+        
         }
         
-        //SAG mill: glass shards -> sand
-        msg += "<recipe name=\"Shards\" energyCost=\"600\">" +
-                 "<input>" +
-                   "<itemStack oreDictionary=\"shardsGlass\" />" +
-                 "</input>" +
-                 "<output>" +
-                   "<itemStack modID=\"minecraft\" itemName=\"sand\" />" +
-                 "</output>" +
-               "</recipe>";
-        
-        msg += "</recipeGroup>";
-        FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg);
-        
-        //Disable grinding ball for shards
-        //Doesn't work
-        /*FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
-            "<grindingBalls>" +
-              "<excludes>" +
-                "<itemStack oreDictionary=\"shardsGlass\" />" +
-              "</excludes>" +
-            "</grindingBalls>");*/
-        
-        //Alloy Smelter: glass shards -> quite clear glass
-        FMLInterModComms.sendMessage("EnderIO", "recipe:alloysmelter",
-            "<recipeGroup name=\"GlassShards\">" +
-              "<recipe name=\"Fused Glass\" energyCost=\"2500\">" +
-                "<input>" +
-                  "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
-                "</input>" +
-                "<output>" +
-                  "<itemStack modID=\"EnderIO\" itemName=\"blockFusedQuartz\" itemMeta=\"1\" exp=\"0.2\" />" +
-                "</output>" +
-              "</recipe>" +
-            "</recipeGroup>");
+        if(Config.eioAlloySmelter) {
+            //Alloy Smelter: glass shards -> quite clear glass
+            FMLInterModComms.sendMessage("EnderIO", "recipe:alloysmelter",
+                "<recipeGroup name=\"GlassShards\">" +
+                  "<recipe name=\"Fused Glass\" energyCost=\"2500\">" +
+                    "<input>" +
+                      "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
+                    "</input>" +
+                    "<output>" +
+                      "<itemStack modID=\"EnderIO\" itemName=\"blockFusedQuartz\" itemMeta=\"1\" exp=\"0.2\" />" +
+                    "</output>" +
+                  "</recipe>" +
+                "</recipeGroup>");
+        }
     }
     
     /**

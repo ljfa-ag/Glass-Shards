@@ -68,8 +68,10 @@ public class GlassHelper {
         if(Config.mfrEnable && Loader.isModLoaded("MineFactoryReloaded"))
             MFRGlassHelper.init();
         if(Loader.isModLoaded("EnderIO")) {
-            EnderIOGlassHelper.init();
-            EnderIOGlassHelper.setupGrindingBallExcludes();
+            if(Config.eioDropShards)
+                EnderIOGlassHelper.init();
+            if(Config.eioSagMill)
+                EnderIOGlassHelper.setupGrindingBallExcludes();
         }
     }
 }
