@@ -28,9 +28,6 @@ public class SimpleGlassHandler extends ModGlassHandler {
 
     @Override
     public GlassType getType(Block block, int meta) {
-        if(stained)
-            return new GlassType(multiplier, true, meta);
-        else
-            return new GlassType(multiplier);
+        return new GlassType(multiplier, stained, meta);
     }
 }
