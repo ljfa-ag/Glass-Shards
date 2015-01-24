@@ -1,11 +1,8 @@
 package ljfa.glassshards.util;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameData;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
-import ljfa.glassshards.compat.BotaniaGlassHelper;
 import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.compat.EnderIOGlassHelper;
 import ljfa.glassshards.compat.MFRGlassHelper;
@@ -16,6 +13,8 @@ import net.minecraft.block.BlockPane;
 import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameData;
 
 public class GlassHelper {
     /** 
@@ -73,10 +72,6 @@ public class GlassHelper {
                 EnderIOGlassHelper.init();
             if(Config.eioSagMill)
                 EnderIOGlassHelper.setupGrindingBallExcludes();
-        }
-        if(Loader.isModLoaded("Botania")) {
-            BotaniaGlassHelper.init();
-            BotaniaGlassHelper.removeVitreousPick();
         }
     }
 }
