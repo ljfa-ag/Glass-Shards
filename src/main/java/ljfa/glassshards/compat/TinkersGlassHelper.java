@@ -9,9 +9,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import org.apache.logging.log4j.Level;
 
 public class TinkersGlassHelper {
     public static void init() {
