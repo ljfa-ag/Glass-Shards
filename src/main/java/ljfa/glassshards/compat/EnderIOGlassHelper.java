@@ -1,7 +1,5 @@
 package ljfa.glassshards.compat;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.util.List;
 
 import ljfa.glassshards.Config;
@@ -19,23 +17,15 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
+import crazypants.enderio.machine.crusher.CrusherRecipeManager;
+import crazypants.enderio.machine.recipe.OreDictionaryRecipeInput;
+import crazypants.enderio.machine.recipe.RecipeInput;
 
 public class EnderIOGlassHelper {
     public static void init() {
-        //Fetch EnderIO's block instance
-        Block eioGlass;
-        try {
-            Class<?> classModBlocks = Class.forName("crazypants.enderio.EnderIO");
-            
-            eioGlass = (Block)classModBlocks.getDeclaredField("blockFusedQuartz").get(null);
-        } catch(Exception ex) {
-            LogHelper.log(Level.ERROR, ex, "Failed to load EnderIO glass compatibility.");
-            return;
-        }
-        
         //Add block to the registry
         //meta 1 = quite clear glass
-        GlassRegistry.addHandler(eioGlass, new ModGlassHandler() {
+        GlassRegistry.addHandler(crazypants.enderio.EnderIO.blockFusedQuartz, new ModGlassHandler() {
             @Override
             public GlassType getType(Block block, int meta) {
                 if(meta == 1)
@@ -129,19 +119,9 @@ public class EnderIOGlassHelper {
      */
     public static void setupGrindingBallExcludes() {
         try {
-            Class<?> clRecipeManager = Class.forName("crazypants.enderio.machine.crusher.CrusherRecipeManager");
-            //Fetch the CrusherRecipeManager instance
-            Object recipeManager = ReflectionHelper.getStaticField(clRecipeManager, "instance");
-            //get the ballExcludes list
-            List excludes = (List)ReflectionHelper.getField(clRecipeManager, "ballExcludes", recipeManager);
-            
-            //Construct a new OreDictionaryRecipeInput
-            Class<?> clRecipeInput = Class.forName("crazypants.enderio.machine.recipe.OreDictionaryRecipeInput");
-            Constructor constrRecipeInput = clRecipeInput.getConstructor(ItemStack.class, int.class, int.class);
-            Object recipe = constrRecipeInput.newInstance(new ItemStack(ModItems.glass_shards, 16), OreDictionary.getOreID("shardsGlass"), 0);
-            
-            //and put the input into the blacklist
-            excludes.add(recipe);
+            CrusherRecipeManager recipeManager = CrusherRecipeManager.getInstance();
+            List<RecipeInput> excludes = (List<RecipeInput>)ReflectionHelper.getField(CrusherRecipeManager.class, "ballExcludes", recipeManager);
+            excludes.add(new OreDictionaryRecipeInput(new ItemStack(ModItems.glass_shards, 16), OreDictionary.getOreID("shardsGlass"), 0));
             
             LogHelper.info("Successfully added to EnderIO grinding ball excludes list.");
         } catch(Exception ex) {
