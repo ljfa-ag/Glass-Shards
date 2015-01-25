@@ -27,6 +27,7 @@ public class Config {
     public static boolean chiselFixPaneDrops;
     
     public static boolean tinkersEnable;
+    public static boolean tinkersMeltShards;
     
     public static boolean mfrEnable;
     
@@ -66,8 +67,8 @@ public class Config {
         //----------------
         conf.getCategory(CATEGORY_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
         
-        tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "activate", false, "Activates compatibility if Tinkers Construct is present.\n"
-                + "This will make Clear Glass and Stained Glass drop shards rather than themselves.").setRequiresMcRestart(true).getBoolean();
+        tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "dropShards", false, "Clear Glass and Stained Glass will drop shards rather than themselves").setRequiresMcRestart(true).getBoolean();
+        tinkersMeltShards = conf.get(CATEGORY_TCONSTRUCT, "addSmelteryRecipe", true, "Makes shards smeltable in the Smeltery").setRequiresMcRestart(true).getBoolean();
         //----------------
         conf.getCategory(CATEGORY_MFR).setComment("Compatibility options for MineFactory Reloaded. Tested with version 2.8.0RC6-5.");
         

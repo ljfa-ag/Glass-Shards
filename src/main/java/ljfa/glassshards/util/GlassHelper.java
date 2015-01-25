@@ -63,9 +63,11 @@ public class GlassHelper {
     public static void initCompatModules() {
         if(Config.chiselEnable && Loader.isModLoaded("chisel"))
             ChiselGlassHelper.init();
-        if(Config.tinkersEnable && Loader.isModLoaded("TConstruct")) {
-            TinkersGlassHelper.init();
-            TinkersGlassHelper.addSmelteryRecipe();
+        if(Loader.isModLoaded("TConstruct")) {
+            if(Config.tinkersEnable)
+                TinkersGlassHelper.init();
+            if(Config.tinkersMeltShards)
+                TinkersGlassHelper.addSmelteryRecipe();
         }
         if(Config.mfrEnable && Loader.isModLoaded("MineFactoryReloaded"))
             MFRGlassHelper.init();
