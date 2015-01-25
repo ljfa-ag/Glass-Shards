@@ -15,6 +15,7 @@ public class Config {
     public static final String CATEGORY_TCONSTRUCT = "tconstruct";
     public static final String CATEGORY_MFR = "mfr";
     public static final String CATEGORY_ENDERIO = "enderio";
+    public static final String CATEGORY_THERMALEXP = "thermalexp";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -34,6 +35,8 @@ public class Config {
     public static boolean eioDropShards;
     public static boolean eioSagMill;
     public static boolean eioAlloySmelter;
+    
+    public static boolean tePulverizer;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -81,6 +84,11 @@ public class Config {
         eioSagMill = conf.get(CATEGORY_ENDERIO, "addSAGMillRecipes", true, "Adds SAG Mill recipes for Glass -> Shards and Shards -> Sand.\n"
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
         eioAlloySmelter = conf.get(CATEGORY_ENDERIO, "addAlloySmelterRecipes", true, "Adds an Alloy Smelter recipe for Shards -> Quite Clear Glass").setRequiresMcRestart(true).getBoolean();
+        //----------------
+        conf.getCategory(CATEGORY_THERMALEXP).setComment("Compatibility options for Thermal Expansion. Tested with version 4.0.0B8-23.");
+        
+        tePulverizer = conf.get(CATEGORY_THERMALEXP, "addPulverizerRecipes", true, "Adds Pulverizer recipes for Glass -> Shards and Shards -> Sand.\n"
+                + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
         //----------------
         if(conf.hasChanged())
             conf.save();
