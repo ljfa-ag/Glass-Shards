@@ -11,18 +11,8 @@ import org.apache.logging.log4j.Level;
 
 public class ChiselGlassHelper {
     public static void init() {
-        //Fetch Chisel's block instances
-        Block chiselGlass, chiselPane;
-        Block[] chiselStainedGlass, chiselStainedPane;
-        try {
-            Class<?> classModBlocks = Class.forName("com.cricketcraft.chisel.init.ModBlocks");
-            
-            chiselStainedGlass = (Block[])classModBlocks.getDeclaredField("stainedGlass").get(null);
-            chiselStainedPane = (Block[])classModBlocks.getDeclaredField("stainedGlassPane").get(null);
-        } catch(Exception ex) {
-            LogHelper.log(Level.ERROR, ex, "Failed to load Chisel compatibility.");
-            return;
-        }
+        Block[] chiselStainedGlass = com.cricketcraft.chisel.init.ModBlocks.stainedGlass;
+        Block[] chiselStainedPane = com.cricketcraft.chisel.init.ModBlocks.stainedGlassPane;
         
         //Add blocks to the registry
         for(int i = 0; i < chiselStainedGlass.length; i++)
