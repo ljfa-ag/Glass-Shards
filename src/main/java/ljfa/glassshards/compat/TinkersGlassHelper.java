@@ -15,18 +15,9 @@ import org.apache.logging.log4j.Level;
 
 public class TinkersGlassHelper {
     public static void init() {
-        //Fetch TConstruct's block instances
-        Block tcGlass, tcPane, tcStainedGlass;
-        try {
-            Class<?> classModBlocks = Class.forName("tconstruct.smeltery.TinkerSmeltery");
-            
-            tcGlass = (Block)classModBlocks.getDeclaredField("clearGlass").get(null);
-            tcPane = (Block)classModBlocks.getDeclaredField("glassPane").get(null);
-            tcStainedGlass = (Block)classModBlocks.getDeclaredField("stainedGlassClear").get(null);
-        } catch(Exception ex) {
-            LogHelper.log(Level.ERROR, ex, "Failed to load Tinkers Construct compatibility.");
-            return;
-        }
+        Block tcGlass = tconstruct.smeltery.TinkerSmeltery.clearGlass;
+        Block tcPane = tconstruct.smeltery.TinkerSmeltery.glassPane;
+        Block tcStainedGlass = tconstruct.smeltery.TinkerSmeltery.stainedGlassClear;
         
         //Add blocks to the registry
         GlassRegistry.addHandler(tcGlass, SimpleGlassHandler.blockInstance);
