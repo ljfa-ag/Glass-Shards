@@ -9,21 +9,12 @@ import org.apache.logging.log4j.Level;
 
 public class MFRGlassHelper {
     public static void init() {
-        //Fetch MFR's glass block instances
-        Block mfrGlass, mfrPane;
-        try {
-            Class<?> classModBlocks = Class.forName("powercrystals.minefactoryreloaded.setup.MFRThings");
-            
-            mfrGlass = (Block)classModBlocks.getField("factoryGlassBlock").get(null);
-            mfrPane = (Block)classModBlocks.getField("factoryGlassPaneBlock").get(null);
-        } catch(Exception ex) {
-            LogHelper.log(Level.ERROR, ex, "Failed to load MineFactory Reloaded compatibility.");
-            return;
-        }
+        Block mfrStainedGlass = powercrystals.minefactoryreloaded.setup.MFRThings.factoryGlassBlock;
+        Block mfrStainedPane = powercrystals.minefactoryreloaded.setup.MFRThings.factoryGlassPaneBlock;
         
         //Add blocks to the registry
-        GlassRegistry.addHandler(mfrGlass, SimpleGlassHandler.stainedBlockInstance);
-        GlassRegistry.addHandler(mfrPane, SimpleGlassHandler.stainedPaneInstance);
+        GlassRegistry.addHandler(mfrStainedGlass, SimpleGlassHandler.stainedBlockInstance);
+        GlassRegistry.addHandler(mfrStainedPane, SimpleGlassHandler.stainedPaneInstance);
         
         LogHelper.info("Successfully loaded MineFactory Reloaded compatibility.");
     }
