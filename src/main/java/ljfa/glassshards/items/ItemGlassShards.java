@@ -2,21 +2,18 @@ package ljfa.glassshards.items;
 
 import java.util.List;
 
-import com.google.common.collect.Multimap;
-
 import ljfa.glassshards.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import com.google.common.collect.Multimap;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -83,7 +80,7 @@ public class ItemGlassShards extends Item {
     public IIcon getIconFromDamage(int meta) {
         if(meta > 16)
             meta = 16;
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? textures[meta] : textures_opaque[meta];
+        return Minecraft.isFancyGraphicsEnabled() ? textures[meta] : textures_opaque[meta];
     }
     
     private static String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",

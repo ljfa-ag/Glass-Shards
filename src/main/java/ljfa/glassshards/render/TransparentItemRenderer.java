@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
@@ -14,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 public class TransparentItemRenderer implements IItemRenderer {
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics
+        return Minecraft.isFancyGraphicsEnabled()
             && (type == ItemRenderType.ENTITY
             || type == ItemRenderType.EQUIPPED
             || type == ItemRenderType.EQUIPPED_FIRST_PERSON);
