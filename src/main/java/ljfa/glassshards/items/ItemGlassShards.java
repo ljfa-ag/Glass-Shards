@@ -5,7 +5,9 @@ import java.util.List;
 import com.google.common.collect.Multimap;
 
 import ljfa.glassshards.Reference;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -24,8 +26,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ItemGlassShards extends Item {
     @SideOnly(Side.CLIENT)
-    private IIcon[] textures;
+    private IIcon[] textures, textures_opaque;
     
+    private static final GameSettings settings = Minecraft.getMinecraft().gameSettings;
+
     ItemGlassShards() {
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
@@ -63,10 +67,14 @@ public class ItemGlassShards extends Item {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         textures = new IIcon[17];
-        for(int i = 0; i < 16; i++)
+        textures_opaque = new IIcon[17];
+        for(int i = 0; i < 16; i++) {
             textures[i] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_" + getColorName(i));
+            textures_opaque[i] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_" + getColorName(i) + "_opaque");
+        }
         
         textures[16] = iconRegister.registerIcon(Reference.MODID + ":glass_shards");
+        textures_opaque[16] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_opaque");
     }
     
     @SideOnly(Side.CLIENT)
@@ -74,7 +82,7 @@ public class ItemGlassShards extends Item {
     public IIcon getIconFromDamage(int meta) {
         if(meta > 16)
             meta = 16;
-        return textures[meta];
+        return settings.fancyGraphics ? textures[meta] : textures_opaque[meta];
     }
     
     private static String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
