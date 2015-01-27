@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,8 +28,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemGlassShards extends Item {
     @SideOnly(Side.CLIENT)
     private IIcon[] textures, textures_opaque;
-    
-    private static final GameSettings settings = Minecraft.getMinecraft().gameSettings;
 
     ItemGlassShards() {
         setHasSubtypes(true);
@@ -84,7 +83,7 @@ public class ItemGlassShards extends Item {
     public IIcon getIconFromDamage(int meta) {
         if(meta > 16)
             meta = 16;
-        return settings.fancyGraphics ? textures[meta] : textures_opaque[meta];
+        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? textures[meta] : textures_opaque[meta];
     }
     
     private static String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",

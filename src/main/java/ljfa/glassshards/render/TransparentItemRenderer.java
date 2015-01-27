@@ -12,11 +12,9 @@ import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
 public class TransparentItemRenderer implements IItemRenderer {
-    private static final GameSettings settings = Minecraft.getMinecraft().gameSettings;
-    
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return settings.fancyGraphics
+        return Minecraft.getMinecraft().gameSettings.fancyGraphics
             && (type == ItemRenderType.ENTITY
             || type == ItemRenderType.EQUIPPED
             || type == ItemRenderType.EQUIPPED_FIRST_PERSON);
