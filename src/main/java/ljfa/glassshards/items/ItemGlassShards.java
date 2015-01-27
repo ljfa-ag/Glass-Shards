@@ -68,13 +68,15 @@ public class ItemGlassShards extends Item {
     public void registerIcons(IIconRegister iconRegister) {
         textures = new IIcon[17];
         textures_opaque = new IIcon[17];
+        
+        String prefix = Reference.MODID + ":glass_shards";
         for(int i = 0; i < 16; i++) {
-            textures[i] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_" + getColorName(i));
-            textures_opaque[i] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_" + getColorName(i) + "_opaque");
+            textures[i] = iconRegister.registerIcon(prefix + "_" + getColorName(i));
+            textures_opaque[i] = iconRegister.registerIcon(prefix + "_" + getColorName(i) + "_opaque");
         }
         
-        textures[16] = iconRegister.registerIcon(Reference.MODID + ":glass_shards");
-        textures_opaque[16] = iconRegister.registerIcon(Reference.MODID + ":glass_shards_opaque");
+        textures[16] = iconRegister.registerIcon(prefix);
+        textures_opaque[16] = iconRegister.registerIcon(prefix + "_opaque");
     }
     
     @SideOnly(Side.CLIENT)
