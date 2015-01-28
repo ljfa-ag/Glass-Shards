@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Level;
 
 public class ChiselGlassHelper {
     public static void init() {
-        Block[] chiselStainedGlass = com.cricketcraft.chisel.init.ModBlocks.stainedGlass;
-        Block[] chiselStainedPane = com.cricketcraft.chisel.init.ModBlocks.stainedGlassPane;
+        Block[] chiselStainedGlass = com.cricketcraft.chisel.init.ChiselBlocks.stainedGlass;
+        Block[] chiselStainedPane = com.cricketcraft.chisel.init.ChiselBlocks.stainedGlassPane;
         
         //Add blocks to the registry
         for(int i = 0; i < chiselStainedGlass.length; i++)

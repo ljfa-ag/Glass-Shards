@@ -58,9 +58,9 @@ public class Config {
         renderTransparent = conf.get(CATEGORY_GENERAL, "renderTransparent", true, "The shards will be transparent when lying on the ground or held in the hand (fancy graphics only)").setRequiresMcRestart(true).getBoolean();
         enableSword = conf.get(CATEGORY_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.2.1.");
+        conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.3.5.31.");
         
-        chiselEnable = conf.get(CATEGORY_CHISEL, "activate", true, "Activates compatibility if Chisel is present.\n"
+        chiselEnable = conf.get(CATEGORY_CHISEL, "dropShards", true, "Activates compatibility if Chisel is present.\n"
                 + "Note that not activating this even though Chisel is present might lead to unexpected behavior.\n"
                 + "Deactivating this doesn't mean Chisel glass will not drop shards. The shards will just not be stained.").setRequiresMcRestart(true).getBoolean();
         chiselFixPaneDrops = conf.get(CATEGORY_CHISEL, "fixStainedPanesDrops", true,
