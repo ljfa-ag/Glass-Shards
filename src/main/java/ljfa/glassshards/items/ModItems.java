@@ -12,9 +12,9 @@ public class ModItems {
     public static ItemSword glass_sword;
     
     public static void preInit() {
-        glass_shards = register(new ItemGlassShards(), "glass_shards");
+        glass_shards = new ItemGlassShards();
         if(Config.enableSword)
-            glass_sword = register(new ItemGlassSword(), "glass_sword");
+            glass_sword = new ItemGlassSword();
     }
     
     /** Sets the item's name and texture and registers it */

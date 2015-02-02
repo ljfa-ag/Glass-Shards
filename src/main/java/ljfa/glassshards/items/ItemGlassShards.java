@@ -29,6 +29,7 @@ public class ItemGlassShards extends Item {
     ItemGlassShards() {
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
+        ModItems.register(this, "glass_shards");
     }
     
     @Override
