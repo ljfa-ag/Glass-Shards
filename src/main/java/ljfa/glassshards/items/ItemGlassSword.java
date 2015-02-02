@@ -8,5 +8,4 @@ public class ItemGlassSword extends ItemSword {
         super(GlassShards.toolMatGlass);
         ModItems.register(this, "glass_sword");
     }
-
 }

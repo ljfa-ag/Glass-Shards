@@ -6,6 +6,7 @@ import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
 import ljfa.glassshards.util.GlassHelper;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
@@ -31,6 +32,7 @@ public class GlassShards {
         Config.loadConfig(event.getSuggestedConfigurationFile());
         toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, 109, 4.0f, 2.0f, 5);
         ModItems.preInit();
+        toolMatGlass.setRepairItem(new ItemStack(ModItems.glass_shards, 1, 16));
     }
     
     @Mod.EventHandler
