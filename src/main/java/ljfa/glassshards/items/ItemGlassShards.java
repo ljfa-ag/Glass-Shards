@@ -34,6 +34,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
         
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
+        ModItems.register(this, "glass_shards");
     }
     
     public String getVariant(int meta) {

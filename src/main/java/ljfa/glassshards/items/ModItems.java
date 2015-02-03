@@ -24,7 +24,7 @@ public class ModItems {
     public static ItemSword glass_sword;
     
     public static void init() {
-        glass_shards = register(new ItemGlassShards(), "glass_shards");
+        glass_shards = new ItemGlassShards();
         if(Config.enableSword)
             glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
     }
