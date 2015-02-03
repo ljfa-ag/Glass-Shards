@@ -6,8 +6,8 @@ import java.util.List;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.fml.client.config.DummyConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 
@@ -16,20 +16,15 @@ public class GsConfigGui extends GuiConfig {
         super(parent, getConfigElements(), Reference.MODID, false, false, "Glass Shards configuration");
     }
     
-    /** Compiles a list of config elements */
+    /** Compiles a list of config elements
+     * Borrowed from EnderIO's implementation
+     */
     private static List<IConfigElement> getConfigElements() {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         
-        //Add categories to config GUI
-        list.add(categoryElement(Config.CATEGORY_GENERAL, "General", "glass_shards.configgui.ctgy.general"));
-        //list.add(categoryElement(Config.CATEGORY_CHISEL, "Chisel compatibility", "glass_shards.configgui.ctgy.chisel"));
+        for(String name: Config.conf.getCategoryNames())
+            list.add(new ConfigElement(Config.conf.getCategory(name)));
         
         return list;
-    }
-    
-    /** Creates a button linking to another screen where all options of the category are available */
-    private static IConfigElement categoryElement(String category, String name, String tooltip_key) {
-        return new DummyConfigElement.DummyCategoryElement(name, tooltip_key,
-                new ConfigElement(Config.conf.getCategory(category)).getChildElements());
     }
 }

@@ -16,5 +16,3 @@ item.glass_shards:glass_shards.magenta.name=Magenta Glass Shards
 item.glass_shards:glass_shards.orange.name=Orange Glass Shards
 item.glass_shards:glass_shards.white.name=White Glass Shards
 item.glass_shards:glass_sword.name=Glass Sword
-glass_shards.configgui.ctgy.general.tooltip=General options
-glass_shards.configgui.ctgy.chisel.tooltip=Chisel compatibility options
