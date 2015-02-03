@@ -22,7 +22,7 @@ group= "ljfa.glassshards" // http://maven.apache.org/guides/mini/guide-naming-co
 archivesBaseName = "glass_shards"
 
 minecraft {
-    version = "1.7.10-10.13.2.1277"
+    version = "1.7.10-10.13.2.1291"
     runDir = "eclipse"
 }
 
