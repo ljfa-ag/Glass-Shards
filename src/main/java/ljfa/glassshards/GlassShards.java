@@ -1,6 +1,11 @@
 package ljfa.glassshards;
 
+import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.compat.EnderIOGlassHelper;
+import ljfa.glassshards.compat.MFRGlassHelper;
+import ljfa.glassshards.compat.ThaumcraftCompat;
+import ljfa.glassshards.compat.ThermalExpCompat;
+import ljfa.glassshards.compat.TinkersGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
@@ -52,6 +57,30 @@ public class GlassShards {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         GlassHelper.registerAll();
-        GlassHelper.initCompatModules();
+        initCompatModules();
+    }
+
+    /** Initialize compatibility with other mods */
+    private static void initCompatModules() {
+        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
+            ChiselGlassHelper.init();
+        if(Loader.isModLoaded("TConstruct")) {
+            if(Config.tinkersEnable)
+                TinkersGlassHelper.init();
+            if(Config.tinkersMeltShards)
+                TinkersGlassHelper.addSmelteryRecipe();
+        }
+        if(Config.mfrEnable && Loader.isModLoaded("MineFactoryReloaded"))
+            MFRGlassHelper.init();
+        if(Loader.isModLoaded("EnderIO")) {
+            if(Config.eioDropShards)
+                EnderIOGlassHelper.init();
+            if(Config.eioSagMill)
+                EnderIOGlassHelper.setupGrindingBallExcludes();
+        }
+        if(Config.tePulverizer && Loader.isModLoaded("ThermalExpansion"))
+            ThermalExpCompat.addRecipes();
+        if(Config.thaumAspects && Loader.isModLoaded("Thaumcraft"))
+            ThaumcraftCompat.addAspects();
     }
 }

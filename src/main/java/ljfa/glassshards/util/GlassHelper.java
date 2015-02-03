@@ -1,21 +1,13 @@
 package ljfa.glassshards.util;
 
-import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.api.IShatterableGlass;
-import ljfa.glassshards.compat.ChiselGlassHelper;
-import ljfa.glassshards.compat.EnderIOGlassHelper;
-import ljfa.glassshards.compat.MFRGlassHelper;
-import ljfa.glassshards.compat.ThaumcraftCompat;
-import ljfa.glassshards.compat.ThermalExpCompat;
-import ljfa.glassshards.compat.TinkersGlassHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameData;
 
 public class GlassHelper {
@@ -59,29 +51,5 @@ public class GlassHelper {
             }
         }
         LogHelper.info("Added %d blocks to the GlassRegistry", counter);
-    }
-    
-    /** Initialize compatibility with other mods */
-    public static void initCompatModules() {
-        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
-            ChiselGlassHelper.init();
-        if(Loader.isModLoaded("TConstruct")) {
-            if(Config.tinkersEnable)
-                TinkersGlassHelper.init();
-            if(Config.tinkersMeltShards)
-                TinkersGlassHelper.addSmelteryRecipe();
-        }
-        if(Config.mfrEnable && Loader.isModLoaded("MineFactoryReloaded"))
-            MFRGlassHelper.init();
-        if(Loader.isModLoaded("EnderIO")) {
-            if(Config.eioDropShards)
-                EnderIOGlassHelper.init();
-            if(Config.eioSagMill)
-                EnderIOGlassHelper.setupGrindingBallExcludes();
-        }
-        if(Config.tePulverizer && Loader.isModLoaded("ThermalExpansion"))
-            ThermalExpCompat.addRecipes();
-        if(Config.thaumAspects && Loader.isModLoaded("Thaumcraft"))
-            ThaumcraftCompat.addAspects();
     }
 }
