@@ -16,6 +16,7 @@ public class Config {
     public static final String CATEGORY_MFR = "mfr";
     public static final String CATEGORY_ENDERIO = "enderio";
     public static final String CATEGORY_THERMALEXP = "thermalexp";
+    public static final String CATEGORY_THAUMCRAFT = "thaumcraft";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -37,6 +38,8 @@ public class Config {
     public static boolean eioAlloySmelter;
     
     public static boolean tePulverizer;
+    
+    public static boolean thaumAspects;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -89,6 +92,10 @@ public class Config {
         
         tePulverizer = conf.get(CATEGORY_THERMALEXP, "addPulverizerRecipes", true, "Adds Pulverizer recipes for Glass -> Shards and Shards -> Sand.\n"
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
+        //----------------
+        conf.getCategory(CATEGORY_THAUMCRAFT).setComment("Compatibility options for Thaumcraft. Tested with version 4.2.3.4.");
+
+        thaumAspects = conf.get(CATEGORY_THAUMCRAFT, "addAspects", true, "Adds Thaumcraft aspects to the shards").setRequiresMcRestart(true).getBoolean();
         //----------------
         if(conf.hasChanged())
             conf.save();
