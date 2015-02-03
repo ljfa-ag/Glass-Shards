@@ -6,7 +6,7 @@ import ljfa.glassshards.api.IShatterableGlass;
 import ljfa.glassshards.compat.ChiselGlassHelper;
 import ljfa.glassshards.compat.EnderIOGlassHelper;
 import ljfa.glassshards.compat.MFRGlassHelper;
-import ljfa.glassshards.compat.ThermalExpHelper;
+import ljfa.glassshards.compat.ThermalExpCompat;
 import ljfa.glassshards.compat.TinkersGlassHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
@@ -79,6 +79,6 @@ public class GlassHelper {
                 EnderIOGlassHelper.setupGrindingBallExcludes();
         }
         if(Config.tePulverizer && Loader.isModLoaded("ThermalExpansion"))
-            ThermalExpHelper.addRecipes();
+            ThermalExpCompat.addRecipes();
     }
 }

@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import thermalexpansion.util.crafting.PulverizerManager;
 
-public class ThermalExpHelper {
+public class ThermalExpCompat {
     public static void addRecipes() {
         PulverizerManager.removeRecipe(new ItemStack(Blocks.glass));
         PulverizerManager.addRecipe(3200, new ItemStack(Blocks.glass), new ItemStack(ModItems.glass_shards, 1, 16));
