@@ -54,10 +54,4 @@ public class GlassHelper {
         }
         LogHelper.info("Added %d blocks to the GlassRegistry", counter);
     }
-    
-    /** Initialize compatibility with other mods */
-    public static void initCompatModules() {
-        
-    }
-
 }
