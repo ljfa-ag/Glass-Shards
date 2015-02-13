@@ -10,6 +10,7 @@ import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
 import ljfa.glassshards.util.GlassHelper;
+import ljfa.glassshards.util.LogHelper;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -62,8 +63,12 @@ public class GlassShards {
 
     /** Initialize compatibility with other mods */
     private static void initCompatModules() {
-        if(Config.chiselEnable && Loader.isModLoaded("chisel"))
-            ChiselGlassHelper.init();
+        if(Config.chiselEnable && Loader.isModLoaded("chisel")) {
+            if(Loader.instance().getIndexedModList().get("chisel").getVersion().startsWith("2.3"))
+                ChiselGlassHelper.init();
+            else
+                LogHelper.warn("The Chisel compatibility requires version 2.3.x");
+        }
         if(Loader.isModLoaded("TConstruct")) {
             if(Config.tinkersEnable)
                 TinkersGlassHelper.init();
