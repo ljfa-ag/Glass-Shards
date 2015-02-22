@@ -76,7 +76,7 @@ public class Config {
         tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "dropShards", false, "Clear Glass and Stained Glass will drop shards rather than themselves").setRequiresMcRestart(true).getBoolean();
         tinkersMeltShards = conf.get(CATEGORY_TCONSTRUCT, "addSmelteryRecipe", true, "Makes shards smeltable in the Smeltery").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_MFR).setComment("Compatibility options for MineFactory Reloaded. Tested with version 2.8.0RC6-5.");
+        conf.getCategory(CATEGORY_MFR).setComment("Compatibility options for MineFactory Reloaded. Tested with version 2.8.0RC7-71.");
         
         mfrEnable = conf.get(CATEGORY_MFR, "activate", true, "Activates compatibility if MineFactory Reloaded is present.\n"
                 + "When activated, stained glass blocks will drop stained shards.").setRequiresMcRestart(true).getBoolean();
@@ -88,7 +88,7 @@ public class Config {
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
         eioAlloySmelter = conf.get(CATEGORY_ENDERIO, "addAlloySmelterRecipes", true, "Adds an Alloy Smelter recipe for Shards -> Quite Clear Glass").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_THERMALEXP).setComment("Compatibility options for Thermal Expansion. Tested with version 4.0.0B8-23.");
+        conf.getCategory(CATEGORY_THERMALEXP).setComment("Compatibility options for Thermal Expansion. Tested with version 4.0.0RC1-119.");
         
         tePulverizer = conf.get(CATEGORY_THERMALEXP, "addPulverizerRecipes", true, "Adds Pulverizer recipes for Glass -> Shards and Shards -> Sand.\n"
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
