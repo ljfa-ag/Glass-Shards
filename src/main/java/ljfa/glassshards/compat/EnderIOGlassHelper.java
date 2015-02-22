@@ -17,6 +17,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
+import crazypants.enderio.EnderIO;
 import crazypants.enderio.machine.crusher.CrusherRecipeManager;
 import crazypants.enderio.machine.recipe.OreDictionaryRecipeInput;
 import crazypants.enderio.machine.recipe.RecipeInput;
@@ -25,7 +26,7 @@ public class EnderIOGlassHelper {
     public static void init() {
         //Add block to the registry
         //meta 1 = quite clear glass
-        GlassRegistry.addHandler(crazypants.enderio.EnderIO.blockFusedQuartz, new ModGlassHandler() {
+        GlassRegistry.addHandler(EnderIO.blockFusedQuartz, new ModGlassHandler() {
             @Override
             public GlassType getType(Block block, int meta) {
                 if(meta == 1)
