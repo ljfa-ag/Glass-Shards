@@ -50,7 +50,7 @@ public class EnderIOGlassHelper {
             //Replace EnderIO's internal recipe
             FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
                 "<recipeGroup name=\"EnderIO\">" +
-                  "<recipe name=\"Glass\" energyCost=\"1200\">" +
+                  "<recipe name=\"Glass\" energyCost=\"1000\">" +
                     "<input>" +
                       "<itemStack oreDictionary=\"glass\" />" +
                     "</input>" +
@@ -64,7 +64,7 @@ public class EnderIOGlassHelper {
             //SAG mill: stained glass -> stained shards
             for(int i = 0; i < 16; i++) {
                 String dye = ModRecipes.dyes[i];
-                msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1200\">" +
+                msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1000\">" +
                          "<input>" +
                            "<itemStack oreDictionary=\"blockGlass" + dye + "\" />" +
                          "</input>" +
