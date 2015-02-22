@@ -53,6 +53,8 @@ public class GlassShards {
         
         if(Loader.isModLoaded("EnderIO"))
             EnderIOGlassHelper.addRecipes();
+        if(Config.tePulverizer && Loader.isModLoaded("ThermalExpansion"))
+            ThermalExpCompat.addRecipes();
     }
     
     @Mod.EventHandler
@@ -83,8 +85,6 @@ public class GlassShards {
             if(Config.eioSagMill)
                 EnderIOGlassHelper.setupGrindingBallExcludes();
         }
-        if(Config.tePulverizer && Loader.isModLoaded("ThermalExpansion"))
-            ThermalExpCompat.addRecipes();
         if(Config.thaumAspects && Loader.isModLoaded("Thaumcraft"))
             ThaumcraftCompat.addAspects();
     }
