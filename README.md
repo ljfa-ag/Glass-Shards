@@ -8,5 +8,5 @@ You can smelt glass shards in a furnace to get your glass back.
 Stained glass and panes drop stained glass shards. They can be recolored using dyes, or you can use Gunpowder to remove the color.  
 
 ##Building
-Make sure you grab the JARs for Chisel, EnderIO, MineFactory Reloaded, Tinkers Construct and Thermal Expansion
+Make sure you grab the JARs for Chisel, EnderIO, MineFactory Reloaded, Tinkers Construct and CoFH Core
 and place them in the libs folder.
