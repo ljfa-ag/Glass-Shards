@@ -10,7 +10,7 @@ public interface IShatterableGlass {
     /**
      * @param block The block
      * @param meta The metadata
-     * @return A GlassType object representing the block, or possibly null.
+     * @return A GlassType object representing the block, or null.
      */
     public GlassType getType(Block block, int meta);
 }

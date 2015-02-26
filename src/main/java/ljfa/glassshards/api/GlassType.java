@@ -13,7 +13,7 @@ public class GlassType {
     /**
      * @param multiplier How much of a full block's of glass it is worth. Usually either mult_block or mult_pane.
      * @param stained Whether the glass is stained.
-     * @param color The color of the glass, just like vanilla stained glass metadata. Should be -1 if not stained.
+     * @param color The color of the glass, just like vanilla stained glass metadata. Is ignored if not stained.
      */
     public GlassType(float multiplier, boolean stained, int color) {
         this.multiplier = multiplier;
