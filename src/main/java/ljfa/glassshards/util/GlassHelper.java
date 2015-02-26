@@ -11,23 +11,6 @@ import net.minecraft.block.material.Material;
 import cpw.mods.fml.common.registry.GameData;
 
 public class GlassHelper {
-    /** 
-     * Checks if the block is some kind of glass
-     * @return A GlassType representing the type, or null if it is not glass
-     */
-    public static GlassType getType(Block block, int meta) {
-        GlassType gtype;
-        if(block instanceof IShatterableGlass) {
-            gtype = ((IShatterableGlass)block).getType(block, meta);
-            if(gtype != null)
-                return gtype;
-        } else {
-            gtype = GlassRegistry.getType(block, meta);
-            if(gtype != null)
-                return gtype;
-        }
-        return null;
-    }
 
     /** Adds all registered blocks that are glass to the GlassRegistry */
     public static void registerAll() {
