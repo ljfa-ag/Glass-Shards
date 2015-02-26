@@ -43,5 +43,5 @@ public class GlassRegistry {
         return handlerMap;
     }
     
-    private static Map<Block, ModGlassHandler> handlerMap = new HashMap<Block, ModGlassHandler>();
+    private static final Map<Block, ModGlassHandler> handlerMap = new HashMap<Block, ModGlassHandler>();
 }
