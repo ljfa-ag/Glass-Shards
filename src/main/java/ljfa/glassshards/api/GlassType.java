@@ -39,9 +39,9 @@ public class GlassType {
     public int getColor() { return color; }
     
     /** How much of a full block's of glass it is worth. */
-    private float multiplier;
+    private final float multiplier;
     /** Whether the glass is stained. */
-    private boolean stained;
+    private final boolean stained;
     /** The color of the glass if it is stained. This is the same as vanilla stained glass metadata. */
-    private int color;
+    private final int color;
 }
