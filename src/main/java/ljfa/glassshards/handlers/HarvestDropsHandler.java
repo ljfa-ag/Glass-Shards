@@ -43,11 +43,13 @@ public class HarvestDropsHandler {
 
     private void addShardsDrop(HarvestDropsEvent event, GlassType gtype) {
         if(gtype != null) {
-            int meta = gtype.isStained() ? gtype.getColor() : 16;
-            event.drops.add(new ItemStack(ModItems.glass_shards, 1, meta));
-
-            float chance = Math.min(Config.shardsChance + event.fortuneLevel*Config.shardsFortuneChance, 1.0f);
-            event.dropChance = gtype.getMultiplier() * chance;
+            event.dropChance = 1.0f;
+            
+            float chance = gtype.getMultiplier() * Math.min(Config.shardsChance + event.fortuneLevel*Config.shardsFortuneChance, 1.0f);
+            if(event.world.rand.nextFloat() <= chance) {
+                int meta = gtype.isStained() ? gtype.getColor() : 16;
+                event.drops.add(new ItemStack(ModItems.glass_shards, 1, meta));
+            }
         }
     }
 }
