@@ -34,7 +34,8 @@ public class EnderIOGlassHelper {
             public void addShardsDrop(HarvestDropsEvent event) {
                 super.addShardsDrop(event);
                 if(event.blockMetadata == enlightened_meta)
-                    event.drops.add(new ItemStack(Items.glowstone_dust, 4));
+                    for(int i = 0; i < 4; i++) //Drop up to 4
+                        event.drops.add(new ItemStack(Items.glowstone_dust));
             }
             
             @Override
