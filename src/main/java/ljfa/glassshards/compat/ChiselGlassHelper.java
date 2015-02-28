@@ -31,7 +31,7 @@ public class ChiselGlassHelper {
     // metadata = (color & 3) << 2
     // Blame Chisel for using such hardcoded values
     public static class ChiselStainedGlassHandler extends ModGlassHandler {
-        protected int arrayIndex;
+        private final int arrayIndex;
         
         public ChiselStainedGlassHandler(int arrayIndex) {
             this.arrayIndex = arrayIndex;
@@ -48,7 +48,7 @@ public class ChiselGlassHelper {
     // array index = color >> 1
     // metadata = (color & 1) << 3
     public static class ChiselStainedPaneHandler extends ModGlassHandler {
-        protected int arrayIndex;
+        private final int arrayIndex;
         
         public ChiselStainedPaneHandler(int arrayIndex) {
             this.arrayIndex = arrayIndex;
