@@ -3,7 +3,6 @@ package ljfa.glassshards.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import ljfa.glassshards.api.GlassType;
 import net.minecraft.block.Block;
 
 /**
