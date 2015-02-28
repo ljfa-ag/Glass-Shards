@@ -7,10 +7,14 @@ import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.ModGlassHandler;
 import net.minecraft.block.Block;
 
+import com.cricketcraft.chisel.block.BlockCarvableGlass;
+import com.cricketcraft.chisel.block.BlockCarvablePane;
+import com.cricketcraft.chisel.init.ChiselBlocks;
+
 public class ChiselGlassHelper {
     public static void init() {
-        Block[] chiselStainedGlass = com.cricketcraft.chisel.init.ChiselBlocks.stainedGlass;
-        Block[] chiselStainedPane = com.cricketcraft.chisel.init.ChiselBlocks.stainedGlassPane;
+        BlockCarvableGlass[] chiselStainedGlass = ChiselBlocks.stainedGlass;
+        BlockCarvablePane[] chiselStainedPane = ChiselBlocks.stainedGlassPane;
         
         //Add blocks to the registry
         for(int i = 0; i < chiselStainedGlass.length; i++)
