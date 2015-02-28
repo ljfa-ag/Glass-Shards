@@ -13,6 +13,6 @@ public abstract class ModGlassHandler {
     
     /** @return whether this block should drop nothing */
     public boolean shouldRemoveDrop(Block block, int meta) {
-        return true;
+        return false;
     }
 }

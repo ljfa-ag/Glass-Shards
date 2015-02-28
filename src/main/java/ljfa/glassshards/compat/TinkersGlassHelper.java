@@ -17,9 +17,9 @@ public class TinkersGlassHelper {
         Block tcStainedGlass = tconstruct.smeltery.TinkerSmeltery.stainedGlassClear;
         
         //Add blocks to the registry
-        GlassRegistry.addHandler(tcGlass, SimpleGlassHandler.blockInstance);
-        GlassRegistry.addHandler(tcPane, SimpleGlassHandler.paneInstance);
-        GlassRegistry.addHandler(tcStainedGlass, SimpleGlassHandler.stainedBlockInstance);
+        GlassRegistry.addHandler(tcGlass, SimpleGlassHandler.clearingBlockInstance);
+        GlassRegistry.addHandler(tcPane, SimpleGlassHandler.clearingPaneInstance);
+        GlassRegistry.addHandler(tcStainedGlass, SimpleGlassHandler.clearingStainedBlockInstance);
         //Stained panes work fine without need to register them here
         
         LogHelper.info("Successfully loaded Tinkers Construct compatibility.");
