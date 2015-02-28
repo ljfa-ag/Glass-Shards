@@ -7,8 +7,6 @@ import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.ModGlassHandler;
 import net.minecraft.block.Block;
 
-import org.apache.logging.log4j.Level;
-
 public class ChiselGlassHelper {
     public static void init() {
         Block[] chiselStainedGlass = com.cricketcraft.chisel.init.ChiselBlocks.stainedGlass;

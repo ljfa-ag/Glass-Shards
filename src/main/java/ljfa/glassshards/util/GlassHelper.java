@@ -1,7 +1,5 @@
 package ljfa.glassshards.util;
 
-import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.api.IShatterableGlass;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;

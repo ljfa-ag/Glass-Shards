@@ -6,13 +6,13 @@ import ljfa.glassshards.api.IShatterableGlass;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.util.GlassRegistry;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HarvestDropsHandler {
     
     @SubscribeEvent
-    public void onBlockHarvested(BlockEvent.HarvestDropsEvent event) {
+    public void onBlockHarvested(HarvestDropsEvent event) {
         if(event.world.isRemote || event.isSilkTouching)
             return;
         
@@ -33,7 +33,7 @@ public class HarvestDropsHandler {
         }
     }
     
-    private void addShardsDrop(BlockEvent.HarvestDropsEvent event, GlassType gtype) {
+    private void addShardsDrop(HarvestDropsEvent event, GlassType gtype) {
         if(gtype != null) {
             int meta = gtype.isStained() ? gtype.getColor() : 16;
             event.drops.add(new ItemStack(ModItems.glass_shards, 1, meta));

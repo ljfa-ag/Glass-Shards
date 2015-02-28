@@ -1,7 +1,6 @@
 package ljfa.glassshards.items;
 
 import ljfa.glassshards.Config;
-import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSword;

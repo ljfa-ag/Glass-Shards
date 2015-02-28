@@ -5,8 +5,6 @@ import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.SimpleGlassHandler;
 import net.minecraft.block.Block;
 
-import org.apache.logging.log4j.Level;
-
 public class MFRGlassHelper {
     public static void init() {
         Block mfrStainedGlass = powercrystals.minefactoryreloaded.setup.MFRThings.factoryGlassBlock;
