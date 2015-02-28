@@ -17,25 +17,9 @@ public class GlassRegistry {
         LogHelper.trace("Added glass handler for %s (%d)", block.getUnlocalizedName(), Block.getIdFromBlock(block));
     }
     
-    /** Checks if the drops should be removed for this block */
-    public static boolean shouldRemoveDrop(Block block, int meta) {
-        ModGlassHandler helper = handlerMap.get(block);
-        if(helper != null)
-            return helper.shouldRemoveDrop(block, meta);
-        else
-            return false;
-    }
-    
-    /** 
-     * Calls the assigned handler for this block if one exists.
-     * @return The type as returned by the handler, or null if no handler exists.
-     */
-    public static GlassType getType(Block block, int meta) {
-        ModGlassHandler helper = handlerMap.get(block);
-        if(helper != null)
-            return helper.getType(block, meta);
-        else
-            return null;
+    /** @return a handler for a given block if one exists, or null */
+    public static ModGlassHandler get(Block block) {
+        return handlerMap.get(block);
     }
 
     /** @return the map that assigns a handler to each glass block */
