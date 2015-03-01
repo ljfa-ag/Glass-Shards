@@ -9,7 +9,7 @@ import ljfa.glassshards.compat.TinkersGlassHelper;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
-import ljfa.glassshards.util.GlassHelper;
+import ljfa.glassshards.util.GlassRegistry;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
@@ -59,7 +59,7 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        GlassHelper.registerAll();
+        GlassRegistry.registerAll();
         initCompatModules();
     }
 
