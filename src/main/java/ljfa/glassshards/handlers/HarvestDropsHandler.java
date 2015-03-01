@@ -25,7 +25,7 @@ public class HarvestDropsHandler {
             addDropForType(event, ((IShatterableGlass)block).getType(block, meta));
         }
         else {
-            ModGlassHandler handler = GlassRegistry.get(event.block);
+            ModGlassHandler handler = GlassRegistry.get(block);
             if(handler != null) {
                 if(!event.drops.isEmpty()) {
                     if(handler.shouldRemoveDrop(block, meta))
