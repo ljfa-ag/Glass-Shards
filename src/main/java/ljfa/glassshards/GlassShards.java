@@ -1,8 +1,8 @@
 package ljfa.glassshards;
 
+import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
-import ljfa.glassshards.util.GlassHelper;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,7 +42,7 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        GlassHelper.registerAll();
+        GlassRegistry.registerAll();
         initCompatModules();
     }
 
