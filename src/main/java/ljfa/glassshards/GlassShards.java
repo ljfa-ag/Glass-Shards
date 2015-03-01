@@ -18,9 +18,6 @@ public class GlassShards {
     @Mod.Instance(Reference.MODID)
     public static GlassShards instance;
     
-    /*@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-    public static CommonProxy proxy;*/
-    
     public static ToolMaterial toolMatGlass;
     
     @Mod.EventHandler
