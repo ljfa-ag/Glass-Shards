@@ -2,9 +2,9 @@ package ljfa.glassshards.compat;
 
 import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.util.GlassRegistry;
+import ljfa.glassshards.glass.GlassRegistry;
+import ljfa.glassshards.glass.ModGlassHandler;
 import ljfa.glassshards.util.LogHelper;
-import ljfa.glassshards.util.ModGlassHandler;
 import net.minecraft.block.Block;
 
 import com.cricketcraft.chisel.block.BlockCarvableGlass;

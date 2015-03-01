@@ -1,8 +1,9 @@
-package ljfa.glassshards.util;
+package ljfa.glassshards.glass;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import ljfa.glassshards.util.LogHelper;
 import cpw.mods.fml.common.registry.GameData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;

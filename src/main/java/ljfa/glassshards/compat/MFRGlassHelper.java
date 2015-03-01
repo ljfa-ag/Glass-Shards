@@ -1,8 +1,8 @@
 package ljfa.glassshards.compat;
 
-import ljfa.glassshards.util.GlassRegistry;
+import ljfa.glassshards.glass.GlassRegistry;
+import ljfa.glassshards.glass.SimpleGlassHandler;
 import ljfa.glassshards.util.LogHelper;
-import ljfa.glassshards.util.SimpleGlassHandler;
 import net.minecraft.block.Block;
 
 public class MFRGlassHelper {
