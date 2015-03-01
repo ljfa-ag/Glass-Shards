@@ -15,7 +15,7 @@ public class GlassType {
     /**
      * @param multiplier How much of a full block's of glass it is worth. Usually either mult_block or mult_pane.
      * @param stained Whether the glass is stained.
-     * @param color The color of the glass, just like vanilla stained glass state. Should be -1 if not stained.
+     * @param color The color of the glass, just like vanilla stained glass state. Is ignored if not stained.
      */
     public GlassType(float multiplier, boolean stained, EnumDyeColor color) {
         this.multiplier = multiplier;
@@ -41,9 +41,9 @@ public class GlassType {
     public EnumDyeColor getColor() { return color; }
     
     /** How much of a full block's of glass it is worth. */
-    private float multiplier;
+    private final float multiplier;
     /** Whether the glass is stained. */
-    private boolean stained;
+    private final boolean stained;
     /** The color of the glass if it is stained. This is the same as vanilla stained glass state. */
-    private EnumDyeColor color;
+    private final EnumDyeColor color;
 }
