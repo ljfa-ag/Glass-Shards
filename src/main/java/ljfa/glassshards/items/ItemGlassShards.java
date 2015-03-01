@@ -3,7 +3,6 @@ package ljfa.glassshards.items;
 import java.util.List;
 
 import ljfa.glassshards.Reference;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelBakery;

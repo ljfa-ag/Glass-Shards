@@ -1,20 +1,13 @@
 package ljfa.glassshards.items;
 
-import java.lang.reflect.Field;
-
-import org.apache.logging.log4j.Level;
-
 import ljfa.glassshards.Config;
 import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
