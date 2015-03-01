@@ -27,12 +27,9 @@ import cpw.mods.fml.relauncher.Side;
 public class GlassShards {
     @Mod.Instance(Reference.MODID)
     public static GlassShards instance;
-    
-    /*@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-    public static CommonProxy proxy;*/
-    
+
     public static ToolMaterial toolMatGlass;
-    
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Config.loadConfig(event.getSuggestedConfigurationFile());
@@ -40,23 +37,23 @@ public class GlassShards {
         ModItems.preInit();
         toolMatGlass.setRepairItem(new ItemStack(ModItems.glass_shards, 1, 16));
     }
-    
+
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
-        
+
         if(Config.renderTransparent && event.getSide() == Side.CLIENT) {
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_sword, new TransparentItemRenderer());
         }
-        
+
         if(Loader.isModLoaded("EnderIO"))
             EnderIOGlassHelper.addRecipes();
         if(Config.tePulverizer && Loader.isModLoaded("ThermalExpansion"))
             ThermalExpCompat.addRecipes();
     }
-    
+
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         GlassRegistry.registerAll();
