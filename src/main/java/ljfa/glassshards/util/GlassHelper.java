@@ -1,36 +1,14 @@
 package ljfa.glassshards.util;
 
-import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.api.IShatterableGlass;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraftforge.fml.common.registry.GameData;
 
 public class GlassHelper {
-    /** 
-     * Checks if the block is some kind of glass
-     * @return A GlassType representing the type, or null if it is not glass
-     */
-    public static GlassType getType(IBlockState state) {
-        Block block = state.getBlock();
-        GlassType gtype;
-        if(block instanceof IShatterableGlass) {
-            gtype = ((IShatterableGlass)block).getType(state);
-            if(gtype != null)
-                return gtype;
-        } else {
-            gtype = GlassRegistry.getType(state);
-            if(gtype != null)
-                return gtype;
-        }
-        return null;
-    }
-    
     /** Adds all registered blocks that are glass to the GlassRegistry */
     public static void registerAll() {
         int counter = 0;
