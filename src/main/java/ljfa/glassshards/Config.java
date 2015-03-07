@@ -24,6 +24,7 @@ public class Config {
     public static boolean recipeUncolor;
     public static boolean renderTransparent;
     public static boolean enableSword;
+    public static int swordDurability;
     
     public static boolean chiselEnable;
     public static boolean chiselFixPaneDrops;
@@ -60,6 +61,7 @@ public class Config {
         recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
         renderTransparent = conf.get(CATEGORY_GENERAL, "renderTransparent", true, "The shards will be transparent when lying on the ground or held in the hand (fancy graphics only)").setRequiresMcRestart(true).getBoolean();
         enableSword = conf.get(CATEGORY_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
+        swordDurability = conf.get(CATEGORY_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
         //----------------
         conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.3.5.31.");
         

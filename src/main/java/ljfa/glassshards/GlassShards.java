@@ -33,7 +33,7 @@ public class GlassShards {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Config.loadConfig(event.getSuggestedConfigurationFile());
-        toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, 109, 4.0f, 2.0f, 5);
+        toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, Config.swordDurability, 4.0f, 2.0f, 5);
         ModItems.preInit();
         toolMatGlass.setRepairItem(new ItemStack(ModItems.glass_shards, 1, 16));
     }
