@@ -4,11 +4,12 @@ import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.glass.SimpleGlassHandler;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
+import powercrystals.minefactoryreloaded.setup.MFRThings;
 
 public class MFRGlassHelper {
     public static void init() {
-        Block mfrStainedGlass = powercrystals.minefactoryreloaded.setup.MFRThings.factoryGlassBlock;
-        Block mfrStainedPane = powercrystals.minefactoryreloaded.setup.MFRThings.factoryGlassPaneBlock;
+        Block mfrStainedGlass = MFRThings.factoryGlassBlock;
+        Block mfrStainedPane = MFRThings.factoryGlassPaneBlock;
         
         //Add blocks to the registry
         GlassRegistry.addHandler(mfrStainedGlass, SimpleGlassHandler.stainedBlockInstance);
