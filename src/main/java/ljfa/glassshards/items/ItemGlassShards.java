@@ -37,7 +37,7 @@ public class ItemGlassShards extends Item {
         String prefix = "item." + Reference.MODID + ":glass_shards";
         int meta = stack.getItemDamage();
         if(meta < 16)
-            return prefix + "." + getColorName(meta);
+            return prefix + "." + colorNames[meta];
         else
             return prefix;
     }
@@ -68,8 +68,8 @@ public class ItemGlassShards extends Item {
         
         String prefix = Reference.MODID + ":glass_shards";
         for(int i = 0; i < 16; i++) {
-            textures[i] = iconRegister.registerIcon(prefix + "_" + getColorName(i));
-            textures_opaque[i] = iconRegister.registerIcon(prefix + "_" + getColorName(i) + "_opaque");
+            textures[i] = iconRegister.registerIcon(prefix + "_" + colorNames[i]);
+            textures_opaque[i] = iconRegister.registerIcon(prefix + "_" + colorNames[i] + "_opaque");
         }
         
         //Actually these are the same right now for the uncolored shards 
@@ -85,10 +85,6 @@ public class ItemGlassShards extends Item {
         return Minecraft.isFancyGraphicsEnabled() ? textures[meta] : textures_opaque[meta];
     }
     
-    private static String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
+    private static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
         "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
-    
-    private static String getColorName(int index) {
-        return colorNames[index];
-    }
 }
