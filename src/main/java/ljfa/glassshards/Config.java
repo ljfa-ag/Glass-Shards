@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class Config {
     public static Configuration conf;
     
-    public static final String CATEGORY_GENERAL = "general";
+    public static final String CAT_GENERAL = "general";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -29,13 +29,13 @@ public class Config {
     }
     
     public static void loadValues() {
-        conf.getCategory(CATEGORY_GENERAL).setComment("General options");
+        conf.getCategory(CAT_GENERAL).setComment("General options");
         
-        shardsChance = (float)conf.get(CATEGORY_GENERAL, "shardsChance", 0.66, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
-        shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.08, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
-        recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
-        recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
-        enableSword = conf.get(CATEGORY_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
+        shardsChance = (float)conf.get(CAT_GENERAL, "shardsChance", 0.66, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
+        shardsFortuneChance = (float)conf.get(CAT_GENERAL, "shardsFortuneChance", 0.08, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
+        recipesRecolor = conf.get(CAT_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
+        recipeUncolor = conf.get(CAT_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
+        enableSword = conf.get(CAT_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
         //----------------
         if(conf.hasChanged())
             conf.save();
