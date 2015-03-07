@@ -71,32 +71,32 @@ public class EnderIOGlassHelper {
                   "</recipe>" +
                 "</recipeGroup>");
             
-            String msg = "<recipeGroup name=\"GlassShards\">";
+            StringBuilder msg = new StringBuilder("<recipeGroup name=\"GlassShards\">");
             //SAG mill: stained glass -> stained shards
             for(int i = 0; i < 16; i++) {
                 String dye = ModRecipes.dyes[i];
-                msg += "<recipe name=\"Glass" + dye + "\" energyCost=\"1000\">" +
-                         "<input>" +
-                           "<itemStack oreDictionary=\"blockGlass" + dye + "\" />" +
-                         "</input>" +
-                         "<output>" +
-                           "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"" + i + "\" />" +
-                         "</output>" +
-                       "</recipe>";
+                msg.append("<recipe name=\"Glass" + dye + "\" energyCost=\"1000\">" +
+                             "<input>" +
+                               "<itemStack oreDictionary=\"blockGlass" + dye + "\" />" +
+                             "</input>" +
+                             "<output>" +
+                               "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"" + i + "\" />" +
+                             "</output>" +
+                           "</recipe>");
             }
             
             //SAG mill: glass shards -> sand
-            msg += "<recipe name=\"Shards\" energyCost=\"600\">" +
-                     "<input>" +
-                       "<itemStack oreDictionary=\"shardsGlass\" />" +
-                     "</input>" +
-                     "<output>" +
-                       "<itemStack modID=\"minecraft\" itemName=\"sand\" />" +
-                     "</output>" +
-                   "</recipe>";
+            msg.append("<recipe name=\"Shards\" energyCost=\"600\">" +
+                         "<input>" +
+                           "<itemStack oreDictionary=\"shardsGlass\" />" +
+                         "</input>" +
+                         "<output>" +
+                           "<itemStack modID=\"minecraft\" itemName=\"sand\" />" +
+                         "</output>" +
+                       "</recipe>");
             
-            msg += "</recipeGroup>";
-            FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg);
+            msg.append("</recipeGroup>");
+            FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg.toString());
             
             //Disable grinding ball for shards
             //Doesn't work
