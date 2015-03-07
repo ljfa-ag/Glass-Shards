@@ -23,7 +23,7 @@ import com.google.common.collect.Multimap;
  * 16    : clear shards
  */
 public class ItemGlassShards extends Item implements IModeledItem {
-    private String[] variants;
+    private final String[] variants;
     
     ItemGlassShards() {
         variants = new String[17];
@@ -48,7 +48,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
         String prefix = "item." + Reference.MODID + ":glass_shards";
         int meta = stack.getItemDamage();
         if(meta < 16)
-            return prefix + "." + getColorName(meta);
+            return prefix + "." + colorNames[meta];
         else
             return prefix;
     }
@@ -85,8 +85,4 @@ public class ItemGlassShards extends Item implements IModeledItem {
     
     public static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
         "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
-    
-    public static String getColorName(int index) {
-        return colorNames[index];
-    }
 }
