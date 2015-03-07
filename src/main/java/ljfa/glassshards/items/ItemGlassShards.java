@@ -12,6 +12,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -37,10 +38,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
     }
     
     public String getVariant(int meta) {
-        if(0 <= meta && meta < 17)
-            return variants[meta];
-        else
-            return variants[16];
+        return variants[MathHelper.clamp_int(meta, 0, 16)];
     }
     
     @Override
