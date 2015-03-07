@@ -10,13 +10,13 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class Config {
     public static Configuration conf;
     
-    public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_CHISEL = "chisel";
-    public static final String CATEGORY_TCONSTRUCT = "tconstruct";
-    public static final String CATEGORY_MFR = "mfr";
-    public static final String CATEGORY_ENDERIO = "enderio";
-    public static final String CATEGORY_THERMALEXP = "thermalexp";
-    public static final String CATEGORY_THAUMCRAFT = "thaumcraft";
+    public static final String CAT_GENERAL = "general";
+    public static final String CAT_CHISEL = "chisel";
+    public static final String CAT_TCONSTRUCT = "tconstruct";
+    public static final String CAT_MFR = "mfr";
+    public static final String CAT_ENDERIO = "enderio";
+    public static final String CAT_THERMALEXP = "thermalexp";
+    public static final String CAT_THAUMCRAFT = "thaumcraft";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -53,51 +53,51 @@ public class Config {
     }
     
     public static void loadValues() {
-        conf.getCategory(CATEGORY_GENERAL).setComment("General options");
+        conf.getCategory(CAT_GENERAL).setComment("General options");
         
-        shardsChance = (float)conf.get(CATEGORY_GENERAL, "shardsChance", 0.66, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
-        shardsFortuneChance = (float)conf.get(CATEGORY_GENERAL, "shardsFortuneChance", 0.08, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
-        recipesRecolor = conf.get(CATEGORY_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
-        recipeUncolor = conf.get(CATEGORY_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
-        renderTransparent = conf.get(CATEGORY_GENERAL, "renderTransparent", true, "The shards will be transparent when lying on the ground or held in the hand (fancy graphics only)").setRequiresMcRestart(true).getBoolean();
-        enableSword = conf.get(CATEGORY_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
-        swordDurability = conf.get(CATEGORY_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
+        shardsChance = (float)conf.get(CAT_GENERAL, "shardsChance", 0.66, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
+        shardsFortuneChance = (float)conf.get(CAT_GENERAL, "shardsFortuneChance", 0.08, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
+        recipesRecolor = conf.get(CAT_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
+        recipeUncolor = conf.get(CAT_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
+        renderTransparent = conf.get(CAT_GENERAL, "renderTransparent", true, "The shards will be transparent when lying on the ground or held in the hand (fancy graphics only)").setRequiresMcRestart(true).getBoolean();
+        enableSword = conf.get(CAT_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
+        swordDurability = conf.get(CAT_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
         //----------------
-        conf.getCategory(CATEGORY_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.3.5.31.");
+        conf.getCategory(CAT_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.3.5.31.");
         
-        chiselEnable = conf.get(CATEGORY_CHISEL, "dropShards", true, "Activates compatibility if Chisel is present.\n"
+        chiselEnable = conf.get(CAT_CHISEL, "dropShards", true, "Activates compatibility if Chisel is present.\n"
                 + "Note that not activating this even though Chisel is present might lead to unexpected behavior.\n"
                 + "Deactivating this doesn't mean Chisel glass will not drop shards. The shards will just not be stained.").setRequiresMcRestart(true).getBoolean();
-        chiselFixPaneDrops = conf.get(CATEGORY_CHISEL, "fixStainedPanesDrops", true,
+        chiselFixPaneDrops = conf.get(CAT_CHISEL, "fixStainedPanesDrops", true,
                 "By default, Chisel stained glass panes are behaving inconsistently as in they drop themselves\n"
                 + "when broken, unlike all the other Chisel glass types.\n"
                 + "This option changes this behavior and makes them drop shards instead.").getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
+        conf.getCategory(CAT_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
         
-        tinkersEnable = conf.get(CATEGORY_TCONSTRUCT, "dropShards", false, "Clear Glass and Stained Glass will drop shards rather than themselves").setRequiresMcRestart(true).getBoolean();
-        tinkersMeltShards = conf.get(CATEGORY_TCONSTRUCT, "addSmelteryRecipe", true, "Makes shards smeltable in the Smeltery").setRequiresMcRestart(true).getBoolean();
+        tinkersEnable = conf.get(CAT_TCONSTRUCT, "dropShards", false, "Clear Glass and Stained Glass will drop shards rather than themselves").setRequiresMcRestart(true).getBoolean();
+        tinkersMeltShards = conf.get(CAT_TCONSTRUCT, "addSmelteryRecipe", true, "Makes shards smeltable in the Smeltery").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_MFR).setComment("Compatibility options for MineFactory Reloaded. Tested with version 2.8.0RC7-71.");
+        conf.getCategory(CAT_MFR).setComment("Compatibility options for MineFactory Reloaded. Tested with version 2.8.0RC7-71.");
         
-        mfrEnable = conf.get(CATEGORY_MFR, "activate", true, "Activates compatibility if MineFactory Reloaded is present.\n"
+        mfrEnable = conf.get(CAT_MFR, "activate", true, "Activates compatibility if MineFactory Reloaded is present.\n"
                 + "When activated, stained glass blocks will drop stained shards.").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_ENDERIO).setComment("Compatibility options for EnderIO. Tested with version 2.2.7.349.");
+        conf.getCategory(CAT_ENDERIO).setComment("Compatibility options for EnderIO. Tested with version 2.2.7.349.");
         
-        eioDropShards = conf.get(CATEGORY_ENDERIO, "dropShards", true, "Quite Clear Glass will drop shards and Enlightened Clear Glass will drop shards and 4 glowstone").setRequiresMcRestart(true).getBoolean();
-        eioSagMill = conf.get(CATEGORY_ENDERIO, "addSAGMillRecipes", true, "Adds SAG Mill recipes for Glass -> Shards and Shards -> Sand.\n"
+        eioDropShards = conf.get(CAT_ENDERIO, "dropShards", true, "Quite Clear Glass will drop shards and Enlightened Clear Glass will drop shards and 4 glowstone").setRequiresMcRestart(true).getBoolean();
+        eioSagMill = conf.get(CAT_ENDERIO, "addSAGMillRecipes", true, "Adds SAG Mill recipes for Glass -> Shards and Shards -> Sand.\n"
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
-        eioAlloySmelter = conf.get(CATEGORY_ENDERIO, "addAlloySmelterRecipes", true, "Adds an Alloy Smelter recipe for Shards -> Quite Clear Glass").setRequiresMcRestart(true).getBoolean();
+        eioAlloySmelter = conf.get(CAT_ENDERIO, "addAlloySmelterRecipes", true, "Adds an Alloy Smelter recipe for Shards -> Quite Clear Glass").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_THERMALEXP).setComment("Compatibility options for Thermal Expansion. Tested with version 4.0.0RC1-119.");
+        conf.getCategory(CAT_THERMALEXP).setComment("Compatibility options for Thermal Expansion. Tested with version 4.0.0RC1-119.");
         
-        tePulverizer = conf.get(CATEGORY_THERMALEXP, "addPulverizerRecipes", true, "Adds Pulverizer recipes for Glass -> Shards and Shards -> Sand.\n"
+        tePulverizer = conf.get(CAT_THERMALEXP, "addPulverizerRecipes", true, "Adds Pulverizer recipes for Glass -> Shards and Shards -> Sand.\n"
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CATEGORY_THAUMCRAFT).setComment("Compatibility options for Thaumcraft. Tested with version 4.2.3.4.");
+        conf.getCategory(CAT_THAUMCRAFT).setComment("Compatibility options for Thaumcraft. Tested with version 4.2.3.4.");
 
-        thaumAspects = conf.get(CATEGORY_THAUMCRAFT, "addAspects", true, "Adds Thaumcraft aspects to the shards").setRequiresMcRestart(true).getBoolean();
+        thaumAspects = conf.get(CAT_THAUMCRAFT, "addAspects", true, "Adds Thaumcraft aspects to the shards").setRequiresMcRestart(true).getBoolean();
         //----------------
         if(conf.hasChanged())
             conf.save();
