@@ -32,8 +32,8 @@ public class Config {
     public static void loadValues() {
         conf.getCategory(CAT_GENERAL).setComment("General options");
         
-        shardsChance = (float)conf.get(CAT_GENERAL, "shardsChance", 0.66, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
-        shardsFortuneChance = (float)conf.get(CAT_GENERAL, "shardsFortuneChance", 0.08, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
+        shardsChance = (float)conf.get(CAT_GENERAL, "shardsChance", 0.7, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
+        shardsFortuneChance = (float)conf.get(CAT_GENERAL, "shardsFortuneChance", 0.07, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
         recipesRecolor = conf.get(CAT_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
         recipeUncolor = conf.get(CAT_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
         enableSword = conf.get(CAT_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
