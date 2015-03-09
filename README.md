@@ -1,6 +1,6 @@
 Glass Shards
 =========
-**Curse: http://www.curse.com/mc-mods/minecraft/226834-glass-shards **
+**Curse: http://www.curse.com/mc-mods/minecraft/226834-glass-shards**
 
 **For the version for Minecraft 1.8 see [ljfa-ag/Glass-Shards-1.8](https://github.com/ljfa-ag/Glass-Shards-1.8).**
 
