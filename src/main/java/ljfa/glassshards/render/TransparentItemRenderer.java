@@ -29,6 +29,9 @@ public class TransparentItemRenderer implements IItemRenderer {
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         IIcon icon = item.getIconIndex();
+        if(icon == null)
+            icon = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("missingno");
+            
         float minU = icon.getMinU();
         float maxU = icon.getMaxU();
         float minV = icon.getMinV();
