@@ -4,6 +4,7 @@ import ljfa.glassshards.items.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -12,11 +13,8 @@ public class ModRecipes {
     public static final String[] dyes = {"White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime",
         "Pink", "Gray", "LightGray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black"};
     
-    //public static Set<String> registeredOres;
-    
     public static void init() {
         ModRecipes.addOredict();
-        //registeredOres = new HashSet<String>(Arrays.asList(OreDictionary.getOreNames()));
         ModRecipes.addCrafting();
         ModRecipes.addSmelting();
     }
@@ -33,7 +31,7 @@ public class ModRecipes {
     private static void addCrafting() {
         if(Config.recipesRecolor)
             for(int i = 0; i < 16; i++) {
-                Object shards = new ItemStack(ModItems.glass_shards, 1, 16);
+                ItemStack shards = new ItemStack(ModItems.glass_shards, 1, 16);
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.glass_shards, 8, i),
                     "SSS", "SDS", "SSS", 'S', shards, 'D', "dye" + dyes[i]));
             }
@@ -42,9 +40,19 @@ public class ModRecipes {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.glass_shards, 8, 16),
                 "SSS", "SGS", "SSS", 'S', "shardsGlass", 'G', Items.gunpowder));
         
-        if(Config.enableSword)
+        if(Config.enableSword) {
             GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.glass_sword, "S", "S", "|",
                     'S', new ItemStack(ModItems.glass_shards, 1, 16), '|', "stickWood"));
+            
+            for(int i = 0; i < 16; i++) {
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setByte("Color", (byte)i);
+                ItemStack sword = new ItemStack(ModItems.glass_sword);
+                sword.setTagCompound(tag);
+                GameRegistry.addRecipe(new ShapedOreRecipe(sword, "S", "S", "|",
+                        'S', new ItemStack(ModItems.glass_shards, 1, i), '|', "stickWood"));
+            }   
+        }
     }
     
     private static void addSmelting() {

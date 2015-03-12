@@ -14,12 +14,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModItems {
     public static ItemGlassShards glass_shards;
-    public static ItemSword glass_sword;
+    public static ItemGlassSword glass_sword;
     
     public static void init() {
         glass_shards = new ItemGlassShards();
         if(Config.enableSword)
-            glass_sword = register(new ItemSword(GlassShards.toolMatGlass), "glass_sword");
+            glass_sword = new ItemGlassSword();
     }
     
     @SideOnly(Side.CLIENT)
@@ -28,7 +28,7 @@ public class ModItems {
         
         glass_shards.registerModels(mesher);
         if(glass_sword != null)
-            mesher.register(glass_sword, 0, new ModelResourceLocation(Reference.MODID + ":glass_sword", "inventory"));
+            glass_sword.registerModels(mesher);
     }
     
     /** Sets the item's name and registers it */
