@@ -85,6 +85,6 @@ public class ItemGlassShards extends Item {
         return Minecraft.isFancyGraphicsEnabled() ? textures[meta] : textures_opaque[meta];
     }
     
-    private static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
+    public static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
         "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
 }
