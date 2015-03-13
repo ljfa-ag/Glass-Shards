@@ -18,6 +18,7 @@ public class Config {
     public static boolean recipeUncolor;
     public static boolean enableSword;
     public static int swordDurability;
+    public static boolean incrBreakSpeed;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -38,6 +39,7 @@ public class Config {
         recipeUncolor = conf.get(CAT_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
         enableSword = conf.get(CAT_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
         swordDurability = conf.get(CAT_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
+        incrBreakSpeed = conf.get(CAT_GENERAL, "increaseGlassBreakSpeed", true, "Glass breaks faster when mined with a pickaxe").setRequiresMcRestart(true).getBoolean();
         //----------------
         if(conf.hasChanged())
             conf.save();

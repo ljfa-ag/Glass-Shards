@@ -1,6 +1,7 @@
 package ljfa.glassshards;
 
 import ljfa.glassshards.glass.GlassRegistry;
+import ljfa.glassshards.handlers.BreakSpeedHandler;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import net.minecraft.item.Item.ToolMaterial;
@@ -32,6 +33,8 @@ public class GlassShards {
     public void init(FMLInitializationEvent event) {
         ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
+        if(Config.incrBreakSpeed)
+            MinecraftForge.EVENT_BUS.register(new BreakSpeedHandler());
         
         if(event.getSide() == Side.CLIENT)
             ModItems.registerModels();
