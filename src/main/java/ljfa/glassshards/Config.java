@@ -25,6 +25,7 @@ public class Config {
     public static boolean renderTransparent;
     public static boolean enableSword;
     public static int swordDurability;
+    public static boolean incrBreakSpeed;
     
     public static boolean chiselEnable;
     public static boolean chiselFixPaneDrops;
@@ -62,6 +63,7 @@ public class Config {
         renderTransparent = conf.get(CAT_GENERAL, "renderTransparent", true, "The shards will be transparent when lying on the ground or held in the hand (fancy graphics only)").setRequiresMcRestart(true).getBoolean();
         enableSword = conf.get(CAT_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
         swordDurability = conf.get(CAT_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
+        incrBreakSpeed = conf.get(CAT_GENERAL, "increaseGlassBreakSpeed", true, "Glass breaks faster when mined with a pickaxe").setRequiresMcRestart(true).getBoolean();
         //----------------
         conf.getCategory(CAT_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.3.5.31.");
         

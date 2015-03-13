@@ -7,6 +7,7 @@ import ljfa.glassshards.compat.ThaumcraftCompat;
 import ljfa.glassshards.compat.ThermalExpCompat;
 import ljfa.glassshards.compat.TinkersGlassHelper;
 import ljfa.glassshards.glass.GlassRegistry;
+import ljfa.glassshards.handlers.BreakSpeedHandler;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
@@ -42,6 +43,8 @@ public class GlassShards {
     public void init(FMLInitializationEvent event) {
         ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
+        if(Config.incrBreakSpeed)
+            MinecraftForge.EVENT_BUS.register(new BreakSpeedHandler());
 
         if(Config.renderTransparent && event.getSide() == Side.CLIENT) {
             MinecraftForgeClient.registerItemRenderer(ModItems.glass_shards, new TransparentItemRenderer());
