@@ -65,8 +65,8 @@ public class ItemGlassSword extends ItemSword {
             textures_opaque[i] = iconRegister.registerIcon(prefix + "_" + ItemGlassShards.colorNames[i] + "_opaque");
         }
         
-        textures[16] = iconRegister.registerIcon(prefix);
-        textures_opaque[16] = iconRegister.registerIcon(prefix + "_opaque");
+        //Actually these are the same right now for the uncolored sword 
+        textures[16] = textures_opaque[16] = iconRegister.registerIcon(prefix);
     }
     
     @SideOnly(Side.CLIENT)

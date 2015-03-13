@@ -74,7 +74,6 @@ public class ItemGlassShards extends Item {
         
         //Actually these are the same right now for the uncolored shards 
         textures_opaque[16] = textures[16] = iconRegister.registerIcon(prefix);
-        //textures_opaque[16] = iconRegister.registerIcon(prefix + "_opaque");
     }
     
     @SideOnly(Side.CLIENT)
