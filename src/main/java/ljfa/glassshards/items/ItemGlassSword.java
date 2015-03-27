@@ -4,6 +4,7 @@ import java.util.List;
 
 import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
+import ljfa.glassshards.util.AprilFoolsHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -67,6 +68,11 @@ public class ItemGlassSword extends ItemSword {
         
         //Actually these are the same right now for the uncolored sword 
         textures[16] = textures_opaque[16] = iconRegister.registerIcon(prefix);
+        
+        if(AprilFoolsHelper.isApril1) {
+            AprilFoolsHelper.permutate(textures);
+            AprilFoolsHelper.permutate(textures_opaque);
+        }
     }
     
     @SideOnly(Side.CLIENT)
