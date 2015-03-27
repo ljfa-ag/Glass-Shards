@@ -2,6 +2,7 @@ package ljfa.glassshards.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
@@ -19,7 +20,10 @@ public class BreakSpeedHandler {
                 return;
             Item tool = stack.getItem();
             if(tool instanceof ItemTool && tool.getHarvestLevel(stack, "pickaxe") >= 0) {
-                float factor = 0.5f * ((ItemTool)tool).getToolMaterial().getEfficiencyOnProperMaterial();
+                float factor = 0.4f * ((ItemTool)tool).getToolMaterial().getEfficiencyOnProperMaterial();
+                int efficiency = EnchantmentHelper.getEfficiencyModifier(event.entityPlayer);
+                if(efficiency > 0)
+                    factor *= 1.0f + 0.15f * efficiency*efficiency;
                 if(factor > 1.0f)
                     event.newSpeed = factor * event.originalSpeed;
             }
