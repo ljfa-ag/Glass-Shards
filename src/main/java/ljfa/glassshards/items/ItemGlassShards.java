@@ -54,7 +54,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
     @Override
     public Multimap getAttributeModifiers(ItemStack stack) {
         double damage = 1.0;
-        Multimap multimap = super.getAttributeModifiers(stack);
+        Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(stack);
         multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
                 new AttributeModifier(itemModifierUUID, "Weapon modifier", damage, 0));
         return multimap;
