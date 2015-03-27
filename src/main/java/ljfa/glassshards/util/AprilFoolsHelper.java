@@ -3,7 +3,10 @@ package ljfa.glassshards.util;
 import java.util.Calendar;
 
 import net.minecraft.item.ItemDye;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class AprilFoolsHelper {
 
     public static final boolean isApril1;
