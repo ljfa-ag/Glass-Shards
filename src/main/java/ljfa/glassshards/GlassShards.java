@@ -43,11 +43,11 @@ public class GlassShards {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         GlassRegistry.registerAll();
-        initCompatModules();
+        //initCompatModules();
     }
 
     /** Initialize compatibility with other mods */
-    private static void initCompatModules() {
+    /*private static void initCompatModules() {
         
-    }
+    }*/
 }
