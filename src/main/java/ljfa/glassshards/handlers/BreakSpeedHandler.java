@@ -20,7 +20,7 @@ public class BreakSpeedHandler {
                 return;
             Item tool = stack.getItem();
             if(tool instanceof ItemTool && tool.getHarvestLevel(stack, "pickaxe") >= 0) {
-                float factor = 0.4f * ((ItemTool)tool).getToolMaterial().getEfficiencyOnProperMaterial();
+                float factor = 0.35f * ((ItemTool)tool).getToolMaterial().getEfficiencyOnProperMaterial();
                 int efficiency = EnchantmentHelper.getEfficiencyModifier(event.entityPlayer);
                 if(efficiency > 0)
                     factor *= 1.0f + 0.15f * efficiency*efficiency;
