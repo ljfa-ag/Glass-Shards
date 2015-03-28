@@ -139,6 +139,7 @@ public class EnderIOGlassHelper {
      * Adds glass shards to the grinding ball blacklist.
      * This is a hacky workaround since EnderIO's InterModComms don't support this (yet).
      */
+    @SuppressWarnings("unchecked")
     public static void setupGrindingBallExcludes() {
         try {
             CrusherRecipeManager recipeManager = CrusherRecipeManager.getInstance();
