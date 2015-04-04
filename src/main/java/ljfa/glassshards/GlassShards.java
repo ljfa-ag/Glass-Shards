@@ -11,7 +11,6 @@ import ljfa.glassshards.handlers.BreakSpeedHandler;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
 import ljfa.glassshards.items.ModItems;
 import ljfa.glassshards.render.TransparentItemRenderer;
-import ljfa.glassshards.util.AprilFoolsHelper;
 import ljfa.glassshards.util.LogHelper;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
@@ -56,9 +55,6 @@ public class GlassShards {
             EnderIOGlassHelper.addRecipes();
         if(Config.tePulverizer && Loader.isModLoaded("ThermalExpansion"))
             ThermalExpCompat.addRecipes();
-        
-        if(event.getSide() == Side.CLIENT && AprilFoolsHelper.isApril1)
-            AprilFoolsHelper.init();
     }
 
     @Mod.EventHandler

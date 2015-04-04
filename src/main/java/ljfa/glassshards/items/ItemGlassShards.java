@@ -3,7 +3,6 @@ package ljfa.glassshards.items;
 import java.util.List;
 
 import ljfa.glassshards.Reference;
-import ljfa.glassshards.util.AprilFoolsHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -75,11 +74,6 @@ public class ItemGlassShards extends Item {
         
         //Actually these are the same right now for the uncolored shards 
         textures_opaque[16] = textures[16] = iconRegister.registerIcon(prefix);
-        
-        if(AprilFoolsHelper.isApril1) {
-            AprilFoolsHelper.permutate(textures);
-            AprilFoolsHelper.permutate(textures_opaque);
-        }
     }
     
     @SideOnly(Side.CLIENT)
@@ -89,7 +83,7 @@ public class ItemGlassShards extends Item {
             meta = 16;
         return Minecraft.isFancyGraphicsEnabled() ? textures[meta] : textures_opaque[meta];
     }
-
+    
     public static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
         "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
 }
