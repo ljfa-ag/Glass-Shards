@@ -23,7 +23,7 @@ group= "ljfa.glassshards" // http://maven.apache.org/guides/mini/guide-naming-co
 archivesBaseName = "glass_shards_mc1.8"
 
 minecraft {
-    version = "1.8-11.14.0.1295-1.8"
+    version = "1.8-11.14.1.1334"
     runDir = "eclipse"
     
     // the mappings can be changed at any time, and must be in the following format.
