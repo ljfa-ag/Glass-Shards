@@ -23,7 +23,7 @@ group= "ljfa.glassshards" // http://maven.apache.org/guides/mini/guide-naming-co
 archivesBaseName = "glass_shards_mc1.7.10"
 
 minecraft {
-    version = "1.7.10-10.13.2.1291"
+    version = "1.7.10-10.13.3.1403-1.7.10"
     runDir = "eclipse"
     
     replaceIn "Reference.java"
@@ -36,20 +36,40 @@ curse {
     releaseType = 'release'
 }
 
+repositories {
+    mavenCentral()
+    maven {
+        name "RX14"
+        url "http://mvn.rx14.co.uk/repo/"
+    }
+    maven {
+        name "Chisel2"
+        url "http://coloredlightscore.us.to/maven/chisel-2-dev/"
+    }
+    ivy {
+        name "CoFHCore"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2228/225/[module]-[revision](-[classifier]).[ext]"
+    }
+    ivy {
+        name "MineFactoryReloaded"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2228/271/[module]-[revision].[ext]"
+    }
+    maven {
+        name "tterrag Repo"
+        url "http://maven.tterrag.com"
+    }
+    maven {
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
+    }
+}
+
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    compile name: 'Chisel2', group: 'com.cricketcraft.chisel', version: chiselVersion, classifier: 'deobf'
+    compile name: 'CoFHCore', group: 'cofh', version: cofhCoreVersion, classifier: 'dev'
+    compile name: 'EnderIO', group: 'com.enderio', version: enderIOVersion, classifier: 'dev'
+    compile name: 'MineFactoryReloaded', group: 'powercrystals.minefactoryreloaded', version: mfrVersion
+    compile name: 'TConstruct', group: 'tconstruct', version: tconstructVersion
 }
 
 processResources
