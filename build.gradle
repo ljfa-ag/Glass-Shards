@@ -34,7 +34,7 @@ minecraft {
     mappings = "snapshot_nodoc_20141130"
     
     replaceIn "Reference.java"
-    replace "@VERSION@", project.version
+    replace "\${version}", project.version
 }
 
 curse {
