@@ -43,11 +43,11 @@ public class GlassShards {
         
         if(Loader.isModLoaded("chisel")) {
             if(new ComparableVersion(Loader.instance().getIndexedModList().get("chisel").getVersion())
-                    .compareTo(new ComparableVersion("2.3")) >= 0) {
+                    .compareTo(new ComparableVersion("2.4")) >= 0) {
                 isChiselCorrectVersion = true;
             }
             else {
-                LogHelper.warn("The Chisel compatibility requires at least version 2.3");
+                LogHelper.warn("The Chisel compatibility requires at least version 2.4");
                 isChiselCorrectVersion = false;
             }
         }
