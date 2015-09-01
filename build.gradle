@@ -23,8 +23,8 @@ group= "ljfa.glassshards" // http://maven.apache.org/guides/mini/guide-naming-co
 archivesBaseName = "glass_shards_mc1.7.10"
 
 minecraft {
-    version = "1.7.10-10.13.3.1403-1.7.10"
-    runDir = "eclipse"
+    version = "1.7.10-10.13.4.1448-1.7.10"
+    runDir = "run"
     
     replaceIn "Reference.java"
     replace "\${version}", project.version
