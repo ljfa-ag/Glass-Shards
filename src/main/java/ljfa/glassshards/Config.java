@@ -65,7 +65,7 @@ public class Config {
         swordDurability = conf.get(CAT_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
         incrBreakSpeed = conf.get(CAT_GENERAL, "increaseGlassBreakSpeed", true, "Glass breaks faster when mined with a pickaxe").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CAT_CHISEL).setComment("Compatibility options for Chisel 2. Tested with version 2.3.5.31.");
+        conf.getCategory(CAT_CHISEL).setComment("Compatibility options for Chisel 2. Tested with Cricket's Chisel 2.5.0.43 and with minecreatr's Chisel fork 2.9.0.3.");
         
         chiselEnable = conf.get(CAT_CHISEL, "dropShards", true, "Activates compatibility if Chisel is present.\n"
                 + "Note that not activating this even though Chisel is present might lead to unexpected behavior.\n"
