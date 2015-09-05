@@ -5,25 +5,47 @@ import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.glass.ModGlassHandler;
 import ljfa.glassshards.util.LogHelper;
+import ljfa.glassshards.util.ReflectionHelper;
 import net.minecraft.block.Block;
 
-import com.cricketcraft.chisel.block.BlockCarvableGlass;
-import com.cricketcraft.chisel.block.BlockCarvablePane;
-import com.cricketcraft.chisel.init.ChiselBlocks;
-
 public class ChiselGlassHelper {
+    private static Class<?> chiselBlocks;
+    
+    static {
+        chiselBlocks = ReflectionHelper.tryGetClass("com.cricketcraft.chisel.init.ChiselBlocks");
+        if(chiselBlocks != null)
+            LogHelper.debug("We have Cricket's Chisel version");
+        else {
+            chiselBlocks = ReflectionHelper.tryGetClass("team.chisel.init.ChiselBlocks");
+            if(chiselBlocks != null)
+                LogHelper.debug("We have minecreatr's Chisel version");
+            else
+                throw new LinkageError("Could not load Chisel compatibility: The ChiselBlocks class could not be found");
+        }
+    }
+    
+    public static Class<?> getChiselBlocks() {
+        return chiselBlocks;
+    }
+    
     public static void init() {
-        BlockCarvableGlass[] chiselStainedGlass = ChiselBlocks.stainedGlass;
-        BlockCarvablePane[] chiselStainedPane = ChiselBlocks.stainedGlassPane;
-        
-        //Add blocks to the registry
-        for(int i = 0; i < chiselStainedGlass.length; i++)
-            GlassRegistry.addHandler(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
-        
-        for(int i = 0; i < chiselStainedPane.length; i++)
-            GlassRegistry.addHandler(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
-        
-        LogHelper.info("Successfully loaded Chisel compatibility.");
+        try {
+            Block[] chiselStainedGlass = ReflectionHelper.getStaticField(chiselBlocks, "stainedGlass");
+            Block[] chiselStainedPane = ReflectionHelper.getStaticField(chiselBlocks, "stainedGlassPane");
+            
+            //Add blocks to the registry
+            for(int i = 0; i < chiselStainedGlass.length; i++)
+                GlassRegistry.addHandler(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
+            
+            for(int i = 0; i < chiselStainedPane.length; i++)
+                GlassRegistry.addHandler(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
+            
+            LogHelper.info("Successfully loaded Chisel compatibility.");
+        }
+        catch(Exception e) {
+            throw new RuntimeException("Could not load Chisel compatibility.\n"
+                + "The ChiselBlocks class was " + chiselBlocks.getName(), e);
+        }
     }
     
     // How stained glass works in Chisel:
