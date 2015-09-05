@@ -3,13 +3,14 @@ package ljfa.glassshards.util;
 import java.lang.reflect.Field;
 
 public class ReflectionHelper {
-    public static Object getField(Class<?> cl, String name, Object obj) throws ReflectiveOperationException {
+    @SuppressWarnings("unchecked")
+    public static <T> T getField(Class<?> cl, String name, Object obj) throws ReflectiveOperationException {
         Field field = cl.getDeclaredField(name);
         field.setAccessible(true);
-        return field.get(obj);
+        return (T)field.get(obj);
     }
     
-    public static Object getStaticField(Class<?> cl, String name) throws ReflectiveOperationException {
+    public static <T> T getStaticField(Class<?> cl, String name) throws ReflectiveOperationException {
         return getField(cl, name, null);
     }
     
@@ -21,5 +22,15 @@ public class ReflectionHelper {
     
     public static void setStaticField(Class<?> cl, String name, Object value) throws ReflectiveOperationException {
         setField(cl, name, null, value);
+    }
+    
+    /** Attempts to get a Class instance from name. Returns null if the class could not be found. */
+    public static Class<?> tryGetClass(String name) {
+        try {
+            return Class.forName(name);
+        }
+        catch(ClassNotFoundException e) {
+            return null;
+        }
     }
 }
