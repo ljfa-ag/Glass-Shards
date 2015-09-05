@@ -1,10 +1,11 @@
 package ljfa.glassshards.compat;
 
+import static ljfa.glassshards.GlassShards.logger;
+
 import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.glass.ModGlassHandler;
-import ljfa.glassshards.util.LogHelper;
 import ljfa.glassshards.util.ReflectionHelper;
 import net.minecraft.block.Block;
 
@@ -14,11 +15,11 @@ public class ChiselGlassHelper {
     static {
         chiselBlocks = ReflectionHelper.tryGetClass("com.cricketcraft.chisel.init.ChiselBlocks");
         if(chiselBlocks != null)
-            LogHelper.debug("We have Cricket's Chisel version");
+            logger.debug("We have Cricket's Chisel version");
         else {
             chiselBlocks = ReflectionHelper.tryGetClass("team.chisel.init.ChiselBlocks");
             if(chiselBlocks != null)
-                LogHelper.debug("We have minecreatr's Chisel version");
+                logger.debug("We have minecreatr's Chisel version");
             else
                 throw new LinkageError("Could not load Chisel compatibility: The ChiselBlocks class could not be found");
         }
@@ -40,7 +41,7 @@ public class ChiselGlassHelper {
             for(int i = 0; i < chiselStainedPane.length; i++)
                 GlassRegistry.addHandler(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
             
-            LogHelper.info("Successfully loaded Chisel compatibility.");
+            logger.info("Successfully loaded Chisel compatibility.");
         }
         catch(Exception e) {
             throw new RuntimeException("Could not load Chisel compatibility.\n"

@@ -1,9 +1,10 @@
 package ljfa.glassshards.compat;
 
+import static ljfa.glassshards.GlassShards.logger;
+
 import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.glass.SimpleGlassHandler;
 import ljfa.glassshards.items.ModItems;
-import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ public class TinkersGlassHelper {
         GlassRegistry.addHandler(tcStainedGlass, SimpleGlassHandler.clearingStainedBlockInstance);
         //Stained panes work fine without need to register them here
         
-        LogHelper.info("Successfully loaded Tinkers Construct compatibility.");
+        logger.info("Successfully loaded Tinkers Construct compatibility.");
     }
     
     public static void addSmelteryRecipe() {

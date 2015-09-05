@@ -1,20 +1,8 @@
 package ljfa.glassshards.compat;
 
-import java.util.List;
+import static ljfa.glassshards.GlassShards.logger;
 
-import ljfa.glassshards.Config;
-import ljfa.glassshards.ModRecipes;
-import ljfa.glassshards.api.GlassType;
-import ljfa.glassshards.glass.GlassRegistry;
-import ljfa.glassshards.glass.ModGlassHandler;
-import ljfa.glassshards.items.ModItems;
-import ljfa.glassshards.util.LogHelper;
-import ljfa.glassshards.util.ReflectionHelper;
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-import net.minecraftforge.oredict.OreDictionary;
+import java.util.List;
 
 import org.apache.logging.log4j.Level;
 
@@ -23,6 +11,18 @@ import crazypants.enderio.EnderIO;
 import crazypants.enderio.machine.crusher.CrusherRecipeManager;
 import crazypants.enderio.machine.recipe.OreDictionaryRecipeInput;
 import crazypants.enderio.machine.recipe.RecipeInput;
+import ljfa.glassshards.Config;
+import ljfa.glassshards.ModRecipes;
+import ljfa.glassshards.api.GlassType;
+import ljfa.glassshards.glass.GlassRegistry;
+import ljfa.glassshards.glass.ModGlassHandler;
+import ljfa.glassshards.items.ModItems;
+import ljfa.glassshards.util.ReflectionHelper;
+import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class EnderIOGlassHelper {
     public static final int clear_meta = 1, enlightened_meta = 3;
@@ -52,7 +52,7 @@ public class EnderIOGlassHelper {
             }
         });
         
-        LogHelper.info("Successfully loaded EnderIO glass compatibility.");
+        logger.info("Successfully loaded EnderIO glass compatibility.");
     }
     
     public static void addRecipes() {
@@ -146,9 +146,9 @@ public class EnderIOGlassHelper {
             List<RecipeInput> excludes = (List<RecipeInput>)ReflectionHelper.getField(CrusherRecipeManager.class, "ballExcludes", recipeManager);
             excludes.add(new OreDictionaryRecipeInput(new ItemStack(ModItems.glass_shards, 1, 16), OreDictionary.getOreID("shardsGlass"), 0));
             
-            LogHelper.info("Successfully added to EnderIO grinding ball excludes list.");
+            logger.info("Successfully added to EnderIO grinding ball excludes list.");
         } catch(ReflectiveOperationException ex) {
-            LogHelper.log(Level.ERROR, ex, "Failed to manipulate EnderIO grinding ball excludes list.");
+            logger.error("Failed to manipulate EnderIO grinding ball excludes list.", ex);
             return;
         }
     }
