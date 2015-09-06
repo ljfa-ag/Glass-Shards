@@ -24,6 +24,14 @@ public class GlassRegistry {
         logger.trace("Added glass handler for {} ({})", block.getUnlocalizedName(), Block.getIdFromBlock(block));
     }
     
+    /** Adds a handler for a given glass block */
+    public static void addHandler(String blockname, ModGlassHandler handler) {
+        if(Block.blockRegistry.containsKey(blockname))
+            addHandler((Block)Block.blockRegistry.getObject(blockname), handler);
+        else
+            throw new IllegalArgumentException("Could not find block \"" + blockname + "\"");
+    }
+    
     /** @return a handler for a given block if one exists, or null */
     public static ModGlassHandler get(Block block) {
         return handlerMap.get(block);
