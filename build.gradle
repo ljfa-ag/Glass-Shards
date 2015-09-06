@@ -18,7 +18,7 @@ buildscript {
 apply plugin: 'forge'
 apply plugin: 'curseforge'
 
-version = "1.4"
+version = "1.5"
 group= "ljfa.glassshards" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "glass_shards_mc1.7.10"
 
@@ -42,21 +42,9 @@ repositories {
         name "RX14"
         url "http://mvn.rx14.co.uk/repo/"
     }
-    maven {
-        name "Chisel2"
-        url "http://coloredlightscore.us.to/maven/chisel-2-dev/"
-    }
     ivy {
         name "CoFHCore"
         artifactPattern "http://addons-origin.cursecdn.com/files/2228/225/[module]-[revision](-[classifier]).[ext]"
-    }
-    ivy {
-        name "MineFactoryReloaded"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2228/271/[module]-[revision].[ext]"
-    }
-    maven {
-        name "tterrag Repo"
-        url "http://maven.tterrag.com"
     }
     maven {
         name 'DVS1 Maven FS'
@@ -65,10 +53,7 @@ repositories {
 }
 
 dependencies {
-    compile name: 'Chisel2', group: 'com.cricketcraft.chisel', version: chiselVersion, classifier: 'deobf'
     compile name: 'CoFHCore', group: 'cofh', version: cofhCoreVersion, classifier: 'dev'
-    compile name: 'EnderIO', group: 'com.enderio', version: enderIOVersion, classifier: 'dev'
-    compile name: 'MineFactoryReloaded', group: 'powercrystals.minefactoryreloaded', version: mfrVersion
     compile name: 'TConstruct', group: 'tconstruct', version: tconstructVersion
 }
 
