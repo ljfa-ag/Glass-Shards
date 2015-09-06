@@ -6,53 +6,33 @@ import ljfa.glassshards.Config;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.glass.ModGlassHandler;
-import ljfa.glassshards.util.ReflectionHelper;
 import net.minecraft.block.Block;
 
 public class ChiselGlassHelper {
-    private static Class<?> chiselBlocks;
-    
-    static {
-        chiselBlocks = ReflectionHelper.tryGetClass("com.cricketcraft.chisel.init.ChiselBlocks");
-        if(chiselBlocks != null)
-            logger.debug("We have Cricket's Chisel version");
-        else {
-            chiselBlocks = ReflectionHelper.tryGetClass("team.chisel.init.ChiselBlocks");
-            if(chiselBlocks != null)
-                logger.debug("We have minecreatr's Chisel version");
-            else
-                throw new LinkageError("Could not load Chisel compatibility: The ChiselBlocks class could not be found");
-        }
-    }
-    
-    public static Class<?> getChiselBlocks() {
-        return chiselBlocks;
-    }
-    
+
     public static void init() {
-        try {
-            Block[] chiselStainedGlass = ReflectionHelper.getStaticField(chiselBlocks, "stainedGlass");
-            Block[] chiselStainedPane = ReflectionHelper.getStaticField(chiselBlocks, "stainedGlassPane");
-            
-            //Add blocks to the registry
-            for(int i = 0; i < chiselStainedGlass.length; i++)
-                GlassRegistry.addHandler(chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
-            
-            for(int i = 0; i < chiselStainedPane.length; i++)
-                GlassRegistry.addHandler(chiselStainedPane[i], new ChiselStainedPaneHandler(i));
-            
-            logger.info("Successfully loaded Chisel compatibility.");
-        }
-        catch(Exception e) {
-            throw new RuntimeException("Could not load Chisel compatibility.\n"
-                + "The ChiselBlocks class was " + chiselBlocks.getName(), e);
-        }
+        //These strings are not actually the correct colors for the Chisel stained glass blocks.
+        //In Chisel, stained glass blocks span across four different block ids.
+        //But unlike vanilla, the metadata of these blocks do not map 1:1 to the colors.
+        //The color is determined by both the metadata and the index of the block in one of
+        //Chisel's internally used arrays. Same thing for stained panes across 8 block IDs.
+        //See below for details on the colors.
+        String[] chiselStainedGlass = {"white", "yellow", "lightgray", "brown"};
+        String[] chiselStainedPane = {"white", "magenta", "yellow", "pink", "lightgray", "purple", "brown", "red"};
+        
+        //Add blocks to the registry
+        for(int i = 0; i < chiselStainedGlass.length; i++)
+            GlassRegistry.addHandler("chisel:stained_glass_" + chiselStainedGlass[i], new ChiselStainedGlassHandler(i));
+        
+        for(int i = 0; i < chiselStainedPane.length; i++)
+            GlassRegistry.addHandler("chisel:stained_glass_pane_" + chiselStainedPane[i], new ChiselStainedPaneHandler(i));
+        
+        logger.info("Successfully loaded Chisel compatibility.");
     }
     
     // How stained glass works in Chisel:
     // array index = color >> 2
     // metadata = (color & 3) << 2
-    // Blame Chisel for using such hardcoded values
     public static class ChiselStainedGlassHandler extends ModGlassHandler {
         private final int arrayIndex;
         
