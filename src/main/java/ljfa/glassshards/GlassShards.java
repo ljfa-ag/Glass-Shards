@@ -101,8 +101,6 @@ public class GlassShards {
         if(Loader.isModLoaded("EnderIO")) {
             if(Config.eioDropShards)
                 EnderIOGlassHelper.init();
-            if(Config.eioSagMill)
-                EnderIOGlassHelper.setupGrindingBallExcludes();
         }
         if(Config.thaumAspects && Loader.isModLoaded("Thaumcraft"))
             ThaumcraftCompat.addAspects();

@@ -2,39 +2,28 @@ package ljfa.glassshards.compat;
 
 import static ljfa.glassshards.GlassShards.logger;
 
-import java.util.List;
-
-import org.apache.logging.log4j.Level;
-
 import cpw.mods.fml.common.event.FMLInterModComms;
-import crazypants.enderio.EnderIO;
-import crazypants.enderio.machine.crusher.CrusherRecipeManager;
-import crazypants.enderio.machine.recipe.OreDictionaryRecipeInput;
-import crazypants.enderio.machine.recipe.RecipeInput;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.ModRecipes;
 import ljfa.glassshards.api.GlassType;
 import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.glass.ModGlassHandler;
-import ljfa.glassshards.items.ModItems;
-import ljfa.glassshards.util.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class EnderIOGlassHelper {
+    //Metadata of EnderIO (enlightened) clear glass
     public static final int clear_meta = 1, enlightened_meta = 3;
     
     public static void init() {
-        
-        GlassRegistry.addHandler(EnderIO.blockFusedQuartz, new ModGlassHandler() {
+        GlassRegistry.addHandler("EnderIO:blockFusedQuartz", new ModGlassHandler() {
             @Override
             public void addShardsDrop(HarvestDropsEvent event) {
                 super.addShardsDrop(event);
                 if(event.blockMetadata == enlightened_meta)
-                    for(int i = 0; i < 4; i++) //Drop up to 4
+                    for(int i = 0; i < 4; i++) //Drop 4 distinct stacks
                         event.drops.add(new ItemStack(Items.glowstone_dust));
             }
             
@@ -99,13 +88,12 @@ public class EnderIOGlassHelper {
             FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg.toString());
             
             //Disable grinding ball for shards
-            //Doesn't work
-            /*FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
+            FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
                 "<grindingBalls>" +
                   "<excludes>" +
                     "<itemStack oreDictionary=\"shardsGlass\" />" +
                   "</excludes>" +
-                "</grindingBalls>");*/
+                "</grindingBalls>");
         
         }
         
@@ -134,22 +122,5 @@ public class EnderIOGlassHelper {
                 "</recipeGroup>");
         }
     }
-    
-    /**
-     * Adds glass shards to the grinding ball blacklist.
-     * This is a hacky workaround since EnderIO's InterModComms don't support this (yet).
-     */
-    @SuppressWarnings("unchecked")
-    public static void setupGrindingBallExcludes() {
-        try {
-            CrusherRecipeManager recipeManager = CrusherRecipeManager.getInstance();
-            List<RecipeInput> excludes = (List<RecipeInput>)ReflectionHelper.getField(CrusherRecipeManager.class, "ballExcludes", recipeManager);
-            excludes.add(new OreDictionaryRecipeInput(new ItemStack(ModItems.glass_shards, 1, 16), OreDictionary.getOreID("shardsGlass"), 0));
-            
-            logger.info("Successfully added to EnderIO grinding ball excludes list.");
-        } catch(ReflectiveOperationException ex) {
-            logger.error("Failed to manipulate EnderIO grinding ball excludes list.", ex);
-            return;
-        }
-    }
+
 }
