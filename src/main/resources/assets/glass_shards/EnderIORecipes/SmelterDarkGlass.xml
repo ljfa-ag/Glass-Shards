@@ -2,7 +2,7 @@
 <recipe name="Dark Fused Glass" energyCost="2500">
     <input>
         <itemStack modID="glass_shards" itemName="glass_shards" itemMeta="16" />
-        <itemStack modID="minecraft" itemName="dye" itemMeta="0" number="4" />
+        <itemStack oreDictionary="dyeBlack" number="4" />
     </input>
     <output>
         <itemStack modID="EnderIO" itemName="blockFusedQuartz" itemMeta="5" exp="0.2" />
