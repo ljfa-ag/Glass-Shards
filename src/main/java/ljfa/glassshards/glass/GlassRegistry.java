@@ -21,7 +21,7 @@ public class GlassRegistry {
     /** Adds a handler for a given glass block */
     public static void addHandler(Block block, ModGlassHandler handler) {
         handlerMap.put(block, handler);
-        logger.trace("Added glass handler for {} ({})", block.getUnlocalizedName(), Block.getIdFromBlock(block));
+        logger.trace("Added glass handler for {}", Block.blockRegistry.getNameForObject(block));
     }
     
     /** Adds a handler for a given glass block */
