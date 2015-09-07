@@ -1,0 +1,19 @@
+<!-- Alloy Smelter: Shards -> Quite Clear Glass -->
+<recipe name="Fused Glass" energyCost="2500">
+    <input>
+        <itemStack modID="glass_shards" itemName="glass_shards" itemMeta="16" />
+    </input>
+    <output>
+        <itemStack modID="EnderIO" itemName="blockFusedQuartz" itemMeta="1" exp="0.2" />
+    </output>
+</recipe>
+<!-- Shards + Glowstone -> Enlightened Clear Glass -->
+<recipe name="Enlightened Fused Glass" energyCost="2500">
+    <input>
+        <itemStack modID="glass_shards" itemName="glass_shards" itemMeta="16" />
+        <itemStack modID="minecraft" itemName="glowstone_dust" number="4" />
+    </input>
+    <output>
+        <itemStack modID="EnderIO" itemName="blockFusedQuartz" itemMeta="3" exp="0.2" />
+    </output>
+</recipe>

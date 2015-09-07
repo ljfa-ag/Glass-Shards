@@ -2,6 +2,11 @@ package ljfa.glassshards.compat;
 
 import static ljfa.glassshards.GlassShards.logger;
 
+import java.io.IOException;
+
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.versioning.ComparableVersion;
@@ -16,7 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 
 public class EnderIOGlassHelper {
-    //Metadata of EnderIO regular, enlightene and dark clear glass
+    //Metadata of EnderIO regular, enlightened and dark clear glass
     public static final int clear_meta = 1, enlightened_meta = 3, dark_meta = 5;
     
     public static void init() {
@@ -56,52 +61,20 @@ public class EnderIOGlassHelper {
             //SAG mill: glass -> glass shards
             //Replace EnderIO's internal recipe
             FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
-                "<recipeGroup name=\"EnderIO\">" +
-                  "<recipe name=\"Glass\" energyCost=\"1000\">" +
-                    "<input>" +
-                      "<itemStack oreDictionary=\"glass\" />" +
-                    "</input>" +
-                    "<output>" +
-                      "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
-                    "</output>" +
-                  "</recipe>" +
-                "</recipeGroup>");
+                "<recipeGroup name=\"EnderIO\">" + getRecipeXML("SagShards") + "</recipeGroup>");
             
             StringBuilder msg = new StringBuilder("<recipeGroup name=\"GlassShards\">");
-            //SAG mill: stained glass -> stained shards
-            for(int i = 0; i < 16; i++) {
-                String dye = ModRecipes.dyes[i];
-                msg.append("<recipe name=\"Glass" + dye + "\" energyCost=\"1000\">" +
-                             "<input>" +
-                               "<itemStack oreDictionary=\"blockGlass" + dye + "\" />" +
-                             "</input>" +
-                             "<output>" +
-                               "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"" + i + "\" />" +
-                             "</output>" +
-                           "</recipe>");
-            }
+            //SAG mill: stained glass -> stained shards (one recipe for each color)
+            String template = getRecipeXML("SagStainedShards");
+            for(int i = 0; i < 16; i++)
+                msg.append(String.format(template, ModRecipes.dyes[i], i));
             
             //SAG mill: glass shards -> sand
-            msg.append("<recipe name=\"Shards\" energyCost=\"600\">" +
-                         "<input>" +
-                           "<itemStack oreDictionary=\"shardsGlass\" />" +
-                         "</input>" +
-                         "<output>" +
-                           "<itemStack modID=\"minecraft\" itemName=\"sand\" />" +
-                         "</output>" +
-                       "</recipe>");
-            
-            msg.append("</recipeGroup>");
+            msg.append(getRecipeXML("SagSand")).append("</recipeGroup>");
             FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", msg.toString());
             
             //Disable grinding ball for shards
-            FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill",
-                "<grindingBalls>" +
-                  "<excludes>" +
-                    "<itemStack oreDictionary=\"shardsGlass\" />" +
-                  "</excludes>" +
-                "</grindingBalls>");
-        
+            FMLInterModComms.sendMessage("EnderIO", "recipe:sagmill", getRecipeXML("SagGrindingBall"));
         }
         
         if(Config.eioAlloySmelter) {
@@ -116,36 +89,19 @@ public class EnderIOGlassHelper {
             //Alloy Smelter: glass shards -> quite clear glass
             //and glass shards + 4 glowstone dust -> enlightened clear glass
             //and glass shards + 4 ink sacs -> dark clear glass
-            StringBuilder msg = new StringBuilder("<recipeGroup name=\"GlassShards\">");
-            msg.append("<recipe name=\"Fused Glass\" energyCost=\"2500\">" +
-                         "<input>" +
-                           "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
-                         "</input>" +
-                         "<output>" +
-                           "<itemStack modID=\"EnderIO\" itemName=\"blockFusedQuartz\" itemMeta=\"1\" exp=\"0.2\" />" +
-                         "</output>" +
-                       "</recipe>" +
-                       "<recipe name=\"Enlightened Fused Glass\" energyCost=\"2500\">" +
-                         "<input>" +
-                           "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
-                           "<itemStack modID=\"minecraft\" itemName=\"glowstone_dust\" number=\"4\" />" +
-                         "</input>" +
-                         "<output>" +
-                           "<itemStack modID=\"EnderIO\" itemName=\"blockFusedQuartz\" itemMeta=\"3\" exp=\"0.2\" />" +
-                         "</output>" +
-                       "</recipe>");
+            String msg = "<recipeGroup name=\"GlassShards\">" + getRecipeXML("SmelterClearGlass");
             if(isEnderIO23)
-                msg.append("<recipe name=\"Dark Fused Glass\" energyCost=\"2500\">" +
-                             "<input>" +
-                               "<itemStack modID=\"glass_shards\" itemName=\"glass_shards\" itemMeta=\"16\" />" +
-                               "<itemStack modID=\"minecraft\" itemName=\"dye\" itemMeta=\"0\" number=\"4\" />" +
-                             "</input>" +
-                             "<output>" +
-                               "<itemStack modID=\"EnderIO\" itemName=\"blockFusedQuartz\" itemMeta=\"5\" exp=\"0.2\" />" +
-                             "</output>" +
-                          "</recipe>");
-            msg.append("</recipeGroup>");
-            FMLInterModComms.sendMessage("EnderIO", "recipe:alloysmelter", msg.toString());
+                msg += getRecipeXML("SmelterDarkGlass");
+            msg += "</recipeGroup>";
+            FMLInterModComms.sendMessage("EnderIO", "recipe:alloysmelter", msg);
+        }
+    }
+    
+    private static String getRecipeXML(String name) {
+        try {
+            return Resources.toString(Resources.getResource("assets/glass_shards/EnderIORecipes/" + name + ".xml"), Charsets.UTF_8);
+        } catch(IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

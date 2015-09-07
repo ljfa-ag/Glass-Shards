@@ -1,0 +1,9 @@
+<!-- Sag Mill: Glass -> Shards -->
+<recipe name="Glass" energyCost="1000">
+    <input>
+        <itemStack oreDictionary="glass" />
+    </input>
+    <output>
+        <itemStack modID="glass_shards" itemName="glass_shards" itemMeta="16" />
+    </output>
+</recipe>

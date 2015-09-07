@@ -1,0 +1,6 @@
+<!-- Exclude shards from grinding ball bonus -->
+<grindingBalls>
+    <excludes>
+        <itemStack oreDictionary="shardsGlass" />
+    </excludes>
+</grindingBalls>

@@ -1,0 +1,9 @@
+<!-- Sag Mill: Shards -> Sand -->
+<recipe name="Shards" energyCost="600">
+    <input>
+        <itemStack oreDictionary="shardsGlass" />
+    </input>
+    <output>
+        <itemStack modID="minecraft" itemName="sand" />
+    </output>
+</recipe>

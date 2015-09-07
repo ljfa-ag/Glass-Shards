@@ -1,0 +1,10 @@
+<!-- Sag Mill: Stained Glass -> Stained Shards
+This is a template that will get formatted with the appropriate dye colors and metadatas -->
+<recipe name="Glass%1$s" energyCost="1000">
+    <input>
+        <itemStack oreDictionary="blockGlass%1$s" />
+    </input>
+    <output>
+        <itemStack modID="glass_shards" itemName="glass_shards" itemMeta="%2$d" />
+    </output>
+</recipe>
