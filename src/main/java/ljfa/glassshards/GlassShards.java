@@ -1,5 +1,8 @@
 package ljfa.glassshards;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.handlers.BreakSpeedHandler;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
@@ -18,6 +21,8 @@ import net.minecraftforge.fml.relauncher.Side;
 public class GlassShards {
     @Mod.Instance(Reference.MODID)
     public static GlassShards instance;
+    
+    public static final Logger logger = LogManager.getLogger(Reference.MODNAME);
     
     public static ToolMaterial toolMatGlass;
     

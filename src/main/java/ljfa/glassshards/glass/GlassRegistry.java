@@ -1,9 +1,10 @@
 package ljfa.glassshards.glass;
 
+import static ljfa.glassshards.GlassShards.logger;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import ljfa.glassshards.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockPane;
@@ -20,7 +21,7 @@ public class GlassRegistry {
     /** Adds a handler for a given glass block */
     public static void addHandler(Block block, ModGlassHandler handler) {
         handlerMap.put(block, handler);
-        LogHelper.trace("Added glass handler for %s (%d)", block.getUnlocalizedName(), Block.getIdFromBlock(block));
+        logger.trace("Added glass handler for {}", Block.blockRegistry.getNameForObject(block));
     }
     
     /** @return a handler for a given block if one exists, or null */
@@ -54,7 +55,7 @@ public class GlassRegistry {
                 counter++;
             }
         }
-        LogHelper.info("Added %d blocks to the GlassRegistry", counter);
+        logger.info("Added {} blocks to the GlassRegistry", counter);
     }
     
     private static final Map<Block, ModGlassHandler> handlerMap = new HashMap<Block, ModGlassHandler>();
