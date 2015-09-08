@@ -65,7 +65,7 @@ public class Config {
         swordDurability = conf.get(CAT_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
         incrBreakSpeed = conf.get(CAT_GENERAL, "increaseGlassBreakSpeed", true, "Glass breaks faster when mined with a pickaxe").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CAT_CHISEL).setComment("Compatibility options for Chisel 2. Tested with Cricket's Chisel 2.5.0.43 and with minecreatr's Chisel fork 2.9.0.3.");
+        conf.getCategory(CAT_CHISEL).setComment("Compatibility options for Chisel");
         
         chiselEnable = conf.get(CAT_CHISEL, "dropShards", true, "Activates compatibility if Chisel is present.\n"
                 + "Note that not activating this even though Chisel is present might lead to unexpected behavior.\n"
@@ -75,29 +75,29 @@ public class Config {
                 + "when broken, unlike all the other Chisel glass types.\n"
                 + "This option changes this behavior and makes them drop shards instead.").getBoolean();
         //----------------
-        conf.getCategory(CAT_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct. Tested with version 1.8.2a.");
+        conf.getCategory(CAT_TCONSTRUCT).setComment("Compatibility options for Tinkers Construct");
         
         tinkersEnable = conf.get(CAT_TCONSTRUCT, "dropShards", false, "Clear Glass and Stained Glass will drop shards rather than themselves").setRequiresMcRestart(true).getBoolean();
         tinkersMeltShards = conf.get(CAT_TCONSTRUCT, "addSmelteryRecipe", true, "Makes shards smeltable in the Smeltery").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CAT_MFR).setComment("Compatibility options for MineFactory Reloaded. Tested with version 2.8.0RC7-71.");
+        conf.getCategory(CAT_MFR).setComment("Compatibility options for MineFactory Reloaded");
         
         mfrEnable = conf.get(CAT_MFR, "activate", true, "Activates compatibility if MineFactory Reloaded is present.\n"
                 + "When activated, stained glass blocks will drop stained shards.").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CAT_ENDERIO).setComment("Compatibility options for EnderIO. Tested with version 2.2.7.349.");
+        conf.getCategory(CAT_ENDERIO).setComment("Compatibility options for EnderIO");
         
         eioDropShards = conf.get(CAT_ENDERIO, "dropShards", true, "Quite Clear Glass will drop shards and Enlightened Clear Glass will drop shards and 4 glowstone").setRequiresMcRestart(true).getBoolean();
         eioSagMill = conf.get(CAT_ENDERIO, "addSAGMillRecipes", true, "Adds SAG Mill recipes for Glass -> Shards and Shards -> Sand.\n"
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
         eioAlloySmelter = conf.get(CAT_ENDERIO, "addAlloySmelterRecipes", true, "Adds an Alloy Smelter recipe for Shards -> Quite Clear Glass").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CAT_THERMALEXP).setComment("Compatibility options for Thermal Expansion. Tested with version 4.0.0RC1-119.");
+        conf.getCategory(CAT_THERMALEXP).setComment("Compatibility options for Thermal Expansion");
         
         tePulverizer = conf.get(CAT_THERMALEXP, "addPulverizerRecipes", true, "Adds Pulverizer recipes for Glass -> Shards and Shards -> Sand.\n"
                 + "This will replace the Glass -> Sand recipe.").setRequiresMcRestart(true).getBoolean();
         //----------------
-        conf.getCategory(CAT_THAUMCRAFT).setComment("Compatibility options for Thaumcraft. Tested with version 4.2.3.4.");
+        conf.getCategory(CAT_THAUMCRAFT).setComment("Compatibility options for Thaumcraft");
 
         thaumAspects = conf.get(CAT_THAUMCRAFT, "addAspects", true, "Adds Thaumcraft aspects to the shards").setRequiresMcRestart(true).getBoolean();
         //----------------
