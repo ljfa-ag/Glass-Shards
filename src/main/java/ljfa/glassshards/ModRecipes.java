@@ -56,9 +56,11 @@ public class ModRecipes {
     }
     
     private static void addSmelting() {
-        GameRegistry.addSmelting(new ItemStack(ModItems.glass_shards, 1, 16), new ItemStack(Blocks.glass), 0.05f);
-        for(int i = 0; i < 16; i++) {
-            GameRegistry.addSmelting(new ItemStack(ModItems.glass_shards, 1, i), new ItemStack(Blocks.stained_glass, 1, i), 0.05f);
+        if(Config.recipesFurnace) {
+            GameRegistry.addSmelting(new ItemStack(ModItems.glass_shards, 1, 16), new ItemStack(Blocks.glass), 0.05f);
+            for(int i = 0; i < 16; i++) {
+                GameRegistry.addSmelting(new ItemStack(ModItems.glass_shards, 1, i), new ItemStack(Blocks.stained_glass, 1, i), 0.05f);
+            }
         }
     }
 }
