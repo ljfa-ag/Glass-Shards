@@ -34,6 +34,8 @@ minecraft {
     
     replaceIn "Reference.java"
     replace "\${version}", project.version
+    
+    makeObfSourceJar = false
 }
 
 curseforge {
