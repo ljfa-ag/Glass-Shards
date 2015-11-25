@@ -44,6 +44,7 @@ curseforge {
         id = '226834'
         changelog  = ''
         releaseType = 'beta'
+        addGameVersion '1.8.8'
     }
 }
 
