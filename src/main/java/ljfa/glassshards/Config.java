@@ -2,9 +2,9 @@ package ljfa.glassshards;
 
 import java.io.File;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class Config {
@@ -28,7 +28,7 @@ public class Config {
         conf.load();
         loadValues();
         
-        FMLCommonHandler.instance().bus().register(new ChangeHandler());
+        MinecraftForge.EVENT_BUS.register(new ChangeHandler());
     }
     
     public static void loadValues() {
