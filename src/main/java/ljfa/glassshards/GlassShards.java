@@ -41,9 +41,6 @@ public class GlassShards {
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
         if(Config.incrBreakSpeed)
             MinecraftForge.EVENT_BUS.register(new BreakSpeedHandler());
-        
-        if(event.getSide() == Side.CLIENT)
-            ModItems.registerModels();
     }
     
     @Mod.EventHandler

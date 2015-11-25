@@ -2,9 +2,10 @@ package ljfa.glassshards.items;
 
 import java.util.List;
 
+import com.google.common.collect.Multimap;
+
 import ljfa.glassshards.Reference;
 import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,17 +14,17 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.google.common.collect.Multimap;
 
 /*
  * Metadata:
  * 0 - 15: colored shards
  * 16    : clear shards
  */
-public class ItemGlassShards extends Item implements IModeledItem {
+public class ItemGlassShards extends Item {
     private final String[] variants;
     
     ItemGlassShards() {
@@ -35,6 +36,9 @@ public class ItemGlassShards extends Item implements IModeledItem {
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
         ModItems.register(this, "glass_shards");
+        
+        if(FMLCommonHandler.instance().getSide().isClient())
+            registerModels();
     }
     
     public String getVariant(int meta) {
@@ -70,10 +74,9 @@ public class ItemGlassShards extends Item implements IModeledItem {
     }
     
     @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModels(ItemModelMesher mesher) {
+    private void registerModels() {
         ModelBakery.addVariantName(this, variants);
-        mesher.register(this, new ItemMeshDefinition() {
+        ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
                 return new ModelResourceLocation(getVariant(stack.getItemDamage()), "inventory");

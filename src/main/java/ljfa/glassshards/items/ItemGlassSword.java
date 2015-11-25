@@ -5,7 +5,6 @@ import java.util.List;
 import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,7 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * NBT Data:
  * Color: TagByte
  */
-public class ItemGlassSword extends ItemSword implements IModeledItem {
+public class ItemGlassSword extends ItemSword {
     private final String[] variants;
     
     public ItemGlassSword() {
@@ -34,6 +35,9 @@ public class ItemGlassSword extends ItemSword implements IModeledItem {
         variants[16] = Reference.MODID + ":glass_sword";
         
         ModItems.register(this, "glass_sword");
+        
+        if(FMLCommonHandler.instance().getSide().isClient())
+            registerModels();
     }
     
     public String getVariant(int meta) {
@@ -65,10 +69,9 @@ public class ItemGlassSword extends ItemSword implements IModeledItem {
     }
 
     @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModels(ItemModelMesher mesher) {
+    private void registerModels() {
         ModelBakery.addVariantName(this, variants);
-        mesher.register(this, new ItemMeshDefinition() {
+        ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
                 if(stack.hasTagCompound() && stack.getTagCompound().hasKey("Color", Constants.NBT.TAG_BYTE)) {
