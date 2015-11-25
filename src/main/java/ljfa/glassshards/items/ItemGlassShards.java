@@ -52,7 +52,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
     }
     
     @Override
-    public Multimap getAttributeModifiers(ItemStack stack) {
+    public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
         double damage = 1.0;
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(stack);
         multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
@@ -62,7 +62,7 @@ public class ItemGlassShards extends Item implements IModeledItem {
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
+    public void getSubItems(Item item, CreativeTabs creativeTabs, List<ItemStack> list) {
         //List clear shards first
         list.add(new ItemStack(item, 1, 16));
         for(int i = 0; i < 16; i++)

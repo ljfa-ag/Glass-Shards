@@ -11,6 +11,7 @@ import net.minecraft.block.BlockPane;
 import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameData;
 
 /**
@@ -26,8 +27,8 @@ public class GlassRegistry {
     
     /** Adds a handler for a given glass block */
     public static void addHandler(String blockname, ModGlassHandler handler) {
-        if(Block.blockRegistry.containsKey(blockname))
-            addHandler((Block)Block.blockRegistry.getObject(blockname), handler);
+        if(Block.blockRegistry.containsKey(new ResourceLocation(blockname)))
+            addHandler(Block.getBlockFromName(blockname), handler);
         else
             throw new IllegalArgumentException("Could not find block \"" + blockname + "\"");
     }

@@ -53,7 +53,7 @@ public class ItemGlassSword extends ItemSword implements IModeledItem {
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
+    public void getSubItems(Item item, CreativeTabs creativeTabs, List<ItemStack> list) {
         list.add(new ItemStack(item));
         for(int i = 0; i < 16; i++) {
             NBTTagCompound tag = new NBTTagCompound();
