@@ -44,15 +44,32 @@ public class ItemGlassSword extends ItemSword {
         return variants[MathHelper.clamp_int(meta, 0, 16)];
     }
     
+    /**
+     * Returns the color index for the sword, or 16 if uncolored.
+     * These values are the same as the metadata of glass shards.
+     */
+    public int getColor(ItemStack stack) {
+        if(stack.hasTagCompound() && stack.getTagCompound().hasKey("Color", Constants.NBT.TAG_BYTE))
+            return stack.getTagCompound().getByte("Color");
+        else
+            return 16;
+    }
+    
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         String prefix = "item." + Reference.MODID + ":glass_sword";
-        if(stack.hasTagCompound() && stack.getTagCompound().hasKey("Color", Constants.NBT.TAG_BYTE)) {
-            byte color = stack.getTagCompound().getByte("Color");
-            if(0 <= color && color < 16)
-                return prefix + "." + ItemGlassShards.colorNames[color];
-        }
-        return prefix;
+        int color = getColor(stack);
+        if(0 <= color && color < 16)
+            return prefix + "." + ItemGlassShards.colorNames[color];
+        else
+            return prefix;
+    }
+    
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        if(repair == null || repair.getItem() != ModItems.glass_shards)
+            return false;
+        return repair.getItemDamage() == getColor(toRepair);
     }
     
     @SideOnly(Side.CLIENT)
@@ -74,11 +91,7 @@ public class ItemGlassSword extends ItemSword {
         ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
-                if(stack.hasTagCompound() && stack.getTagCompound().hasKey("Color", Constants.NBT.TAG_BYTE)) {
-                    byte color = stack.getTagCompound().getByte("Color");
-                    return new ModelResourceLocation(getVariant(color), "inventory");
-                }
-                return new ModelResourceLocation(variants[16], "inventory");
+                return new ModelResourceLocation(getVariant(getColor(stack)), "inventory");
             }
         });
     }
