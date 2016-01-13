@@ -11,6 +11,7 @@ public class Config {
     public static Configuration conf;
     
     public static final String CAT_GENERAL = "general";
+    public static final String CAT_THAUMCRAFT = "thaumcraft";
     
     public static float shardsChance;
     public static float shardsFortuneChance;
@@ -20,6 +21,8 @@ public class Config {
     public static boolean enableSword;
     public static int swordDurability;
     public static boolean incrBreakSpeed;
+    
+    public static boolean thaumAspects;
     
     public static void loadConfig(File file) {
         if(conf == null)
@@ -42,6 +45,10 @@ public class Config {
         enableSword = conf.get(CAT_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
         swordDurability = conf.get(CAT_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
         incrBreakSpeed = conf.get(CAT_GENERAL, "increaseGlassBreakSpeed", true, "Glass breaks faster when mined with a pickaxe").setRequiresMcRestart(true).getBoolean();
+        //----------------
+        conf.getCategory(CAT_THAUMCRAFT).setComment("Compatibility options for Thaumcraft");
+
+        thaumAspects = conf.get(CAT_THAUMCRAFT, "addAspects", true, "Adds Thaumcraft aspects to the shards").setRequiresMcRestart(true).getBoolean();
         //----------------
         if(conf.hasChanged())
             conf.save();
