@@ -1,0 +1,28 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "builtin/generated",
+        "transform": "forge:default-tool"
+    },
+    "variants": {
+        "color": {
+            "none":       { "textures": { "layer0": "glass_shards:items/glass_sword" } },
+            "white":      { "textures": { "layer0": "glass_shards:items/glass_sword_white" } },
+            "orange":     { "textures": { "layer0": "glass_shards:items/glass_sword_orange" } },
+            "magenta":    { "textures": { "layer0": "glass_shards:items/glass_sword_magenta" } },
+            "light_blue": { "textures": { "layer0": "glass_shards:items/glass_sword_light_blue" } },
+            "yellow":     { "textures": { "layer0": "glass_shards:items/glass_sword_yellow" } },
+            "lime":       { "textures": { "layer0": "glass_shards:items/glass_sword_lime" } },
+            "pink":       { "textures": { "layer0": "glass_shards:items/glass_sword_pink" } },
+            "gray":       { "textures": { "layer0": "glass_shards:items/glass_sword_gray" } },
+            "silver":     { "textures": { "layer0": "glass_shards:items/glass_sword_silver" } },
+            "cyan":       { "textures": { "layer0": "glass_shards:items/glass_sword_cyan" } },
+            "purple":     { "textures": { "layer0": "glass_shards:items/glass_sword_purple" } },
+            "blue":       { "textures": { "layer0": "glass_shards:items/glass_sword_blue" } },
+            "brown":      { "textures": { "layer0": "glass_shards:items/glass_sword_brown" } },
+            "green":      { "textures": { "layer0": "glass_shards:items/glass_sword_green" } },
+            "red":        { "textures": { "layer0": "glass_shards:items/glass_sword_red" } },
+            "black":      { "textures": { "layer0": "glass_shards:items/glass_sword_black" } }
+        }
+    }
+}

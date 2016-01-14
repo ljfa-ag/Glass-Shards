@@ -1,0 +1,28 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "builtin/generated",
+        "transform": "forge:default-item"
+    },
+    "variants": {
+        "color": {
+            "none":       { "textures": { "layer0": "glass_shards:items/glass_shards" } },
+            "white":      { "textures": { "layer0": "glass_shards:items/glass_shards_white" } },
+            "orange":     { "textures": { "layer0": "glass_shards:items/glass_shards_orange" } },
+            "magenta":    { "textures": { "layer0": "glass_shards:items/glass_shards_magenta" } },
+            "light_blue": { "textures": { "layer0": "glass_shards:items/glass_shards_light_blue" } },
+            "yellow":     { "textures": { "layer0": "glass_shards:items/glass_shards_yellow" } },
+            "lime":       { "textures": { "layer0": "glass_shards:items/glass_shards_lime" } },
+            "pink":       { "textures": { "layer0": "glass_shards:items/glass_shards_pink" } },
+            "gray":       { "textures": { "layer0": "glass_shards:items/glass_shards_gray" } },
+            "silver":     { "textures": { "layer0": "glass_shards:items/glass_shards_silver" } },
+            "cyan":       { "textures": { "layer0": "glass_shards:items/glass_shards_cyan" } },
+            "purple":     { "textures": { "layer0": "glass_shards:items/glass_shards_purple" } },
+            "blue":       { "textures": { "layer0": "glass_shards:items/glass_shards_blue" } },
+            "brown":      { "textures": { "layer0": "glass_shards:items/glass_shards_brown" } },
+            "green":      { "textures": { "layer0": "glass_shards:items/glass_shards_green" } },
+            "red":        { "textures": { "layer0": "glass_shards:items/glass_shards_red" } },
+            "black":      { "textures": { "layer0": "glass_shards:items/glass_shards_black" } }
+        }
+    }
+}

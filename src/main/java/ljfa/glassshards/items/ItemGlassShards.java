@@ -25,24 +25,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * 16    : clear shards
  */
 public class ItemGlassShards extends Item {
-    private final String[] variants;
+    
+    public static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
+            "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black",
+            "none"};
     
     public ItemGlassShards() {
-        variants = new String[17];
-        for(int i = 0; i < 16; i++)
-            variants[i] = Reference.MODID + ":glass_shards_" + colorNames[i];
-        variants[16] = Reference.MODID + ":glass_shards";
-        
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
         ModItems.register(this, "glass_shards");
         
         if(FMLCommonHandler.instance().getSide().isClient())
             registerModels();
-    }
-    
-    public String getVariant(int meta) {
-        return variants[MathHelper.clamp_int(meta, 0, 16)];
     }
     
     @Override
@@ -75,16 +69,16 @@ public class ItemGlassShards extends Item {
     
     @SideOnly(Side.CLIENT)
     private void registerModels() {
-        for(String variant: variants)
-            ModelBakery.registerItemVariants(this, new ModelResourceLocation(variant, "inventory"));
+        final ModelResourceLocation[] variants = new ModelResourceLocation[17];
+        for(int i = 0; i < 17; i++)
+            variants[i] = new ModelResourceLocation(Reference.MODID + ":glass_shards", "color=" + colorNames[i]);
+        
+        ModelBakery.registerItemVariants(this, variants);
         ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return new ModelResourceLocation(getVariant(stack.getItemDamage()), "inventory");
+                return variants[MathHelper.clamp_int(stack.getItemDamage(), 0, 16)];
             }
         });
     }
-    
-    public static final String[] colorNames = {"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
-        "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"};
 }

@@ -12,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -24,24 +23,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Color: TagByte
  */
 public class ItemGlassSword extends ItemSword {
-    private final String[] variants;
-    
+
     public ItemGlassSword() {
         super(GlassShards.toolMatGlass);
-        
-        variants = new String[17];
-        for(int i = 0; i < 16; i++)
-            variants[i] = Reference.MODID + ":glass_sword_" + ItemGlassShards.colorNames[i];
-        variants[16] = Reference.MODID + ":glass_sword";
-        
         ModItems.register(this, "glass_sword");
         
         if(FMLCommonHandler.instance().getSide().isClient())
             registerModels();
-    }
-    
-    public String getVariant(int meta) {
-        return variants[MathHelper.clamp_int(meta, 0, 16)];
     }
     
     /**
@@ -87,12 +75,15 @@ public class ItemGlassSword extends ItemSword {
 
     @SideOnly(Side.CLIENT)
     private void registerModels() {
-        for(String variant: variants)
-            ModelBakery.registerItemVariants(this, new ModelResourceLocation(variant, "inventory"));
+        final ModelResourceLocation[] variants = new ModelResourceLocation[17];
+        for(int i = 0; i < 17; i++)
+            variants[i] = new ModelResourceLocation(Reference.MODID + ":glass_sword", "color=" + ItemGlassShards.colorNames[i]);
+        
+        ModelBakery.registerItemVariants(this, variants);
         ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return new ModelResourceLocation(getVariant(getColor(stack)), "inventory");
+                return variants[getColor(stack)];
             }
         });
     }
