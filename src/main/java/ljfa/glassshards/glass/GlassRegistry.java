@@ -46,10 +46,10 @@ public class GlassRegistry {
     /** Adds all registered blocks that are glass to the GlassRegistry */
     public static void registerAll() {
         int counter = 0;
-        for(Object obj: GameData.getBlockRegistry()) {
-            if(!(obj instanceof Block))
+        for(Block block: GameData.getBlockRegistry()) {
+            if(block.getMaterial() != Material.glass)
                 continue;
-            Block block = (Block)obj;
+            
             if(block instanceof BlockGlass) {
                 addHandler(block, SimpleGlassHandler.blockInstance);
                 counter++;
@@ -59,7 +59,7 @@ public class GlassRegistry {
             } else if(block instanceof BlockStainedGlassPane) {
                 addHandler(block, SimpleGlassHandler.stainedPaneInstance);
                 counter++;
-            } else if(block instanceof BlockPane && block.getMaterial() == Material.glass) {
+            } else if(block instanceof BlockPane) {
                 addHandler(block, SimpleGlassHandler.paneInstance);
                 counter++;
             }
