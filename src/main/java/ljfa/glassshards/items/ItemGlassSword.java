@@ -87,7 +87,8 @@ public class ItemGlassSword extends ItemSword {
 
     @SideOnly(Side.CLIENT)
     private void registerModels() {
-        ModelBakery.addVariantName(this, variants);
+        for(String variant: variants)
+            ModelBakery.registerItemVariants(this, new ModelResourceLocation(variant, "inventory"));
         ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {

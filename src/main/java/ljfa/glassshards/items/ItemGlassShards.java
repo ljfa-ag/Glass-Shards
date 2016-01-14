@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemGlassShards extends Item {
     private final String[] variants;
     
-    ItemGlassShards() {
+    public ItemGlassShards() {
         variants = new String[17];
         for(int i = 0; i < 16; i++)
             variants[i] = Reference.MODID + ":glass_shards_" + colorNames[i];
@@ -75,7 +75,8 @@ public class ItemGlassShards extends Item {
     
     @SideOnly(Side.CLIENT)
     private void registerModels() {
-        ModelBakery.addVariantName(this, variants);
+        for(String variant: variants)
+            ModelBakery.registerItemVariants(this, new ModelResourceLocation(variant, "inventory"));
         ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
