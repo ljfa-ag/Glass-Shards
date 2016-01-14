@@ -23,7 +23,7 @@ public class HarvestDropsHandler {
         Block block = state.getBlock();
 
         if(block instanceof IShatterableGlass) {
-            addDropForType(event, ((IShatterableGlass)block).getType(state));
+            addDropForType(event, ((IShatterableGlass)block).getGlassType(event.world, event.pos, state));
         }
         else {
             ModGlassHandler handler = GlassRegistry.get(block);

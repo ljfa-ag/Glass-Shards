@@ -1,15 +1,19 @@
 package ljfa.glassshards.api;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 
 /**
  * @author ljfa-ag
- * To be implemented by glass blocks (or panes or anything) for retrieving traits about the glass and making it drop shards.
+ * An interface that can be implemented by blocks that are made of glass and should drop glass shards when broken
  */
 public interface IShatterableGlass {
     /**
+     * @param world The world
+     * @param pos The position of the block
      * @param state The block state
      * @return A GlassType object representing the block, or null.
      */
-    public GlassType getType(IBlockState state);
+    public GlassType getGlassType(World world, BlockPos pos, IBlockState state);
 }
