@@ -47,7 +47,7 @@ public class GlassRegistry {
     public static void registerAll() {
         int counter = 0;
         for(Block block: GameData.getBlockRegistry()) {
-            if(block.getMaterial() != Material.glass)
+            if(block.getMaterial(block.getDefaultState()) != Material.glass)
                 continue;
             
             if(block instanceof BlockGlass) {

@@ -13,19 +13,19 @@ public class BreakSpeedHandler {
 
     @SubscribeEvent
     public void onBreakSpeed(PlayerEvent.BreakSpeed event) {
-        Block block = event.state.getBlock();
-        if(block.getMaterial() == Material.glass && block.getHarvestTool(event.state) == null) {
-            ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
+        Block block = event.getState().getBlock();
+        if(block.getMaterial(event.getState()) == Material.glass && block.getHarvestTool(event.getState()) == null) {
+            ItemStack stack = event.getEntityPlayer().getHeldItemMainhand();
             if(stack == null)
                 return;
             Item tool = stack.getItem();
             if(tool instanceof ItemTool && tool.getHarvestLevel(stack, "pickaxe") >= 0) {
                 float factor = 0.35f * ((ItemTool)tool).getToolMaterial().getEfficiencyOnProperMaterial();
-                int efficiency = EnchantmentHelper.getEfficiencyModifier(event.entityPlayer);
+                int efficiency = EnchantmentHelper.getEfficiencyModifier(event.getEntityPlayer());
                 if(efficiency > 0)
                     factor *= 1.0f + 0.15f * efficiency*efficiency;
                 if(factor > 1.0f)
-                    event.newSpeed = factor * event.originalSpeed;
+                    event.setNewSpeed(factor * event.getOriginalSpeed());
             }
         }
     }

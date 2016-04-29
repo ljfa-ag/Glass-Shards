@@ -3,7 +3,6 @@ package ljfa.glassshards;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ljfa.glassshards.compat.ThaumcraftCompat;
 import ljfa.glassshards.glass.GlassRegistry;
 import ljfa.glassshards.handlers.BreakSpeedHandler;
 import ljfa.glassshards.handlers.HarvestDropsHandler;
@@ -12,14 +11,13 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS,
-        acceptedMinecraftVersions = "[1.8.9,1.9)", updateJSON = Reference.UPDATE_JSON)
+        acceptedMinecraftVersions = "[1.9,1.10)", updateJSON = Reference.UPDATE_JSON)
 public class GlassShards {
     @Mod.Instance(Reference.MODID)
     public static GlassShards instance;
@@ -52,7 +50,5 @@ public class GlassShards {
 
     /** Initialize compatibility with other mods */
     private static void initCompatModules() {
-        if(Config.thaumAspects && Loader.isModLoaded("Thaumcraft"))
-            ThaumcraftCompat.addAspects();
     }
 }

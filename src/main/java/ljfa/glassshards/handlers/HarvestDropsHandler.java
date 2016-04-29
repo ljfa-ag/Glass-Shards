@@ -16,21 +16,21 @@ public class HarvestDropsHandler {
 
     @SubscribeEvent
     public void onBlockHarvested(HarvestDropsEvent event) {
-        if(event.world.isRemote || event.isSilkTouching)
+        if(event.getWorld().isRemote || event.isSilkTouching())
             return;
 
-        IBlockState state = event.state;
+        IBlockState state = event.getState();
         Block block = state.getBlock();
 
         if(block instanceof IShatterableGlass) {
-            addDropForType(event, ((IShatterableGlass)block).getGlassType(event.world, event.pos, state));
+            addDropForType(event, ((IShatterableGlass)block).getGlassType(event.getWorld(), event.getPos(), state));
         }
         else {
             ModGlassHandler handler = GlassRegistry.get(block);
             if(handler != null) {
-                if(!event.drops.isEmpty()) {
+                if(!event.getDrops().isEmpty()) {
                     if(handler.shouldRemoveDrop(state))
-                        event.drops.clear();
+                        event.getDrops().clear();
                     else
                         return;
                 }
@@ -42,10 +42,10 @@ public class HarvestDropsHandler {
     /** With the correct probability, adds shards corresponding to the type to the drop list */
     public static void addDropForType(HarvestDropsEvent event, GlassType gtype) {
         if(gtype != null) {
-            float chance = gtype.getMultiplier() * getChanceFromFortune(event.fortuneLevel);
-            if(event.world.rand.nextFloat() <= chance) {
+            float chance = gtype.getMultiplier() * getChanceFromFortune(event.getFortuneLevel());
+            if(event.getWorld().rand.nextFloat() <= chance) {
                 int meta = gtype.isStained() ? gtype.getColor().getMetadata() : 16;
-                event.drops.add(new ItemStack(ModItems.glass_shards, 1, meta));
+                event.getDrops().add(new ItemStack(ModItems.glass_shards, 1, meta));
             }
         }
     }

@@ -3,6 +3,7 @@ package ljfa.glassshards.items;
 import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems {
@@ -18,7 +19,8 @@ public class ModItems {
     /** Sets the item's name and registers it */
     public static <T extends Item> T register(T item, String name) {
         item.setUnlocalizedName(Reference.MODID + ":" + name);
-        GameRegistry.registerItem(item, name);
+        item.setRegistryName(new ResourceLocation(Reference.MODID, name));
+        GameRegistry.register(item);
         return item;
     }
 }

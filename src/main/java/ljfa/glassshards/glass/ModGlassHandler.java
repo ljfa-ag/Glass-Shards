@@ -15,7 +15,7 @@ public abstract class ModGlassHandler {
     * The default implementation uses the return value of getType() for that.
     */
     public void addShardsDrop(HarvestDropsEvent event) {
-        HarvestDropsHandler.addDropForType(event, getType(event.state));
+        HarvestDropsHandler.addDropForType(event, getType(event.getState()));
     }
     
     /** @return the glass type for a given block, or null if not applicable */
