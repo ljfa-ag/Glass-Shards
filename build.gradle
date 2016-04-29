@@ -17,14 +17,14 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.6"
+version = "1.6.1"
 group= "ljfa.glassshards"
-archivesBaseName = "glass_shards_mc1.8.9"
+archivesBaseName = "glass_shards_mc1.9"
 
 minecraft {
-    version = "1.8.9-11.15.0.1696"
+    version = "1.9-12.16.0.1867-1.9"
     runDir = "run"
-    mappings = "stable_20"
+    mappings = "snapshot_20160312"
     
     replaceIn "Reference.java"
     replace "\${version}", project.version
@@ -37,8 +37,8 @@ curseforge {
     project {
         id = '226834'
         changelog  = ''
-        releaseType = 'beta'
-        addGameVersion '1.8.9'
+        releaseType = 'alpha'
+        addGameVersion '1.9'
     }
 }
 
