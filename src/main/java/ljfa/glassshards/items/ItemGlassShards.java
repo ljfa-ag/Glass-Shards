@@ -52,10 +52,17 @@ public class ItemGlassShards extends Item {
     
     @Override
     public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot equipmentSlot, ItemStack stack) {
-        double damage = 1.0;
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot, stack);
-        multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(),
-                new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", damage, 0));
+        
+        if(equipmentSlot == EntityEquipmentSlot.MAINHAND) {
+	        double damage = 1.0;
+	        double speed = -2.0;
+	        multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(),
+	                new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", damage, 0));
+	        multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(),
+	                new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", speed, 0));
+        }
+        
         return multimap;
     }
     
