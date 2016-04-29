@@ -12,7 +12,6 @@ import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameData;
 
 /**
  * Class that handles glasses form other mods that don't implement the API.
@@ -46,7 +45,7 @@ public class GlassRegistry {
     /** Adds all registered blocks that are glass to the GlassRegistry */
     public static void registerAll() {
         int counter = 0;
-        for(Block block: GameData.getBlockRegistry()) {
+        for(Block block: Block.blockRegistry) {
             if(block.getMaterial(block.getDefaultState()) != Material.glass)
                 continue;
             
