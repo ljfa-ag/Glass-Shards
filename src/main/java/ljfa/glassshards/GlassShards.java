@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS,
-        acceptedMinecraftVersions = "[1.9,1.10)", updateJSON = Reference.UPDATE_JSON)
+        acceptedMinecraftVersions = "[1.9.4,1.10)", updateJSON = Reference.UPDATE_JSON)
 public class GlassShards {
     @Mod.Instance(Reference.MODID)
     public static GlassShards instance;

@@ -14,7 +14,7 @@ public class BreakSpeedHandler {
     @SubscribeEvent
     public void onBreakSpeed(PlayerEvent.BreakSpeed event) {
         Block block = event.getState().getBlock();
-        if(block.getMaterial(event.getState()) == Material.glass && block.getHarvestTool(event.getState()) == null) {
+        if(event.getState().getMaterial() == Material.GLASS && block.getHarvestTool(event.getState()) == null) {
             ItemStack stack = event.getEntityPlayer().getHeldItemMainhand();
             if(stack == null)
                 return;

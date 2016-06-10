@@ -7,7 +7,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 
@@ -17,14 +17,14 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.6.1"
+version = "1.6.2"
 group= "ljfa.glassshards"
-archivesBaseName = "glass_shards_mc1.9"
+archivesBaseName = "glass_shards_mc1.9.4"
 
 minecraft {
-    version = "1.9-12.16.0.1867-1.9"
+    version = "1.9.4-12.17.0.1957"
     runDir = "run"
-    mappings = "snapshot_20160312"
+    mappings = "snapshot_20160518"
     
     replaceIn "Reference.java"
     replace "\${version}", project.version
@@ -37,8 +37,7 @@ curseforge {
     project {
         id = '226834'
         changelog  = ''
-        releaseType = 'alpha'
-        addGameVersion '1.9'
+        releaseType = 'beta'
     }
 }
 

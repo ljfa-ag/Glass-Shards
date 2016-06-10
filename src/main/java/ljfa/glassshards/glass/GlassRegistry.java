@@ -21,12 +21,12 @@ public class GlassRegistry {
     /** Adds a handler for a given glass block */
     public static void addHandler(Block block, ModGlassHandler handler) {
         handlerMap.put(block, handler);
-        logger.trace("Added glass handler for {}", Block.blockRegistry.getNameForObject(block));
+        logger.trace("Added glass handler for {}", block.getRegistryName());
     }
     
     /** Adds a handler for a given glass block */
     public static void addHandler(String blockname, ModGlassHandler handler) {
-        if(Block.blockRegistry.containsKey(new ResourceLocation(blockname)))
+        if(Block.REGISTRY.containsKey(new ResourceLocation(blockname)))
             addHandler(Block.getBlockFromName(blockname), handler);
         else
             throw new IllegalArgumentException("Could not find block \"" + blockname + "\"");
@@ -45,8 +45,8 @@ public class GlassRegistry {
     /** Adds all registered blocks that are glass to the GlassRegistry */
     public static void registerAll() {
         int counter = 0;
-        for(Block block: Block.blockRegistry) {
-            if(block.getMaterial(block.getDefaultState()) != Material.glass)
+        for(Block block: Block.REGISTRY) {
+            if(block.getDefaultState().getMaterial() != Material.GLASS)
                 continue;
             
             if(block instanceof BlockGlass) {

@@ -33,7 +33,7 @@ public class ItemGlassShards extends Item {
     
     public ItemGlassShards() {
         setHasSubtypes(true);
-        setCreativeTab(CreativeTabs.tabMaterials);
+        setCreativeTab(CreativeTabs.MATERIALS);
         ModItems.register(this, "glass_shards");
         
         if(FMLCommonHandler.instance().getSide().isClient())
