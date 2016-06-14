@@ -17,12 +17,12 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.6"
+version = "1.6.2"
 group= "ljfa.glassshards"
 archivesBaseName = "glass_shards_mc1.8.9"
 
 minecraft {
-    version = "1.8.9-11.15.0.1696"
+    version = "1.8.9-11.15.1.1722"
     runDir = "run"
     mappings = "stable_20"
     
@@ -33,11 +33,11 @@ minecraft {
 }
 
 curseforge {
-    apiKey = project.curseForgeApiKey
+    apiKey = project.hasProperty('curseForgeApiKey') ? project.curseForgeApiKey : ''
     project {
         id = '226834'
         changelog  = ''
-        releaseType = 'beta'
+        releaseType = 'release'
         addGameVersion '1.8.9'
     }
 }
