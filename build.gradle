@@ -33,7 +33,7 @@ minecraft {
 }
 
 curseforge {
-    apiKey = project.curseForgeApiKey
+    apiKey = project.hasProperty('curseForgeApiKey') ? project.curseForgeApiKey : ''
     project {
         id = '226834'
         changelog  = ''
