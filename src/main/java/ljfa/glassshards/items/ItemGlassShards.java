@@ -1,7 +1,5 @@
 package ljfa.glassshards.items;
 
-import java.util.List;
-
 import com.google.common.collect.Multimap;
 
 import ljfa.glassshards.Reference;
@@ -14,6 +12,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -57,9 +56,9 @@ public class ItemGlassShards extends Item {
         if(equipmentSlot == EntityEquipmentSlot.MAINHAND) {
 	        double damage = 1.0;
 	        double speed = -2.0;
-	        multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(),
+	        multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
 	                new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", damage, 0));
-	        multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(),
+	        multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(),
 	                new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", speed, 0));
         }
         
@@ -68,7 +67,7 @@ public class ItemGlassShards extends Item {
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List<ItemStack> list) {
+    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
         //List clear shards first
         list.add(new ItemStack(item, 1, 16));
         for(int i = 0; i < 16; i++)
@@ -85,7 +84,7 @@ public class ItemGlassShards extends Item {
         ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return variants[MathHelper.clamp_int(stack.getItemDamage(), 0, 16)];
+                return variants[MathHelper.clamp(stack.getItemDamage(), 0, 16)];
             }
         });
     }

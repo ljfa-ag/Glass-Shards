@@ -1,7 +1,5 @@
 package ljfa.glassshards.items;
 
-import java.util.List;
-
 import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -12,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -62,7 +61,7 @@ public class ItemGlassSword extends ItemSword {
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List<ItemStack> list) {
+    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
         list.add(new ItemStack(item));
         for(int i = 0; i < 16; i++) {
             NBTTagCompound tag = new NBTTagCompound();
