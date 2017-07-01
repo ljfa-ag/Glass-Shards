@@ -50,9 +50,7 @@ public class ItemGlassSword extends ItemSword {
     
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        if(repair == null || repair.getItem() != ModItems.glass_shards)
-            return false;
-        return repair.getItemDamage() == getColor(toRepair);
+        return repair.getItem() == ModItems.glass_shards && repair.getItemDamage() == getColor(toRepair);
     }
     
     @Override

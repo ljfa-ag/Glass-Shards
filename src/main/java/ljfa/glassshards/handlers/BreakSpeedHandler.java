@@ -17,8 +17,6 @@ public class BreakSpeedHandler {
         Block block = event.getState().getBlock();
         if(event.getState().getMaterial() == Material.GLASS && block.getHarvestTool(event.getState()) == null) {
             ItemStack stack = event.getEntityPlayer().getHeldItemMainhand();
-            if(stack == null)
-                return;
             Item tool = stack.getItem();
             if(tool instanceof ItemTool && tool.getHarvestLevel(stack, "pickaxe", event.getEntityPlayer(), event.getState()) >= 0) {
                 ToolMaterial mat = ToolMaterial.valueOf(((ItemTool)tool).getToolMaterialName());
