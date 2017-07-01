@@ -64,14 +64,13 @@ public class ItemGlassShards extends Item {
         
         return multimap;
     }
-    
-    @SideOnly(Side.CLIENT)
+
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         //List clear shards first
-        list.add(new ItemStack(item, 1, 16));
+        list.add(new ItemStack(this, 1, 16));
         for(int i = 0; i < 16; i++)
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
     }
     
     @SideOnly(Side.CLIENT)

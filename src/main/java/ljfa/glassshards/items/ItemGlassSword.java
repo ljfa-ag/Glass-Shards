@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
@@ -59,14 +58,13 @@ public class ItemGlassSword extends ItemSword {
         return repair.getItemDamage() == getColor(toRepair);
     }
     
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
-        list.add(new ItemStack(item));
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+        list.add(new ItemStack(this));
         for(int i = 0; i < 16; i++) {
             NBTTagCompound tag = new NBTTagCompound();
             tag.setByte("Color", (byte)i);
-            ItemStack stack = new ItemStack(item);
+            ItemStack stack = new ItemStack(this);
             stack.setTagCompound(tag);
             list.add(stack);
         }
