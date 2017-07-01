@@ -2,7 +2,6 @@ package ljfa.glassshards.items;
 
 import ljfa.glassshards.GlassShards;
 import ljfa.glassshards.Reference;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
@@ -72,12 +72,7 @@ public class ItemGlassSword extends ItemSword {
             variants[i] = new ModelResourceLocation(Reference.MODID + ":glass_sword", "color=" + ItemGlassShards.colorNames[i]);
         
         ModelBakery.registerItemVariants(this, variants);
-        ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return variants[getColor(stack)];
-            }
-        });
+        ModelLoader.setCustomMeshDefinition(this, stack -> variants[MathHelper.clamp(getColor(stack), 0, 16)]);
     }
 
 }

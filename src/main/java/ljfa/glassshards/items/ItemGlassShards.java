@@ -3,7 +3,6 @@ package ljfa.glassshards.items;
 import com.google.common.collect.Multimap;
 
 import ljfa.glassshards.Reference;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -77,11 +76,6 @@ public class ItemGlassShards extends Item {
             variants[i] = new ModelResourceLocation(Reference.MODID + ":glass_shards", "color=" + colorNames[i]);
         
         ModelBakery.registerItemVariants(this, variants);
-        ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return variants[MathHelper.clamp(stack.getItemDamage(), 0, 16)];
-            }
-        });
+        ModelLoader.setCustomMeshDefinition(this, stack -> variants[MathHelper.clamp(stack.getItemDamage(), 0, 16)]);
     }
 }
