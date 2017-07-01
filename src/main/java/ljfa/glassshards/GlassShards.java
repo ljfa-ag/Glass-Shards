@@ -11,7 +11,6 @@ import ljfa.glassshards.items.ItemGlassSword;
 import ljfa.glassshards.items.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,7 +39,6 @@ public class GlassShards {
         MinecraftForge.EVENT_BUS.register(this);
         Config.loadConfig(event.getSuggestedConfigurationFile());
         toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, Config.swordDurability, 4.0f, 2.0f, 5);
-        toolMatGlass.setRepairItem(new ItemStack(ModItems.glass_shards, 1, 16));
     }
     
     @Mod.EventHandler
