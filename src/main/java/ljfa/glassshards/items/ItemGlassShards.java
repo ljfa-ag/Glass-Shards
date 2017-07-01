@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -31,17 +30,15 @@ public class ItemGlassShards extends Item {
             "none"};
     
     public ItemGlassShards() {
+        setRegistryName("glass_shards");
+        setUnlocalizedName(Reference.MODID + ":glass_shards");
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.MATERIALS);
-        ModItems.register(this, "glass_shards");
-        
-        if(FMLCommonHandler.instance().getSide().isClient())
-            registerModels();
     }
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        String prefix = "item." + Reference.MODID + ":glass_shards";
+        String prefix = getUnlocalizedName();
         int meta = stack.getItemDamage();
         if(meta < 16)
             return prefix + "." + colorNames[meta];
@@ -74,7 +71,7 @@ public class ItemGlassShards extends Item {
     }
     
     @SideOnly(Side.CLIENT)
-    private void registerModels() {
+    public void registerModels() {
         final ModelResourceLocation[] variants = new ModelResourceLocation[17];
         for(int i = 0; i < 17; i++)
             variants[i] = new ModelResourceLocation(Reference.MODID + ":glass_shards", "color=" + colorNames[i]);

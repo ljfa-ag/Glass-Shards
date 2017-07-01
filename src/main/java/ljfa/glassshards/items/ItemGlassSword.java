@@ -12,7 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,10 +23,8 @@ public class ItemGlassSword extends ItemSword {
 
     public ItemGlassSword() {
         super(GlassShards.toolMatGlass);
-        ModItems.register(this, "glass_sword");
-        
-        if(FMLCommonHandler.instance().getSide().isClient())
-            registerModels();
+        setRegistryName("glass_sword");
+        setUnlocalizedName(Reference.MODID + ":glass_sword");
     }
     
     /**
@@ -43,7 +40,7 @@ public class ItemGlassSword extends ItemSword {
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        String prefix = "item." + Reference.MODID + ":glass_sword";
+        String prefix = getUnlocalizedName();
         int color = getColor(stack);
         if(0 <= color && color < 16)
             return prefix + "." + ItemGlassShards.colorNames[color];
@@ -71,7 +68,7 @@ public class ItemGlassSword extends ItemSword {
     }
 
     @SideOnly(Side.CLIENT)
-    private void registerModels() {
+    public void registerModels() {
         final ModelResourceLocation[] variants = new ModelResourceLocation[17];
         for(int i = 0; i < 17; i++)
             variants[i] = new ModelResourceLocation(Reference.MODID + ":glass_sword", "color=" + ItemGlassShards.colorNames[i]);

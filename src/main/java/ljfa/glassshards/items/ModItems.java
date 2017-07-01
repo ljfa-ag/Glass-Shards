@@ -1,26 +1,10 @@
 package ljfa.glassshards.items;
 
-import ljfa.glassshards.Config;
 import ljfa.glassshards.Reference;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
+@ObjectHolder(Reference.MODID)
 public class ModItems {
-    public static ItemGlassShards glass_shards;
-    public static ItemGlassSword glass_sword;
-    
-    public static void init() {
-        glass_shards = new ItemGlassShards();
-        if(Config.enableSword)
-            glass_sword = new ItemGlassSword();
-    }
-    
-    /** Sets the item's name and registers it */
-    public static <T extends Item> T register(T item, String name) {
-        item.setUnlocalizedName(Reference.MODID + ":" + name);
-        item.setRegistryName(new ResourceLocation(Reference.MODID, name));
-        GameRegistry.register(item);
-        return item;
-    }
+    public static final ItemGlassShards glass_shards = null;
+    public static final ItemGlassSword glass_sword = null;
 }
