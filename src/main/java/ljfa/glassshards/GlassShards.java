@@ -12,6 +12,7 @@ import ljfa.glassshards.items.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
@@ -44,7 +45,6 @@ public class GlassShards {
     
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
         if(Config.incrBreakSpeed)
             MinecraftForge.EVENT_BUS.register(new BreakSpeedHandler());
@@ -68,5 +68,10 @@ public class GlassShards {
         ModItems.glass_shards.registerModels();
         if(ModItems.glass_sword != null)
             ModItems.glass_sword.registerModels();
+    }
+    
+    @SubscribeEvent
+    public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        ModRecipes.init();
     }
 }

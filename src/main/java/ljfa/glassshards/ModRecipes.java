@@ -2,7 +2,6 @@ package ljfa.glassshards;
 
 import ljfa.glassshards.items.ModItems;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,7 +43,7 @@ public class ModRecipes {
         if(Config.recipeUncolor)
             GameRegistry.addShapedRecipe(new ResourceLocation(Reference.MODID, "uncolor_shards"), null,
                 new ItemStack(ModItems.glass_shards, 8, 16), "SSS", "SGS", "SSS",
-                'S', "shardsGlass", 'G', Items.GUNPOWDER);
+                'S', "shardsGlass", 'G', "gunpowder");
         
         if(Config.enableSword) {
             ResourceLocation group = new ResourceLocation(Reference.MODID, "glass_sword");
