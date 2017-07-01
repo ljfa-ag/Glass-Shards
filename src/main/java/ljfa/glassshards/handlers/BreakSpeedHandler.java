@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -20,7 +21,8 @@ public class BreakSpeedHandler {
                 return;
             Item tool = stack.getItem();
             if(tool instanceof ItemTool && tool.getHarvestLevel(stack, "pickaxe", event.getEntityPlayer(), event.getState()) >= 0) {
-                float factor = 0.35f * ((ItemTool)tool).toolMaterial.getEfficiencyOnProperMaterial();
+                ToolMaterial mat = ToolMaterial.valueOf(((ItemTool)tool).getToolMaterialName());
+                float factor = 0.35f * mat.getEfficiencyOnProperMaterial();
                 int efficiency = EnchantmentHelper.getEfficiencyModifier(event.getEntityPlayer());
                 if(efficiency > 0)
                     factor *= 1.0f + 0.15f * efficiency*efficiency;
