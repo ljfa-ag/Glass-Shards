@@ -17,7 +17,7 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.6.3"
+version = "1.7"
 group= "ljfa.glassshards"
 archivesBaseName = "glass_shards_mc1.12"
 
