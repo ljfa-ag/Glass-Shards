@@ -63,10 +63,12 @@ public class ItemGlassShards extends Item {
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-        //List clear shards first
-        list.add(new ItemStack(this, 1, 16));
-        for(int i = 0; i < 16; i++)
-            list.add(new ItemStack(this, 1, i));
+        if(isInCreativeTab(tab)) {
+            //List clear shards first
+            list.add(new ItemStack(this, 1, 16));
+            for(int i = 0; i < 16; i++)
+                list.add(new ItemStack(this, 1, i));
+        }
     }
     
     @SideOnly(Side.CLIENT)

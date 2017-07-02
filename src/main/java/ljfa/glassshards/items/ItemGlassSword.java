@@ -55,13 +55,15 @@ public class ItemGlassSword extends ItemSword {
     
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-        list.add(new ItemStack(this));
-        for(int i = 0; i < 16; i++) {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setByte("Color", (byte)i);
-            ItemStack stack = new ItemStack(this);
-            stack.setTagCompound(tag);
-            list.add(stack);
+        if(isInCreativeTab(tab)) {
+            list.add(new ItemStack(this));
+            for(int i = 0; i < 16; i++) {
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setByte("Color", (byte)i);
+                ItemStack stack = new ItemStack(this);
+                stack.setTagCompound(tag);
+                list.add(stack);
+            }
         }
     }
 
