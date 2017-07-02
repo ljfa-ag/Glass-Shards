@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemGlassSword extends ItemSword {
 
     public ItemGlassSword() {
-        super(GlassShards.toolMatGlass);
+        super(GlassShards.instance.toolMatGlass);
         setRegistryName("glass_sword");
         setUnlocalizedName(Reference.MODID + ":glass_sword");
     }

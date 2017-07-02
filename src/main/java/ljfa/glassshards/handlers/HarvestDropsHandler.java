@@ -51,6 +51,6 @@ public class HarvestDropsHandler {
     }
 
     public static float getChanceFromFortune(int fortune) {
-        return Math.min(Config.shardsChance + fortune*Config.shardsFortuneChance, 1.0f);
+        return (float)Math.min(Config.shardsChance + fortune*Config.shardsFortuneChance, 1.0);
     }
 }

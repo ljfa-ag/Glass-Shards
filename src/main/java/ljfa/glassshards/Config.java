@@ -1,59 +1,43 @@
 package ljfa.glassshards;
 
-import java.io.File;
+import net.minecraftforge.common.config.Config.Comment;
+import net.minecraftforge.common.config.Config.RangeDouble;
+import net.minecraftforge.common.config.Config.RangeInt;
+import net.minecraftforge.common.config.Config.RequiresMcRestart;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+@net.minecraftforge.common.config.Config(modid = Reference.MODID)
 public class Config {
-    public static Configuration conf;
+    @Comment("Base chance that a block of glass drops shards")
+    @RangeDouble(min = 0.0, max = 1.0)
+    public static double shardsChance = 0.7;
     
-    public static final String CAT_GENERAL = "general";
-    public static final String CAT_THAUMCRAFT = "thaumcraft";
+    @Comment("Chance per fortune level that a block of glass drops shards")
+    @RangeDouble(min = 0.0, max = 1.0)
+    public static double shardsFortuneChance = 0.07;
     
-    public static float shardsChance;
-    public static float shardsFortuneChance;
-    public static boolean recipesRecolor;
-    public static boolean recipeUncolor;
-    public static boolean recipesFurnace;
-    public static boolean enableSword;
-    public static int swordDurability;
-    public static boolean incrBreakSpeed;
+    @Comment("Add recipes for coloring shards")
+    @RequiresMcRestart
+    public static boolean recipesColor = true;
     
-    public static void loadConfig(File file) {
-        if(conf == null)
-            conf = new Configuration(file);
-        
-        conf.load();
-        loadValues();
-        
-        MinecraftForge.EVENT_BUS.register(new ChangeHandler());
-    }
+    @Comment("Add recipe to remove the color from shards")
+    @RequiresMcRestart
+    public static boolean recipeUncolor = true;
     
-    public static void loadValues() {
-        conf.getCategory(CAT_GENERAL).setComment("General options");
-        
-        shardsChance = (float)conf.get(CAT_GENERAL, "shardsChance", 0.7, "Base chance that a block of glass drops shards", 0.0, 1.0).getDouble();
-        shardsFortuneChance = (float)conf.get(CAT_GENERAL, "shardsFortuneChance", 0.07, "Chance per fortune level that a block of glass drops shards", 0.0, 1.0).getDouble();
-        recipesRecolor = conf.get(CAT_GENERAL, "recipesColor", true, "Add recipes for coloring shards").setRequiresMcRestart(true).getBoolean();
-        recipeUncolor = conf.get(CAT_GENERAL, "recipeUncolor", true, "Add recipe to remove the color from shards").setRequiresMcRestart(true).getBoolean();
-        recipesFurnace = conf.get(CAT_GENERAL, "recipesFurnace", true, "Add furnace recipes to smelt shards to glass blocks\n(if you disable this, you will probably want to add some other way to process shards)").setRequiresMcRestart(true).getBoolean();
-        enableSword = conf.get(CAT_GENERAL, "enableSword", true, "Enables the glass sword").setRequiresMcRestart(true).getBoolean();
-        swordDurability = conf.get(CAT_GENERAL, "swordDurability", 109, "Durability of the glass sword", 1, 1561).setRequiresMcRestart(true).getInt();
-        incrBreakSpeed = conf.get(CAT_GENERAL, "increaseGlassBreakSpeed", true, "Glass breaks faster when mined with a pickaxe").setRequiresMcRestart(true).getBoolean();
-        //----------------
-        if(conf.hasChanged())
-            conf.save();
-    }
+    @Comment({"Add furnace recipes to smelt shards to glass blocks",
+              "(if you disable this, you will probably want to add some other way to process shards)"})
+    @RequiresMcRestart
+    public static boolean recipesFurnace = true;
     
-    /** Reloads the config values upon change */
-    public static class ChangeHandler {
-        @SubscribeEvent
-        public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-            if(event.getModID().equals(Reference.MODID))
-                loadValues();
-        }
-    }
+    @Comment("Enables the glass sword")
+    @RequiresMcRestart
+    public static boolean enableSword = true;
+    
+    @Comment("Durability of the glass sword")
+    @RangeInt(min = 1, max = 1561)
+    @RequiresMcRestart
+    public static int swordDurability = 109;
+    
+    @Comment("Glass breaks faster when mined with a pickaxe")
+    @RequiresMcRestart
+    public static boolean increaseGlassBreakSpeed = true;
 }

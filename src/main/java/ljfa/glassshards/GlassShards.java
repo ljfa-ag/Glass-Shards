@@ -14,8 +14,11 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config.Type;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -24,7 +27,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS,
+@Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION,
         acceptedMinecraftVersions = "[1.12,)", updateJSON = Reference.UPDATE_JSON)
 public class GlassShards {
     @Mod.Instance(Reference.MODID)
@@ -32,19 +35,18 @@ public class GlassShards {
     
     public static final Logger logger = LogManager.getLogger(Reference.MODNAME);
     
-    public static ToolMaterial toolMatGlass;
+    public ToolMaterial toolMatGlass;
     
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
-        Config.loadConfig(event.getSuggestedConfigurationFile());
         toolMatGlass = EnumHelper.addToolMaterial("GLASS", 2, Config.swordDurability, 4.0f, 2.0f, 5);
     }
     
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new HarvestDropsHandler());
-        if(Config.incrBreakSpeed)
+        if(Config.increaseGlassBreakSpeed)
             MinecraftForge.EVENT_BUS.register(new BreakSpeedHandler());
     }
     
@@ -71,5 +73,11 @@ public class GlassShards {
     @SubscribeEvent
     public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
         ModRecipes.init();
+    }
+    
+    @SubscribeEvent
+    public void onConfigChanged(OnConfigChangedEvent event) {
+        if(Reference.MODID.equals(event.getModID()))
+            ConfigManager.sync(Reference.MODID, Type.INSTANCE);
     }
 }

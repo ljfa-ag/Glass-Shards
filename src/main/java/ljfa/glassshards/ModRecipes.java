@@ -29,7 +29,7 @@ public class ModRecipes {
     }
     
     private static void addCrafting() {
-        if(Config.recipesRecolor) {
+        if(Config.recipesColor) {
             ResourceLocation group = new ResourceLocation(Reference.MODID, "color_shards");
             
             for(int i = 0; i < 16; i++) {
