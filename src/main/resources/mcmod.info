@@ -5,7 +5,7 @@
   "description": "Adds glass shards dropped when breaking glass",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://minecraft.curseforge.com/mc-mods/226834-glass-shards",
+  "url": "https://minecraft.curseforge.com/projects/glass-shards",
   "updateUrl": "",
   "authorList": ["ljfa"],
   "credits": "ljfa for the code, Plainy and Tord for textures and ideas",
